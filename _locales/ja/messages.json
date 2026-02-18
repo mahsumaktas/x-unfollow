@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "X Unfollow - Twitter一括フォロー解除"
+  },
+  "extDescription": {
+    "message": "X/Twitterで一括フォロー解除。非フォロワー・非アクティブユーザーをスマートフィルターで管理。ホワイトリスト保護とアクティビティログ対応。"
+  }
+}
