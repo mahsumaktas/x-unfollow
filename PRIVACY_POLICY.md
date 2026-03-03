@@ -62,7 +62,6 @@ This extension requests the following permissions:
 |---|---|
 | `activeTab` | Detect the current page to enable extension features |
 | `storage` | Save your preferences and activity history locally |
-| `tabs` | Navigate to the correct X.com page when needed |
 | `alarms` | Keep the background service worker alive during operation |
 | `notifications` (optional) | Show completion notifications (only if you enable it) |
 | `x.com`, `twitter.com` | Run content scripts on X/Twitter pages only |
@@ -70,7 +69,7 @@ This extension requests the following permissions:
 ## Open Source
 
 This extension is open source. You can review the complete source code at:
-https://github.com/nicearchs/xunfollow
+https://github.com/mahsumaktas/x-unfollow
 
 ## Children's Privacy
 
@@ -83,7 +82,7 @@ We may update this privacy policy from time to time. Changes will be reflected i
 ## Contact
 
 For questions about this privacy policy, please open an issue on our GitHub repository:
-https://github.com/nicearchs/xunfollow/issues
+https://github.com/mahsumaktas/x-unfollow/issues
 
 ---
 

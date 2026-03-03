@@ -12,7 +12,6 @@ const translations = {
         modeAll: 'Herkesi Çıkar',
         modeAllDesc: 'Tüm takip ettiklerini çıkar',
         modeInactive: 'Pasif Hesaplar',
-        modeInactiveDesc: 'Uzun süredir tweet atmayanları çıkar',
         modeInactiveDesc: 'Pasif ve varsayılan avatarlı hesapları çıkar',
         whitelistTitle: 'Whitelist',
         whitelistPlaceholder: 'Korunacak kullanıcı adları (her satıra bir tane)\n\nÖrnek:\nelonmusk\ntwitter',
