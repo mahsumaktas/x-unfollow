@@ -26,7 +26,7 @@
 
     function isDefaultAvatarInCell(userCell) {
         const img = userCell.querySelector('img[src]');
-        if (!img) return true;
+        if (!img) return false;
         return (img.src || '').includes('default_profile');
     }
 
@@ -288,8 +288,12 @@
         }
     };
 
+    // Forced language override (set by popup via 'start' message)
+    let forcedLang = null;
+
     // Detect language
     function getLanguage() {
+        if (forcedLang) return forcedLang;
         const lang = navigator.language || 'en';
         if (lang.startsWith('tr')) return 'tr';
         if (lang.startsWith('ja')) return 'ja';
@@ -1252,6 +1256,7 @@
                 return true;
             }
 
+            if (message.lang) forcedLang = message.lang;
             stats = { unfollowed: 0, skipped: 0, scanned: 0, followed: 0 };
             currentMode = message.mode || 'non-followers';
             whitelist = message.whitelist || [];

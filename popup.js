@@ -851,6 +851,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         whitelist: whitelistUsers,
         speed: speed,
         limit: limit,
+        lang: window.i18n.forcedLang || window.i18n.getLanguage(),
         inactiveDays: parseInt(inactiveDaysSelect.value) || 90,
         minFollowers: parseInt(minFollowersInput.value) || 0,
         bioKeywords: bioKeywordsInput.value.split(',').map(k => k.trim().replace(/[<>"'&]/g, '')).filter(Boolean),
