@@ -7,6 +7,9 @@ const translations = {
 // TURKISH
 // ═══════════════════════════════════════════════════════════
 tr: {
+    confirmStart: '{mode} modunda takipten çıkarma başlayacak. Devam et?',
+    btnCancel: 'İptal',
+    btnConfirmStart: 'Başlat',
     title: 'X Unfollow Tool',
     subtitle: 'Takip listenizi kolayca yönetin.',
     appName: 'X Unfollow Tool',
@@ -237,6 +240,9 @@ tr: {
 // ENGLISH
 // ═══════════════════════════════════════════════════════════
 en: {
+    confirmStart: '{mode} unfollow will start. Continue?',
+    btnCancel: 'Cancel',
+    btnConfirmStart: 'Start',
     title: 'X Unfollow Tool',
     subtitle: 'Manage your following list with ease.',
     appName: 'X Unfollow Tool',
@@ -265,7 +271,7 @@ en: {
     btnChange: 'Change',
     btnDone: 'Done',
 
-    whitelistTitle: 'Koruma Listesi',
+    whitelistTitle: 'Whitelist',
     whitelistPlaceholder: 'Usernames to protect (one per line)\n\nExample:\nelonmusk\ntwitter',
     whitelistHint: 'These users will not be unfollowed',
     whitelistValidCount: '{valid} valid, {invalid} invalid users',
@@ -291,7 +297,7 @@ en: {
     btnGoToProfile: 'Go to Profile',
 
     menuTitle: 'Settings',
-    menuWhitelist: 'Koruma Listesi',
+    menuWhitelist: 'Whitelist',
     menuLogs: 'Activity Log',
     menuLanguage: 'Language',
     menuAbout: 'About',
@@ -439,6 +445,9 @@ en: {
 // SPANISH
 // ═══════════════════════════════════════════════════════════
 es: {
+    confirmStart: "Comenzará a dejar de seguir en modo {mode}. ¿Continuar?",
+    btnCancel: 'Cancelar',
+    btnConfirmStart: 'Iniciar',
     title: 'X Unfollow Tool',
     subtitle: 'Gestiona tu lista de seguidos fácilmente.',
     appName: 'X Unfollow Tool',
@@ -641,6 +650,9 @@ es: {
 // GERMAN
 // ═══════════════════════════════════════════════════════════
 de: {
+    confirmStart: "Das Entfolgen im {mode}-Modus startet. Fortfahren?",
+    btnCancel: 'Abbrechen',
+    btnConfirmStart: 'Starten',
     title: 'X Unfollow Tool',
     subtitle: 'Verwalte deine Folgeliste ganz einfach.',
     appName: 'X Unfollow Tool',
@@ -843,6 +855,9 @@ de: {
 // FRENCH
 // ═══════════════════════════════════════════════════════════
 fr: {
+    confirmStart: "Le désabonnement en mode {mode} va commencer. Continuer?",
+    btnCancel: 'Annuler',
+    btnConfirmStart: 'Démarrer',
     title: 'X Unfollow Tool',
     subtitle: 'Gérez facilement votre liste de suivis.',
     appName: 'X Unfollow Tool',
@@ -1045,6 +1060,9 @@ fr: {
 // ARABIC
 // ═══════════════════════════════════════════════════════════
 ar: {
+    confirmStart: 'سيبدأ إلغاء المتابعة في وضع {mode}. هل تريد المتابعة؟',
+    btnCancel: 'إلغاء',
+    btnConfirmStart: 'ابدأ',
     title: 'X Unfollow Tool',
     subtitle: 'أدر قائمة متابعيك بسهولة.',
     appName: 'X Unfollow Tool',
@@ -1247,6 +1265,9 @@ ar: {
 // JAPANESE
 // ═══════════════════════════════════════════════════════════
 ja: {
+    confirmStart: '{mode}モードでフォロー解除を開始します。続行しますか？',
+    btnCancel: 'キャンセル',
+    btnConfirmStart: '開始',
     title: 'X アンフォローツール',
     subtitle: 'フォローリストを簡単に管理。',
     appName: 'X Unfollow Tool',
@@ -1449,6 +1470,9 @@ ja: {
 // PORTUGUESE
 // ═══════════════════════════════════════════════════════════
 pt: {
+    confirmStart: "O unfollow no modo {mode} vai começar. Continuar?",
+    btnCancel: 'Cancelar',
+    btnConfirmStart: 'Iniciar',
     title: 'X Unfollow Tool',
     subtitle: 'Gerencie sua lista de seguidos com facilidade.',
     appName: 'X Unfollow Tool',
@@ -1651,6 +1675,9 @@ pt: {
 // CHINESE (Simplified)
 // ═══════════════════════════════════════════════════════════
 zh: {
+    confirmStart: '{mode}模式取消关注将开始，是否继续？',
+    btnCancel: '取消',
+    btnConfirmStart: '开始',
     title: 'X 取消关注工具',
     subtitle: '轻松管理您的关注列表。',
     appName: 'X Unfollow Tool',

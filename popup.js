@@ -514,7 +514,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (response.isPaused) {
           showPausedState();
         } else {
-          showRunningState();
+          // Confirm dialog
+      const confirmEl = document.getElementById('startConfirmModal');
+      if (confirmEl && !demoModeCheck.checked) {
+        const meta = MODE_META[mode] || MODE_META['non-followers'];
+        const mName = t(meta.nameKey) || meta.nameKey;
+        const msgEl = document.getElementById('confirmModalMsg');
+        if (msgEl) msgEl.textContent = t('confirmStart', { mode: mName }) || `Start ${mName} unfollow?`;
+        confirmEl.classList.remove('hidden');
+        await new Promise((resolve, reject) => {
+          document.getElementById('confirmYesBtn').onclick = () => { confirmEl.classList.add('hidden'); resolve(); };
+          document.getElementById('confirmNoBtn').onclick  = () => { confirmEl.classList.add('hidden'); reject(new Error('cancelled')); };
+        });
+      }
+      showRunningState();
         }
         updateStats(response.stats);
       }
@@ -545,6 +558,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       startBtn.classList.add('hidden');
       runningBtns.classList.remove('hidden');
     } else {
+      // Guard: don't reset if runningView is currently visible
+      const rv = document.getElementById('runningView');
+      if (rv && !rv.classList.contains('hidden')) return;
       startBtn.classList.remove('hidden');
       runningBtns.classList.add('hidden');
       startBtn.querySelector('span').textContent = text;
