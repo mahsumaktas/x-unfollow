@@ -1,14 +1,14 @@
 // Background Service Worker - X Unfollow Tool
 
 // Keepalive alarm
-chrome.alarms.create('keepalive', { periodInMinutes: 0.4 });
+chrome.alarms.create('keepalive', { periodInMinutes: 0.5 });
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === 'keepalive') { /* SW stays alive */ }
 });
 
 // Startup events
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.alarms.create('keepalive', { periodInMinutes: 0.4 });
+  chrome.alarms.create('keepalive', { periodInMinutes: 0.5 });
 });
 
 // Keyboard shortcut commands

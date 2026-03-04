@@ -103,9 +103,9 @@ tr: {
     minFollowersPlaceholder: '0 = filtre yok',
 
     // Limit
-    limitLabel: 'Unfollow Limiti',
+    limitLabel: 'Takipten Çıkma Limiti',
     limitPlaceholder: '0 = limitsiz',
-    limitHint: 'Maksimum unfollow sayısı (0 = limitsiz)',
+    limitHint: 'Maksimum takipten çıkma sayısı (0 = limitsiz)',
 
     // Bio filter
     bioKeywordsLabel: 'Bio Anahtar Kelimeler',
@@ -158,13 +158,13 @@ tr: {
     logModeBioFilter: 'Mod: Bio Filtresi',
     logModeFollowAll: 'Mod: Tümünü Takip Et',
     logModeOveractive: 'Mod: Aşırı Aktif',
-    logWhitelist: 'Whitelist: {count} kullanıcı',
+    logWhitelist: 'Koruma Listesi: {count} kullanıcı',
     logGoingToFollowing: '@{username}/following sayfasına gidiliyor...',
     logGoingToHome: 'X.com ana sayfasına gidiliyor...',
 
     // Status
     statusGoToFollowing: "X.com'da takip edilenlere gidin",
-    statusGoingToFollowing: 'Following sayfasına gidiliyor',
+    statusGoingToFollowing: 'Takip edilenler sayfasına gidiliyor',
     statusGoToProfile: 'Bir profil sayfasına gidin',
     statusPageError: 'Sayfa kontrol edilemedi',
     statusRunning: 'İşlem devam ediyor...',
@@ -173,7 +173,7 @@ tr: {
     statusStopped: 'Durduruldu',
     statusCompleted: 'Tamamlandı',
     statusStartError: 'Başlatılamadı. Sayfayı yenileyin.',
-    statusNotConnected: 'Content script bağlı değil. Sayfayı yenileyin.',
+    statusNotConnected: 'Eklenti bağlantısı kurulamadı. Sayfayı yenileyin.',
     warningSlowMode: 'Bu mod her profili tek tek kontrol eder, daha uzun sürebilir.',
 
     // Rate limit
@@ -185,7 +185,7 @@ tr: {
     cooldownLabel: 'BEKLEME',
     cooldownNormal: 'Normal',
     cooldownSoft: 'Yumuşak bekleme',
-    cooldownRateLimit: 'Rate limit',
+    cooldownRateLimit: 'Hız sınırı',
 
     // Session complete
     sessionCompleteTitle: 'Oturum Tamamlandı',
@@ -207,7 +207,7 @@ tr: {
 
     // Tabs
     tabHome: 'Ana',
-    tabLogs: 'Log',
+    tabLogs: 'Günlük',
     tabHistory: 'Geçmiş',
     tabSettings: 'Ayarlar',
 
@@ -234,6 +234,10 @@ tr: {
     importJsonBtn: 'İçe Aktar (JSON)',
     exportCsvBtn: 'Geçmişi İndir (CSV)',
     onboardingDone: 'Hadi Başlayalım!',
+    headerSubtitle: 'v3.1 • Güvenli Mod',
+    versionFooter: 'v3.1 • %100 Yerel ve Güvenli',
+    runningAlgorithm: 'Güvenli algoritma çalıştırılıyor...',
+    runningModeLabel: '{mode} Modu',
 },
 
 // ═══════════════════════════════════════════════════════════
@@ -439,6 +443,10 @@ en: {
     importJsonBtn: 'Import JSON',
     exportCsvBtn: 'Export History (CSV)',
     onboardingDone: 'Get Started',
+    headerSubtitle: 'v3.1 • Safe Mode',
+    versionFooter: 'v3.1 • 100% Local & Safe',
+    runningAlgorithm: 'Running safe algorithm...',
+    runningModeLabel: '{mode} Mode',
 },
 
 // ═══════════════════════════════════════════════════════════
@@ -506,7 +514,7 @@ es: {
     menuLogs: 'Registro de actividad',
     menuLanguage: 'Idioma',
     menuAbout: 'Acerca de',
-    menuHistory: 'Historial de unfollow',
+    menuHistory: 'Historial de seguidos',
     menuSpeed: 'Velocidad',
     menuExport: 'Exportar',
     menuImport: 'Importar',
@@ -531,9 +539,9 @@ es: {
     minFollowersLabel: 'Mín. seguidores',
     minFollowersPlaceholder: '0 = sin filtro',
 
-    limitLabel: 'Límite de unfollow',
+    limitLabel: 'Límite de dejar de seguir',
     limitPlaceholder: '0 = ilimitado',
-    limitHint: 'Máximo de unfollows (0 = ilimitado)',
+    limitHint: 'Máximo de dejar de seguir (0 = ilimitado)',
 
     bioKeywordsLabel: 'Palabras clave en bio',
     bioKeywordsPlaceholder: 'crypto, nft, bot',
@@ -555,7 +563,7 @@ es: {
     skipVerifiedLabel: 'Omitir verificados',
     notifSoundLabel: 'Sonido de notificación',
 
-    historyTitle: 'Historial de unfollow',
+    historyTitle: 'Historial de seguidos',
     historyEmpty: 'Sin historial aún',
     historyClear: 'Limpiar historial',
 
@@ -592,17 +600,17 @@ es: {
     statusStopped: 'Detenido',
     statusCompleted: 'Completado',
     statusStartError: 'No se pudo iniciar. Actualiza la página.',
-    statusNotConnected: 'Script de contenido no conectado. Actualiza la página.',
+    statusNotConnected: 'Extensión no conectada. Actualiza la página.',
     warningSlowMode: 'Este modo comprueba cada perfil individualmente y puede tardar más.',
 
-    rateLimitTitle: 'Límite de velocidad alcanzado',
+    rateLimitTitle: 'Límite de solicitudes alcanzado',
     rateLimitDesc: 'X pide un breve descanso — reanudando automáticamente.',
     rateLimitRemaining: 'restante',
 
     cooldownLabel: 'ESPERA',
     cooldownNormal: 'Normal',
     cooldownSoft: 'Espera suave',
-    cooldownRateLimit: 'Límite de velocidad',
+    cooldownRateLimit: 'Límite de solicitudes',
 
     sessionCompleteTitle: 'Sesión completada',
     sessionCompleteSubtitle: 'Modo • Finalizado',
@@ -644,6 +652,10 @@ es: {
     importJsonBtn: 'Importar JSON',
     exportCsvBtn: 'Exportar Historial (CSV)',
     onboardingDone: 'Empezar',
+    headerSubtitle: 'v3.1 • Modo Seguro',
+    versionFooter: 'v3.1 • 100% Local y Seguro',
+    runningAlgorithm: 'Ejecutando algoritmo seguro...',
+    runningModeLabel: 'Modo {mode}',
 },
 
 // ═══════════════════════════════════════════════════════════
@@ -743,8 +755,8 @@ de: {
     bioKeywordsLabel: 'Bio-Schlüsselwörter',
     bioKeywordsPlaceholder: 'crypto, nft, bot',
     bioActionLabel: 'Aktion',
-    bioActionUnfollow: 'Entfolgen wenn Bio übereinstimmt',
-    bioActionKeep: 'Behalten wenn Bio übereinstimmt',
+    bioActionUnfollow: 'Entfolgen, wenn Bio übereinstimmt',
+    bioActionKeep: 'Behalten, wenn Bio übereinstimmt',
 
     overactiveThresholdLabel: 'Täglicher Tweet-Schwellenwert',
 
@@ -776,7 +788,7 @@ de: {
     logStopped: 'Vorgang gestoppt',
     logCompleted: 'Vorgang abgeschlossen',
     logError: 'Fehler: {message}',
-    logStopError: 'Stopfehler: {message}',
+    logStopError: 'Fehler beim Stoppen: {message}',
     logModeNonFollowers: 'Modus: Nicht-Follower',
     logModeAll: 'Modus: Alle',
     logModeInactive: 'Modus: Inaktive Konten',
@@ -797,17 +809,17 @@ de: {
     statusStopped: 'Gestoppt',
     statusCompleted: 'Abgeschlossen',
     statusStartError: 'Konnte nicht starten. Bitte Seite neu laden.',
-    statusNotConnected: 'Content-Skript nicht verbunden. Seite neu laden.',
+    statusNotConnected: 'Erweiterung nicht verbunden. Seite neu laden.',
     warningSlowMode: 'Dieser Modus prüft jedes Profil einzeln und kann länger dauern.',
 
-    rateLimitTitle: 'Rate-Limit erreicht',
+    rateLimitTitle: 'Anfragelimit erreicht',
     rateLimitDesc: 'X bittet um eine kurze Pause — wird automatisch fortgesetzt.',
     rateLimitRemaining: 'verbleibend',
 
     cooldownLabel: 'WARTEZEIT',
     cooldownNormal: 'Normal',
     cooldownSoft: 'Sanfte Wartezeit',
-    cooldownRateLimit: 'Rate-Limit',
+    cooldownRateLimit: 'Anfragelimit',
 
     sessionCompleteTitle: 'Sitzung abgeschlossen',
     sessionCompleteSubtitle: 'Modus • Fertig',
@@ -849,6 +861,10 @@ de: {
     importJsonBtn: 'JSON importieren',
     exportCsvBtn: 'Verlauf exportieren (CSV)',
     onboardingDone: 'Los geht\'s!',
+    headerSubtitle: 'v3.1 • Sicherer Modus',
+    versionFooter: 'v3.1 • 100% Lokal & Sicher',
+    runningAlgorithm: 'Sicherer Algorithmus läuft...',
+    runningModeLabel: '{mode}-Modus',
 },
 
 // ═══════════════════════════════════════════════════════════
@@ -1002,7 +1018,7 @@ fr: {
     statusStopped: 'Arrêté',
     statusCompleted: 'Terminé',
     statusStartError: 'Impossible de démarrer. Veuillez actualiser la page.',
-    statusNotConnected: 'Script de contenu non connecté. Actualisez la page.',
+    statusNotConnected: 'Extension non connectée. Actualisez la page.',
     warningSlowMode: 'Ce mode vérifie chaque profil individuellement et peut prendre plus de temps.',
 
     rateLimitTitle: 'Limite de débit atteinte',
@@ -1011,7 +1027,7 @@ fr: {
 
     cooldownLabel: 'ATTENTE',
     cooldownNormal: 'Normal',
-    cooldownSoft: 'Attente douce',
+    cooldownSoft: 'Attente légère',
     cooldownRateLimit: 'Limite de débit',
 
     sessionCompleteTitle: 'Session terminée',
@@ -1023,7 +1039,7 @@ fr: {
     reviewLater: 'Plus tard',
     reviewNo: 'Non merci',
 
-    refollowBtn: 'Réabonner',
+    refollowBtn: 'Se réabonner',
     refollowTitle: 'Suivre à nouveau',
     refollowSuccess: '@{username} suivi à nouveau',
     refollowError: 'Impossible de suivre @{username}',
@@ -1054,17 +1070,21 @@ fr: {
     importJsonBtn: 'Importer JSON',
     exportCsvBtn: "Exporter l'historique (CSV)",
     onboardingDone: 'Commencer',
+    headerSubtitle: 'v3.1 • Mode Sécurisé',
+    versionFooter: 'v3.1 • 100% Local et Sûr',
+    runningAlgorithm: 'Traitement sécurisé en cours...',
+    runningModeLabel: 'Mode {mode}',
 },
 
 // ═══════════════════════════════════════════════════════════
 // ARABIC
 // ═══════════════════════════════════════════════════════════
 ar: {
-    confirmStart: 'سيبدأ إلغاء المتابعة في وضع {mode}. هل تريد المتابعة؟',
+    confirmStart: 'سيبدأ إلغاء المتابعة في وضع {mode}. هل تريد الاستمرار؟',
     btnCancel: 'إلغاء',
     btnConfirmStart: 'ابدأ',
     title: 'X Unfollow Tool',
-    subtitle: 'أدر قائمة متابعيك بسهولة.',
+    subtitle: 'أدر قائمة من تتابعهم بسهولة.',
     appName: 'X Unfollow Tool',
     appSubtitle: 'تنظيف المتابعات بذكاء',
     privacyBanner: '١٠٠٪ محلي — بياناتك لا تغادر هذا المتصفح أبداً',
@@ -1076,7 +1096,7 @@ ar: {
     modeAllDesc: 'إلغاء متابعة جميع من تتابعهم',
     modeInactive: 'الحسابات غير النشطة',
     modeInactiveDesc: 'إلغاء متابعة الحسابات غير النشطة وذات الصور الافتراضية',
-    modeBioFilter: 'فلتر السيرة',
+    modeBioFilter: 'تصفية السيرة',
     modeBioFilterDesc: 'تصفية حسب كلمات مفتاحية في السيرة الذاتية',
     modeOveractive: 'مفرطو النشاط',
     modeOveractiveDesc: 'حسابات تغرد بشكل مفرط يومياً',
@@ -1097,7 +1117,7 @@ ar: {
     whitelistValidCount: '{valid} صحيح، {invalid} غير صحيح',
     whitelistInvalid: 'اسم مستخدم غير صحيح: {username}',
 
-    statUnfollowed: 'مُلغى المتابعة',
+    statUnfollowed: 'إلغاء المتابعة',
     statSkipped: 'متجاوز',
     statScanned: 'مُفحوص',
     statFollowed: 'مُتابَع',
@@ -1144,7 +1164,7 @@ ar: {
     inactive180: '١٨٠ يوماً',
     inactive365: 'سنة واحدة',
     minFollowersLabel: 'الحد الأدنى للمتابعين',
-    minFollowersPlaceholder: '٠ = بلا فلتر',
+    minFollowersPlaceholder: '٠ = بلا تصفية',
 
     limitLabel: 'حد إلغاء المتابعة',
     limitPlaceholder: '٠ = غير محدود',
@@ -1190,7 +1210,7 @@ ar: {
     logModeNonFollowers: 'الوضع: غير المتابعين',
     logModeAll: 'الوضع: الجميع',
     logModeInactive: 'الوضع: الحسابات غير النشطة',
-    logModeBioFilter: 'الوضع: فلتر السيرة',
+    logModeBioFilter: 'الوضع: تصفية السيرة',
     logModeFollowAll: 'الوضع: متابعة الجميع',
     logModeOveractive: 'الوضع: مفرطو النشاط',
     logWhitelist: 'القائمة البيضاء: {count} مستخدم',
@@ -1199,7 +1219,7 @@ ar: {
 
     statusGoToFollowing: 'انتقل إلى صفحة متابعتك على X.com',
     statusGoingToFollowing: 'الانتقال إلى صفحة المتابعة',
-    statusGoToProfile: 'انتقل إلى صفحة ملف شخصي',
+    statusGoToProfile: 'انتقل إلى صفحة الملف الشخصي',
     statusPageError: 'تعذر التحقق من الصفحة',
     statusRunning: 'جارٍ التنفيذ...',
     statusPaused: 'متوقف مؤقتاً',
@@ -1207,10 +1227,10 @@ ar: {
     statusStopped: 'توقفت',
     statusCompleted: 'اكتمل',
     statusStartError: 'تعذر البدء. يرجى تحديث الصفحة.',
-    statusNotConnected: 'لم يتصل البرنامج النصي. حدّث الصفحة.',
+    statusNotConnected: 'تعذّر الاتصال بالامتداد. حدّث الصفحة.',
     warningSlowMode: 'يفحص هذا الوضع كل ملف شخصي على حدة وقد يستغرق وقتاً أطول.',
 
-    rateLimitTitle: 'تم الوصول لحد الطلبات',
+    rateLimitTitle: 'تم الوصول إلى حد الطلبات',
     rateLimitDesc: 'X يطلب توقفاً قصيراً — الاستئناف تلقائياً.',
     rateLimitRemaining: 'متبقٍ',
 
@@ -1220,7 +1240,7 @@ ar: {
     cooldownRateLimit: 'حد الطلبات',
 
     sessionCompleteTitle: 'اكتملت الجلسة',
-    sessionCompleteSubtitle: 'الوضع • انتهى',
+    sessionCompleteSubtitle: 'الوضع • اكتمل',
     startNewSession: 'بدء جلسة جديدة',
 
     reviewAsk: 'هل تستمتع بـ X Unfollow Tool؟',
@@ -1250,7 +1270,7 @@ ar: {
     onboardingStep1Title: 'افتح x.com/following',
     onboardingStep1Desc: 'انتقل إلى قائمة متابعتك على X.com في متصفحك.',
     onboardingStep2Title: 'اختر وضعاً',
-    onboardingStep2Desc: 'اختر من تريد إلغاء متابعته: غير المتابعين، الحسابات غير النشطة، أو فلتر السيرة.',
+    onboardingStep2Desc: 'اختر من تريد إلغاء متابعته: غير المتابعين، الحسابات غير النشطة، أو تصفية السيرة.',
     onboardingStep3Title: 'اضغط بدء',
     onboardingStep3Desc: 'انقر على بدء — نحن نتولى الباقي بأمان وتلقائياً.',
     sectionData: 'البيانات',
@@ -1259,6 +1279,10 @@ ar: {
     importJsonBtn: 'استيراد JSON',
     exportCsvBtn: 'تصدير السجل (CSV)',
     onboardingDone: 'ابدأ الآن',
+    headerSubtitle: 'v3.1 • الوضع الآمن',
+    versionFooter: 'v3.1 • ١٠٠٪ محلي وآمن',
+    runningAlgorithm: 'تشغيل الخوارزمية الآمنة...',
+    runningModeLabel: 'وضع {mode}',
 },
 
 // ═══════════════════════════════════════════════════════════
@@ -1283,7 +1307,7 @@ ja: {
     modeInactiveDesc: '非アクティブ・デフォルトアイコンのアカウントをアンフォロー',
     modeBioFilter: 'バイオフィルター',
     modeBioFilterDesc: 'バイオのキーワードでフィルター',
-    modeOveractive: '過活動',
+    modeOveractive: 'ツイート過多',
     modeOveractiveDesc: '毎日過剰にツイートするアカウント',
     modeFollowAll: '全員フォロー',
     modeFollowAllDesc: 'リスト全員をフォロー',
@@ -1421,7 +1445,7 @@ ja: {
 
     cooldownLabel: '待機中',
     cooldownNormal: '通常',
-    cooldownSoft: 'ソフト待機',
+    cooldownSoft: '軽度待機',
     cooldownRateLimit: 'レート制限',
 
     sessionCompleteTitle: 'セッション完了',
@@ -1434,7 +1458,7 @@ ja: {
     reviewNo: 'いいえ',
 
     refollowBtn: '再フォロー',
-    refollowTitle: '再フォロー',
+    refollowTitle: 'フォローし直す',
     refollowSuccess: '@{username}を再フォローしました',
     refollowError: '@{username}をフォローできませんでした',
     refollowedLabel: '再フォロー済み',
@@ -1464,13 +1488,17 @@ ja: {
     importJsonBtn: 'JSONインポート',
     exportCsvBtn: '履歴をエクスポート (CSV)',
     onboardingDone: 'はじめる',
+    headerSubtitle: 'v3.1 • 安全モード',
+    versionFooter: 'v3.1 • 100%ローカル＆安全',
+    runningAlgorithm: '安全なアルゴリズム実行中...',
+    runningModeLabel: '{mode}モード',
 },
 
 // ═══════════════════════════════════════════════════════════
 // PORTUGUESE
 // ═══════════════════════════════════════════════════════════
 pt: {
-    confirmStart: "O unfollow no modo {mode} vai começar. Continuar?",
+    confirmStart: "O processo de deixar de seguir no modo {mode} vai começar. Continuar?",
     btnCancel: 'Cancelar',
     btnConfirmStart: 'Iniciar',
     title: 'X Unfollow Tool',
@@ -1531,7 +1559,7 @@ pt: {
     menuLogs: 'Registro de atividades',
     menuLanguage: 'Idioma',
     menuAbout: 'Sobre',
-    menuHistory: 'Histórico de unfollow',
+    menuHistory: 'Histórico de remoções',
     menuSpeed: 'Velocidade',
     menuExport: 'Exportar',
     menuImport: 'Importar',
@@ -1556,9 +1584,9 @@ pt: {
     minFollowersLabel: 'Mín. seguidores',
     minFollowersPlaceholder: '0 = sem filtro',
 
-    limitLabel: 'Limite de unfollow',
+    limitLabel: 'Limite de remoções',
     limitPlaceholder: '0 = ilimitado',
-    limitHint: 'Máximo de unfollows (0 = ilimitado)',
+    limitHint: 'Máximo de remoções (0 = ilimitado)',
 
     bioKeywordsLabel: 'Palavras-chave da bio',
     bioKeywordsPlaceholder: 'crypto, nft, bot',
@@ -1580,7 +1608,7 @@ pt: {
     skipVerifiedLabel: 'Ignorar verificados',
     notifSoundLabel: 'Som de notificação',
 
-    historyTitle: 'Histórico de unfollow',
+    historyTitle: 'Histórico de remoções',
     historyEmpty: 'Sem histórico ainda',
     historyClear: 'Limpar histórico',
 
@@ -1669,6 +1697,10 @@ pt: {
     importJsonBtn: 'Importar JSON',
     exportCsvBtn: 'Exportar Histórico (CSV)',
     onboardingDone: 'Começar',
+    headerSubtitle: 'v3.1 • Modo Seguro',
+    versionFooter: 'v3.1 • 100% Local e Seguro',
+    runningAlgorithm: 'Executando algoritmo seguro...',
+    runningModeLabel: 'Modo {mode}',
 },
 
 // ═══════════════════════════════════════════════════════════
@@ -1831,7 +1863,7 @@ zh: {
 
     cooldownLabel: '等待',
     cooldownNormal: '正常',
-    cooldownSoft: '软等待',
+    cooldownSoft: '轻度冷却',
     cooldownRateLimit: '速率限制',
 
     sessionCompleteTitle: '会话完成',
@@ -1874,6 +1906,10 @@ zh: {
     importJsonBtn: '导入 JSON',
     exportCsvBtn: '导出历史 (CSV)',
     onboardingDone: '开始使用',
+    headerSubtitle: 'v3.1 • 安全模式',
+    versionFooter: 'v3.1 • 100% 本地且安全',
+    runningAlgorithm: '正在运行安全算法...',
+    runningModeLabel: '{mode}模式',
 },
 
 }; // end translations

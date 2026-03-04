@@ -22,20 +22,20 @@
     <div class="onboarding-content">
       <div class="logo-square" style="width:48px;height:48px;font-size:24px;margin-bottom:16px;">𝕏</div>
       <h1 class="header-title" style="font-size:20px;text-align:center;margin-bottom:8px;">X Unfollow Tool</h1>
-      <p class="header-subtitle" style="text-align:center;max-width:240px;line-height:1.4;">Clean up who you follow — intelligently, safely, and 100% locally.</p>
+      <p class="header-subtitle" data-i18n="onboardingSubtitle" style="text-align:center;max-width:240px;line-height:1.4;">Clean up who you follow — intelligently, safely, and 100% locally.</p>
       
       <div class="onboarding-steps">
         <div class="step-card">
           <div class="step-num">1</div>
-          <div class="step-text">Open <strong>x.com/following</strong> in your browser</div>
+          <div class="step-text" data-i18n="onboardingStep1Desc">Open x.com/following in your browser</div>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
-          <div class="step-text">Pick a mode — who should be unfollowed</div>
+          <div class="step-text" data-i18n="onboardingStep2Desc">Pick a mode — who should be unfollowed</div>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
-          <div class="step-text">Hit <strong>Start</strong> — we handle the rest ✓</div>
+          <div class="step-text" data-i18n="onboardingStep3Desc">Hit Start — we handle the rest</div>
         </div>
       </div>
       
@@ -56,7 +56,7 @@
         <div class="logo-square">𝕏</div>
         <div class="header-titles">
           <div class="header-title" data-i18n="title">X Unfollow Tool</div>
-          <div class="header-subtitle">v3.1 • Safe Mode</div>
+          <div class="header-subtitle" data-i18n="headerSubtitle">v3.1 • Safe Mode</div>
         </div>
       </div>
       <button id="themeToggleBtn" class="theme-pill">
@@ -224,7 +224,7 @@
         </div>
         
         <div class="running-mode-label" id="ringModeLabel">Non-Followers Mode</div>
-        <div class="running-status-text" id="ringProgressText">Running safe algorithm...</div>
+        <div class="running-status-text" id="ringProgressText" data-i18n="runningAlgorithm">Running safe algorithm...</div>
 
         <div class="run-stats-grid">
           <div class="stat-box">
@@ -346,7 +346,7 @@
     <div id="tabLogContent" class="tab-content">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:8px;">
         <span class="section-label" style="margin:0;" data-i18n="logTitle">ACTIVITY LOG</span>
-        <button id="clearLogs" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;" data-i18n="historyClear" data-i18n="historyClear">CLEAR</button>
+        <button id="clearLogs" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;" data-i18n="historyClear">CLEAR</button>
       </div>
       <div id="logArea" class="log-area"></div>
     </div>
@@ -432,7 +432,7 @@
       
       <div style="text-align:center;">
         <button id="rateBtn" class="outline-btn" style="width:100%;">★ <span data-i18n="menuRate">Rate Us</span></button>
-        <div class="version-footer">v3.1 • 100% Local & Safe</div>
+        <div class="version-footer" data-i18n="versionFooter">v3.1 • 100% Local & Safe</div>
       </div>
     </div>
 

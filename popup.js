@@ -144,6 +144,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       const key = el.getAttribute('data-i18n-placeholder');
       el.placeholder = t(key);
     });
+    // RTL support for Arabic
+    const currentLang = window.i18n.forcedLang || window.i18n.getLanguage();
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
     // Defensive: always restore native language names in the selector
     const langOptions = {
       auto: 'Auto', tr: 'Türkçe', en: 'English',
@@ -514,20 +518,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (response.isPaused) {
           showPausedState();
         } else {
-          // Confirm dialog
-      const confirmEl = document.getElementById('startConfirmModal');
-      if (confirmEl && !demoModeCheck.checked) {
-        const meta = MODE_META[mode] || MODE_META['non-followers'];
-        const mName = t(meta.nameKey) || meta.nameKey;
-        const msgEl = document.getElementById('confirmModalMsg');
-        if (msgEl) msgEl.textContent = t('confirmStart', { mode: mName }) || `Start ${mName} unfollow?`;
-        confirmEl.classList.remove('hidden');
-        await new Promise((resolve, reject) => {
-          document.getElementById('confirmYesBtn').onclick = () => { confirmEl.classList.add('hidden'); resolve(); };
-          document.getElementById('confirmNoBtn').onclick  = () => { confirmEl.classList.add('hidden'); reject(new Error('cancelled')); };
-        });
-      }
-      showRunningState();
+          showRunningState();
         }
         updateStats(response.stats);
       }
@@ -543,14 +534,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function showStatus(type, icon, text) {
-    statusBadge.className = `status-badge ${type}`;
-    statusBadge.classList.remove('hidden');
-    statusIcon.textContent = icon;
-    statusText.textContent = text;
+    if (statusBadge) {
+        statusBadge.className = `status-badge ${type}`;
+        statusBadge.classList.remove('hidden');
+    }
+    if (statusIcon) statusIcon.textContent = icon;
+    if (statusText) statusText.textContent = text;
   }
 
   function hideStatus() {
-    statusBadge.classList.add('hidden');
+    if (statusBadge) statusBadge.classList.add('hidden');
   }
 
   function updateStartButton(text, isRunning) {
@@ -558,12 +551,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       startBtn.classList.add('hidden');
       runningBtns.classList.remove('hidden');
     } else {
-      // Guard: don't reset if runningView is currently visible
-      const rv = document.getElementById('runningView');
-      if (rv && !rv.classList.contains('hidden')) return;
       startBtn.classList.remove('hidden');
       runningBtns.classList.add('hidden');
-      startBtn.querySelector('span').textContent = text;
+      const span = startBtn.querySelector('span');
+      if (span) span.textContent = text;
     }
   }
 
@@ -573,14 +564,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     showStatus('running', '\uD83D\uDD04', t('statusRunning'));
     updateStartButton('', true);
     pauseBtn.querySelector('span').textContent = t('btnPause');
-    pauseBtn.className = 'action-btn action-btn-warning';
+    pauseBtn.className = 'run-btn pause';
     const ps = document.getElementById('progressSection');
     const pb = document.getElementById('progressBar');
     if (ps) ps.classList.remove('hidden');
     if (pb) { pb.classList.add('indeterminate'); pb.style.width = '40%'; }
     const meta = MODE_META[getSelectedMode()] || MODE_META['non-followers'];
     const lbl = document.getElementById('ringModeLabel');
-    if (lbl) lbl.textContent = (t(meta.nameKey) || meta.nameKey) + ' Mode';
+    if (lbl) lbl.textContent = t('runningModeLabel', {mode: t(meta.nameKey) || meta.nameKey});
   }
 
   function showPausedState() {
@@ -589,7 +580,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     showStatus('paused', '\u23F8\uFE0F', t('statusPaused'));
     updateStartButton('', true);
     pauseBtn.querySelector('span').textContent = t('btnResume');
-    pauseBtn.className = 'action-btn action-btn-primary';
+    pauseBtn.className = 'run-btn pause';
     const lbl = document.getElementById('ringModeLabel');
     if (lbl) lbl.textContent = '⏸️ ' + t('statusPaused');
   }
@@ -597,7 +588,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   function addLogItem(message, type = 'info', save = true) {
     const logItem = document.createElement('div');
     logItem.className = `log-item log-${type}`;
-    const timeFormat = (window.i18n.forcedLang || window.i18n.getLanguage()) === 'tr' ? 'tr-TR' : 'en-US';
+    const localeMap = {tr:'tr-TR', en:'en-US', es:'es-ES', de:'de-DE', fr:'fr-FR', ar:'ar-SA', ja:'ja-JP', pt:'pt-BR', zh:'zh-CN'};
+    const currentLang = window.i18n.forcedLang || window.i18n.getLanguage();
+    const timeFormat = localeMap[currentLang] || 'en-US';
     logItem.textContent = `[${new Date().toLocaleTimeString(timeFormat)}] ${message}`;
     logArea.insertBefore(logItem, logArea.firstChild);
 
@@ -720,7 +713,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       historyArea.appendChild(empty);
       return;
     }
-    const timeFormat = (window.i18n.forcedLang || window.i18n.getLanguage()) === 'tr' ? 'tr-TR' : 'en-US';
+    const localeMap = {tr:'tr-TR', en:'en-US', es:'es-ES', de:'de-DE', fr:'fr-FR', ar:'ar-SA', ja:'ja-JP', pt:'pt-BR', zh:'zh-CN'};
+    const currentLang = window.i18n.forcedLang || window.i18n.getLanguage();
+    const timeFormat = localeMap[currentLang] || 'en-US';
     history.forEach((item) => {
       const el = document.createElement('div');
       el.className = 'history-item' + (item.refollowed ? ' history-refollowed' : '');
@@ -930,6 +925,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!targetUser && !pageStatus.valid) return;
 
     const mode = getSelectedMode();
+
+    // Show confirmation modal (skip for demo mode)
+    const confirmEl = document.getElementById('startConfirmModal');
+    if (confirmEl && !demoModeCheck.checked) {
+      const meta = MODE_META[mode] || MODE_META['non-followers'];
+      const mName = t(meta.nameKey) || meta.nameKey;
+      const msgEl = document.getElementById('confirmModalMsg');
+      if (msgEl) msgEl.textContent = t('confirmStart', { mode: mName }) || ('Start ' + mName + ' unfollow?');
+      confirmEl.classList.remove('hidden');
+      try {
+        await new Promise((resolve, reject) => {
+          document.getElementById('confirmYesBtn').onclick = () => { confirmEl.classList.add('hidden'); resolve(); };
+          document.getElementById('confirmNoBtn').onclick = () => { confirmEl.classList.add('hidden'); reject(new Error('cancelled')); };
+        });
+      } catch (e) {
+        return; // User cancelled
+      }
+    }
+
     const whitelistUsers = whitelist.value
       .split('\n')
       .map(u => u.trim().toLowerCase().replace('@', ''))
@@ -1067,9 +1081,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       updateStats(message.stats);
     }
     if (message.type === 'stopped') {
-      showStatus('success', '\u2705', t('statusCompleted'));
-      updateStartButton(t('btnStart'), false);
-      addLog(t('logCompleted'), 'success');
       currentlyPaused = false;
       updateBadge(0);
       const ps = document.getElementById('progressSection');
@@ -1078,10 +1089,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (pb) { pb.style.width = '0%'; pb.classList.remove('indeterminate'); }
       const currentStats = {
         unfollowed: parseInt(unfollowedCount.textContent) || 0,
-        scanned: parseInt(scannedCount.textContent) || 0
+        scanned: parseInt(scannedCount.textContent) || 0,
+        skipped: parseInt(skippedCount.textContent) || 0
       };
+      showSessionComplete(currentStats);
       updateCumulativeStats(currentStats);
       maybeShowReviewPrompt();
+      addLog(t('logCompleted'), 'success');
     }
     if (message.type === 'progress') {
       const progressSection = document.getElementById('progressSection');
@@ -1119,9 +1133,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       if (previewList) {
         if (users.length === 0) {
-          previewList.innerHTML = '<div class="preview-item">No users would be unfollowed</div>';
+          previewList.textContent = 'No users would be unfollowed';
         } else {
-          previewList.innerHTML = users.map(u => `<div class="preview-item">@${u}</div>`).join('');
+          while (previewList.firstChild) previewList.removeChild(previewList.firstChild);
+          users.forEach(u => {
+            const div = document.createElement('div');
+            div.className = 'preview-item';
+            div.textContent = '@' + u;
+            previewList.appendChild(div);
+          });
         }
       }
     }
@@ -1307,7 +1327,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sub = document.getElementById('completeSub');
     if (sub) {
       const meta = MODE_META[getSelectedMode()] || MODE_META['non-followers'];
-      sub.textContent = (t(meta.nameKey) || meta.nameKey) + ' Mode';
+      sub.textContent = t('runningModeLabel', {mode: t(meta.nameKey) || meta.nameKey});
     }
   }
 

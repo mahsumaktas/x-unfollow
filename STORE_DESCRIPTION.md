@@ -9,18 +9,18 @@
 **X Unfollow Tool** --- The smartest way to clean up your Twitter/X following list!
 
 **Features:**
-- **6 Modes** --- Non-Followers, Unfollow All, Inactive Accounts, Ghost Accounts, Bio Filter, Follow All
+- **6 Modes** --- Non-Followers, Unfollow All, Inactive Accounts, Overactive, Bio Filter, Follow All
 - **Whitelist** --- Protect important accounts from being unfollowed
 - **Smart Speed Control** --- Slow, Normal & Fast modes with built-in delays to avoid rate limits
 - **Unfollow Limit** --- Set a max number to stay safe
 - **Bio Keyword Filter** --- Unfollow or keep accounts based on bio keywords (crypto, nft, bot, etc.)
 - **Inactive Account Detection** --- Find and remove accounts that haven't tweeted in 30/60/90/180/365 days
-- **Ghost Account Detection** --- Remove accounts with default avatars and zero tweets
+- **Overactive Detection** --- Find accounts tweeting 30+ times per day
 - **Follow All Mode** --- Bulk follow everyone on a following list
 - **Min. Follower Filter** --- Skip accounts with enough followers
 - **Rate Limit Detection** --- Automatically waits 30 minutes when rate limited, then resumes
 - **Dark & Light Theme** --- Beautiful Liquid Glass UI that matches your preference
-- **Multi-language** --- English, Turkce, Japanese, Portugues, Espanol
+- **Multi-language** --- English, Türkçe, Español, Deutsch, Français, العربية, 日本語, Português, 中文
 - **Activity Log** --- Track every action in real time
 - **Unfollow History** --- See who you unfollowed and when
 - **Export / Import** --- Backup and restore your settings & history
@@ -66,18 +66,18 @@ This extension is an independent tool and is not affiliated with, endorsed by, o
 **X Unfollow Tool** --- X/Twitter takip listenizi temizlemenin en akilli yolu!
 
 **Ozellikler:**
-- **6 Mod** --- Takip Etmeyenler, Herkesi Cikar, Pasif Hesaplar, Hayalet Hesaplar, Bio Filtresi, Tumunu Takip Et
+- **6 Mod** --- Takip Etmeyenler, Herkesi Cikar, Pasif Hesaplar, Asiri Aktif, Bio Filtresi, Tumunu Takip Et
 - **Beyaz Liste** --- Onemli hesaplari koruma altina al
 - **Akilli Hiz Kontrolu** --- Yavas, Normal ve Hizli modlar, rate limit korumasi
 - **Unfollow Limiti** --- Guvenlik icin maksimum sayi belirle
 - **Bio Anahtar Kelime Filtresi** --- Bio'daki anahtar kelimelere gore cikar veya koru (crypto, nft, bot vb.)
 - **Pasif Hesap Tespiti** --- 30/60/90/180/365 gundur tweet atmayan hesaplari bul ve cikar
-- **Hayalet Hesap Tespiti** --- Varsayilan avatar ve sifir tweet'li hesaplari cikar
+- **Asiri Aktif Tespiti** --- Gunde 30+ tweet atan hesaplari bul
 - **Tumunu Takip Et Modu** --- Listedeki herkesi toplu takip et
 - **Min. Takipci Filtresi** --- Yeterli takipcisi olan hesaplari atla
 - **Rate Limit Algilama** --- Rate limit'e takildiginda otomatik 30 dakika bekler, sonra devam eder
 - **Koyu & Acik Tema** --- Tercihinize uygun Liquid Glass arayuz
-- **Coklu Dil** --- Turkce, English, Japanese, Portugues, Espanol
+- **Coklu Dil** --- Turkce, English, Espanol, Deutsch, Francais, العربية, 日本語, Portugues, 中文
 - **Islem Logu** --- Tum islemleri anlik takip et
 - **Unfollow Gecmisi** --- Kimi, ne zaman cikardigini gor
 - **Disa / Ice Aktarma** --- Ayarlarini ve gecmisini yedekle
@@ -118,59 +118,59 @@ Bu uzanti bagimsiz bir aractir ve X Corp. veya Twitter Inc. ile bagli, onaylanmi
 
 ---
 
-## Japanese
+## 日本語
 
-**X Unfollow Tool** --- X/Twitter no follow list wo seirisuru mottomo smart na houhou!
+**X Unfollow Tool** --- X/Twitterのフォローリストを整理する最もスマートな方法！
 
-**Kinou:**
-- **6tsu no Mode** --- Follow back nashi, Zenin kaijo, Hikatsuyaku, Ghost, Bio filter, Zenin follow
-- **White list** --- Taisetsuna account wo hogo
-- **Smart sokudo seigyo** --- Teisoku, Tsuujou, Kousoku mode, rate seigen wo jidou kaihi
-- **Follow kaijo jougen** --- Anzen no tame saidaisuu wo settei
-- **Bio keyword filter** --- Bio no keyword de filter (crypto, nft, bot nado)
-- **Hikatsuyaku account kenshutsu** --- 30/60/90/180/365 nichi tweet shinai account wo kaijo
-- **Ghost account kenshutsu** --- Default avatar to zero tweet no account wo kaijo
-- **Zenin follow mode** --- List no zenin wo ikkatsu follow
-- **Saishou follower filter** --- Juubun na follower ga iru account wo skip
-- **Rate seigen kenshutsu** --- Rate seigen ji ni jidou de 30 pun machimasu
-- **Dark & Light theme** --- Konomi ni awaseta Liquid Glass design
-- **Tagengo taiou** --- Nihongo, English, Turkce, Portugues, Espanol
-- **Activity log** --- Zen sousa wo real time de kakunin
-- **Follow kaijo rireki** --- Dare wo itsu kaijo shitaka kiroku
-- **Export/Import** --- Settei to rireki wo backup
-- **Modern UI** --- iOS 26 ni inspire sareta glassmorphism
+**機能:**
+- **6つのモード** --- 非フォロワー、全員解除、非アクティブ、過活動、バイオフィルター、全員フォロー
+- **ホワイトリスト** --- 重要なアカウントを保護
+- **スマート速度制御** --- 低速・通常・高速モード、レート制限を自動回避
+- **フォロー解除上限** --- 安全のため最大数を設定
+- **バイオキーワードフィルター** --- バイオのキーワードでフィルター (crypto, nft, bot等)
+- **非アクティブアカウント検出** --- 30/60/90/180/365日ツイートしていないアカウントを解除
+- **過活動検出** --- 1日30件以上ツイートするアカウントを検出
+- **全員フォローモード** --- リストの全員を一括フォロー
+- **最少フォロワーフィルター** --- 十分なフォロワーがいるアカウントをスキップ
+- **レート制限検出** --- レート制限時に自動で30分待機後、再開
+- **ダーク＆ライトテーマ** --- お好みに合わせたLiquid Glassデザイン
+- **多言語対応** --- 日本語, English, Türkçe, Español, Deutsch, Français, العربية, Português, 中文
+- **アクティビティログ** --- 全操作をリアルタイムで確認
+- **フォロー解除履歴** --- 誰をいつ解除したか記録
+- **エクスポート/インポート** --- 設定と履歴をバックアップ
+- **モダンUI** --- iOS 26にインスパイアされたGlassmorphismデザイン
 
-**Tsukaikata:**
-1. X.com no follow chuu page e idou (x.com/username/following)
-2. Kakuchou kinou icon wo click
-3. Mode wo sentaku
-4. Sokudo, jougen, filter wo chousei
-5. Kaishi wo click!
+**使い方:**
+1. X.comのフォロー中ページへ移動 (x.com/ユーザー名/following)
+2. 拡張機能アイコンをクリック
+3. モードを選択
+4. 速度・上限・フィルターを調整
+5. 開始をクリック！
 
-**Privacy saiyuusen:**
-- Subete no data wa device jou de local shori
-- Gaibu server/API fushiyou
-- Data shuushuu/tracking nashi
-- Open source de toumeise wo kakuho
+**プライバシー最優先:**
+- 全データはデバイス上でローカル処理
+- 外部サーバー/API不使用
+- データ収集・トラッキングなし
+- オープンソースで透明性を確保
 
-**Anzenshi iyou no hint:**
-- Sairyou no kekka wo eru tame tab wo zenmen ni hoji
-- X/Twitter niwa 1 nichi no seigen ga arimasu (yaku 400 kai/nichi)
-- Saigen no anzensei niwa teisoku mode wo goriyou kudasai
-- Kaishi mae ni taisetsuna account wo white list ni tsuika
+**安全な使用のヒント:**
+- 最良の結果を得るためタブを前面に保持
+- X/Twitterには1日の制限があります（約400回/日）
+- 最大の安全性には低速モードをご利用ください
+- 開始前に重要なアカウントをホワイトリストに追加
 
 **FAQ:**
-Q: Rate seigen ni nattara dou narimasu ka?
-A: Renzoku 3 kai no shippai go ni jidou kenshutsu shi, 30 pun matteokara saikai shimasu.
+Q: レート制限になったらどうなりますか？
+A: 連続3回の失敗後に自動検出し、30分待ってから再開します。
 
-Q: Account wa anzen desu ka?
-A: Hai. Naikomi no chien ga ari, Twitter no rate seigen wo sonchuu shimasu.
+Q: アカウントは安全ですか？
+A: はい。内蔵の遅延があり、Twitterのレート制限を尊重します。
 
-Q: Kono kakuchou kinou wa data wo shuushuu shimasu ka?
-A: Iie. Subete no shori wa device jou de okonawaremasu.
+Q: この拡張機能はデータを収集しますか？
+A: いいえ。全処理はデバイス上で行われます。
 
-**Mensetujijkou:**
-Kono kakuchou kinou wa dokuritsu shita tool de ari, X Corp. matawa Twitter Inc. towa kankei arimasen. Jiko sekinin de goshiyou kudasai.
+**免責事項:**
+この拡張機能は独立したツールであり、X Corp.またはTwitter Inc.とは関係ありません。自己責任でご使用ください。
 
 ---
 
@@ -179,18 +179,18 @@ Kono kakuchou kinou wa dokuritsu shita tool de ari, X Corp. matawa Twitter Inc. 
 **X Unfollow Tool** --- A forma mais inteligente de limpar sua lista de seguindo no X/Twitter!
 
 **Recursos:**
-- **6 Modos** --- Nao Seguidores, Todos, Contas Inativas, Contas Fantasma, Filtro de Bio, Seguir Todos
+- **6 Modos** --- Nao Seguidores, Todos, Contas Inativas, Hiperativos, Filtro de Bio, Seguir Todos
 - **Lista Branca** --- Proteja contas importantes
 - **Controle de Velocidade** --- Modos Lento, Normal e Rapido com protecao de rate limit
 - **Limite de Unfollow** --- Defina um numero maximo para seguranca
 - **Filtro de Palavras-chave de Bio** --- Remova ou mantenha contas com base em palavras da bio (crypto, nft, bot, etc.)
 - **Deteccao de Contas Inativas** --- Encontre e remova contas sem tweets em 30/60/90/180/365 dias
-- **Deteccao de Contas Fantasma** --- Remova contas com avatar padrao e zero tweets
+- **Deteccao de Hiperativos** --- Encontre contas que tweetam 30+ vezes por dia
 - **Modo Seguir Todos** --- Siga todos em uma lista de uma vez
 - **Filtro Min. Seguidores** --- Pule contas com seguidores suficientes
 - **Deteccao de Rate Limit** --- Aguarda automaticamente 30 minutos quando limitado, depois retoma
 - **Tema Escuro & Claro** --- Interface Liquid Glass que combina com sua preferencia
-- **Multi-idioma** --- Portugues, English, Turkce, Japanese, Espanol
+- **Multi-idioma** --- Portugues, English, Turkce, Espanol, Deutsch, Francais, العربية, 日本語, 中文
 - **Log de Atividades** --- Acompanhe todas as acoes em tempo real
 - **Historico de Unfollow** --- Veja quem voce removeu e quando
 - **Exportar / Importar** --- Faca backup das configuracoes e historico
@@ -236,18 +236,18 @@ Esta extensao e uma ferramenta independente e nao e afiliada, endossada ou assoc
 **X Unfollow Tool** --- La forma mas inteligente de limpiar tu lista de seguidos en X/Twitter!
 
 **Caracteristicas:**
-- **6 Modos** --- No Seguidores, Todos, Cuentas Inactivas, Cuentas Fantasma, Filtro de Bio, Seguir a Todos
+- **6 Modos** --- No Seguidores, Todos, Cuentas Inactivas, Hiperactivos, Filtro de Bio, Seguir a Todos
 - **Lista Blanca** --- Protege cuentas importantes
 - **Control de Velocidad** --- Modos Lento, Normal y Rapido con proteccion de rate limit
 - **Limite de Unfollow** --- Establece un numero maximo por seguridad
 - **Filtro de Palabras Clave de Bio** --- Elimina o mantiene cuentas segun palabras de la bio (crypto, nft, bot, etc.)
 - **Deteccion de Cuentas Inactivas** --- Encuentra y elimina cuentas sin tweets en 30/60/90/180/365 dias
-- **Deteccion de Cuentas Fantasma** --- Elimina cuentas con avatar predeterminado y cero tweets
+- **Deteccion de Hiperactivos** --- Encuentra cuentas que tuitean 30+ veces al dia
 - **Modo Seguir a Todos** --- Sigue a todos en una lista de una vez
 - **Filtro Min. Seguidores** --- Omite cuentas con suficientes seguidores
 - **Deteccion de Rate Limit** --- Espera automaticamente 30 minutos cuando esta limitado, luego reanuda
 - **Tema Oscuro y Claro** --- Interfaz Liquid Glass que se adapta a tu preferencia
-- **Multi-idioma** --- Espanol, English, Turkce, Japanese, Portugues
+- **Multi-idioma** --- Espanol, English, Turkce, Portugues, Deutsch, Francais, العربية, 日本語, 中文
 - **Registro de Actividad** --- Sigue todas las acciones en tiempo real
 - **Historial de Unfollow** --- Mira a quien dejaste de seguir y cuando
 - **Exportar / Importar** --- Haz respaldo de configuracion e historial
