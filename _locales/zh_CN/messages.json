@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "X Unfollow - 智能推特管理器"
+  },
+  "extDescription": {
+    "message": "批量取关 Twitter/X 账号，智能过滤非粉丝、不活跃用户，支持白名单和操作日志。"
+  }
+}

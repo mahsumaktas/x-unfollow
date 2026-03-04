@@ -285,6 +285,55 @@
             refollowed: '@{username} seguido de nuevo',
             refollowFailed: 'No se pudo reseguir a @{username}',
             profileUnavailable: '@{username} perfil no disponible, omitiendo'
+        },
+        zh: {
+            loaded: 'X Unfollow 工具已加载！',
+            started: '操作已开始...',
+            modeNonFollowers: '非互粉用户',
+            modeAll: '所有用户',
+            modeInactive: '不活跃账号',
+            mode: '模式：{mode}',
+            whitelist: '白名单：{count} 个用户',
+            whitelisted: '@{username} 在白名单中，已跳过',
+            followsBack: '@{username} 关注了你，已跳过',
+            unfollowed: '已取关 @{username}',
+            fetchingProfile: '正在检查 @{username} 的资料...',
+            inactiveSkip: '@{username} 仍然活跃，已跳过',
+            loading: '正在加载更多用户...',
+            listEnd: '已到达列表末尾',
+            tabHidden: '标签页在后台，等待中...',
+            tabActive: '标签页已重新激活',
+            completed: '操作完成！取关：{unfollowed}，跳过：{skipped}',
+            stopRequest: '收到停止请求...',
+            paused: '操作已暂停',
+            resumed: '操作已继续',
+            limitReached: '已达到限制（{limit} 个用户）',
+            confirmFailed: '未找到 @{username} 的确认按钮，已跳过',
+            noUnfollowBtn: '未找到 @{username} 的取关按钮，已跳过',
+            selectorError: '未找到 DOM 元素：{selector}',
+            rateLimitDetected: '检测到频率限制！正在等待...',
+            rateLimitWaiting: '频率限制等待中... 剩余 {minutes} 分钟',
+            rateLimitResume: '等待完成，操作继续',
+            bioMatch: '在 @{username} 的简介中找到匹配关键词',
+            bioSkip: '@{username} 的简介不匹配，已跳过',
+            bioProtected: '@{username} 受简介保护，已跳过',
+            followed: '已关注 @{username}',
+            followSkip: '已关注 @{username}，已跳过',
+            followersSkip: '@{username} 已有足够粉丝（{count}），已跳过',
+            modeBioFilter: '简介过滤',
+            modeFollowAll: '关注所有人',
+            demoSkip: '[演示] @{username} 将被取关（模拟）',
+            demoFollow: '[演示] @{username} 将被关注（模拟）',
+            timerExpired: '计时器已到期，正在停止...',
+            notifComplete: '操作完成！取关：{unfollowed}，跳过：{skipped}',
+            verifiedSkip: '@{username} 是认证账号，已跳过',
+            modeOveractive: '过度活跃',
+            overactiveSkip: '@{username} 不属于过度活跃，已跳过',
+            overactiveMatch: '@{username} 过度活跃（{rate} 条推文/天）',
+            softCooldown: '软冷却中... {seconds} 秒',
+            refollowed: '已重新关注 @{username}',
+            refollowFailed: '无法重新关注 @{username}',
+            profileUnavailable: '无法获取 @{username} 的资料，已跳过'
         }
     };
 
@@ -299,6 +348,7 @@
         if (lang.startsWith('ja')) return 'ja';
         if (lang.startsWith('pt')) return 'pt';
         if (lang.startsWith('es')) return 'es';
+        if (lang.startsWith('zh')) return 'zh';
         return 'en';
     }
 

@@ -1065,6 +1065,251 @@ const translations = {
         onboardingStep3Title: 'Inicia el Proceso',
         onboardingStep3Desc: 'Ve a la página de seguidos en X.com y haz clic en Iniciar.',
         onboardingDone: '¡Entendido!'
+    },
+
+    zh: {
+        // Popup UI
+        title: 'Unfollow 工具',
+        subtitle: '轻松管理你的关注列表。',
+        modeTitle: '选择模式',
+        modeNonFollowers: '非互粉用户',
+        modeNonFollowersDesc: '仅取关没有回关你的用户',
+        modeAll: '取关所有人',
+        modeAllDesc: '取关所有正在关注的用户',
+        modeInactive: '不活跃账号',
+        modeInactiveDesc: '取关不活跃及使用默认头像的账号',
+        whitelistTitle: '白名单',
+        whitelistPlaceholder: '受保护的用户名（每行一个）\n\n示例：\nelonmusk\ntwitter',
+        whitelistHint: '这些用户不会被取关',
+        statUnfollowed: '已取关',
+        statSkipped: '已跳过',
+        statScanned: '已扫描',
+        btnStart: '开始',
+        btnStop: '停止',
+        btnPause: '暂停',
+        btnResume: '继续',
+        logTitle: '操作日志',
+
+        // Menu
+        menuTitle: '设置',
+        menuWhitelist: '白名单',
+        menuLogs: '操作日志',
+        menuLanguage: '语言',
+        menuAbout: '关于',
+        menuHistory: '取关历史',
+        menuSpeed: '速度设置',
+        menuExport: '导出',
+        menuImport: '导入',
+        menuTheme: '主题',
+        themeDark: '深色',
+        themeLight: '浅色',
+
+        // Speed
+        speedSlow: '慢速',
+        speedNormal: '正常',
+        speedFast: '快速',
+
+        // Inactive threshold
+        inactiveThresholdLabel: '不活跃时长',
+        inactive30: '30 天',
+        inactive90: '90 天',
+        inactive180: '180 天',
+        inactive365: '1 年',
+
+        // Limit
+        limitLabel: '取关上限',
+        limitPlaceholder: '例如：100',
+        limitHint: '0 = 无限制',
+
+        // History
+        historyTitle: '取关历史',
+        historyEmpty: '暂无取关记录',
+        historyClear: '清空历史',
+
+        // Export/Import
+        exportSuccess: '已复制到剪贴板！',
+        importSuccess: '导入成功！',
+        importError: '导入失败：格式无效',
+        exportTitle: '导出 / 导入',
+
+        // Status messages
+        statusGoToFollowing: '请前往你的关注列表页面',
+        statusGoingToFollowing: '正在跳转至关注页面',
+        statusGoToProfile: '请先前往你的个人主页',
+        statusPageError: '无法检测当前页面',
+        statusRunning: '运行中',
+        statusPaused: '已暂停',
+        statusStarted: '已开始',
+        statusStopped: '已停止',
+        statusCompleted: '已完成！',
+        statusStartError: '启动失败，请重试',
+        warningSlowMode: '该模式将逐一检查每个资料页，可能需要较长时间。',
+
+        // Button texts
+        btnOpenX: '打开 X.com',
+        btnGoToProfile: '前往个人主页',
+
+        // Log messages
+        logStarted: '操作已开始',
+        logModeNonFollowers: '模式：非互粉用户',
+        logModeAll: '模式：所有用户',
+        logWhitelist: '白名单：{count} 个用户',
+        logGoingToFollowing: '正在跳转至 @{username} 的关注页面',
+        logGoingToHome: '正在跳转至主页',
+        logModeInactive: '模式：不活跃账号',
+        logModeBioFilter: '模式：简介过滤',
+        logModeFollowAll: '模式：关注所有人',
+        logStopped: '操作已停止',
+        logCompleted: '操作完成',
+        logError: '错误：{message}',
+        logStopError: '停止时出错：{message}',
+
+        // Whitelist validation
+        whitelistInvalid: '无效用户名：{username}',
+        whitelistValidCount: '有效：{valid}，无效：{invalid}',
+
+        // Bio filter
+        modeBioFilter: '简介过滤',
+        modeBioFilterDesc: '根据简介关键词过滤',
+        bioKeywordsLabel: '关键词',
+        bioKeywordsPlaceholder: '输入关键词，用逗号分隔',
+        bioActionLabel: '操作',
+        bioActionUnfollow: '取关匹配项',
+        bioActionKeep: '保留匹配项',
+
+        // Follow all
+        modeFollowAll: '关注所有人',
+        modeFollowAllDesc: '关注列表中的所有用户',
+        statFollowed: '已关注',
+
+        // Inactive filter
+        inactiveDaysLabel: '不活跃天数',
+        minFollowersLabel: '最少粉丝数',
+        minFollowersPlaceholder: '例如：1000',
+        minFollowersHint: '跳过粉丝数超过此值的账号（0 = 不限）',
+        inactive60: '60 天',
+
+        // Demo mode
+        demoModeLabel: '演示模式',
+        demoModeHint: '模拟操作，不实际取关',
+        demoModeDesc: '仅模拟，不执行实际操作',
+
+        // Auto-stop timer
+        timerLabel: '自动停止计时器（分钟）',
+        timerPlaceholder: '例如：30',
+        timerHint: '0 = 不自动停止',
+        timerMinutes: '分钟',
+
+        // Target profile
+        targetLabel: '目标用户',
+        targetProfileLabel: '目标用户（可选）',
+        targetProfilePlaceholder: '用户名（不含 @）',
+        targetProfileHint: '留空则使用当前标签页',
+        targetPlaceholder: '用户名（留空 = 自己）',
+
+        // Stats dashboard
+        menuStats: '统计数据',
+        statsTitle: '统计数据',
+        statsAllTime: '累计取关',
+        statsThisWeek: '本周取关',
+        statsSessions: '会话数',
+        statsNonFollowerRate: '非互粉率',
+        dashboardTitle: '统计数据',
+        dashAllTime: '累计取关',
+        dashThisWeek: '本周取关',
+        dashSessions: '会话数',
+        dashNonFollowerRate: '非互粉率',
+
+        // Notification
+        notifSoundLabel: '完成时通知',
+        notifCompleteTitle: '操作完成！',
+        notifCompleteMsg: '取关：{unfollowed}，跳过：{skipped}',
+        notifPermissionDenied: '通知权限被拒绝',
+
+        // Shortcuts
+        shortcutHint: '快捷键：Alt+Shift+S（开始/停止），Alt+Shift+P（暂停）',
+
+        // Rate
+        menuRate: '评分',
+
+        // Review prompt
+        reviewAsk: '喜欢这个扩展吗？',
+        reviewTitle: '喜欢这个扩展吗？',
+        reviewMessage: '你的好评对我们帮助很大！🙏',
+        reviewYes: '⭐ 去评分',
+        reviewLater: '稍后再说',
+        reviewNo: '不了',
+
+        // CSV Export
+        exportCsv: 'CSV',
+        exportCsvSuccess: 'CSV 导出成功！',
+        exportImportTitle: '导出 / 导入',
+        exportBtn: '导出设置',
+        exportCsvBtn: '导出 CSV',
+        importBtn: '导入',
+        exportImportPlaceholder: '粘贴导出的 JSON 数据...',
+
+        // Skip Verified
+        skipVerifiedLabel: '跳过认证账号',
+
+        // Overactive Mode
+        modeOveractive: '过度活跃',
+        modeOveractiveDesc: '取关发推频率过高的账号',
+        overactiveThresholdLabel: '每日推文阈值',
+        overactiveThresholdHint: '超过此数值视为过度活跃',
+        logModeOveractive: '模式：过度活跃',
+
+        // Cooldown
+        cooldownNormal: '正常运行',
+        cooldownSoft: '软冷却中',
+        cooldownRateLimit: '频率限制中',
+
+        // Refollow
+        refollowBtn: '重新关注',
+        refollowTitle: '重新关注',
+        refollowSuccess: '已重新关注 @{username}',
+        refollowError: '重新关注 @{username} 失败',
+        refollowedLabel: '已重新关注',
+
+        // Tab names
+        tabHome: '主页',
+        tabMain: '主页',
+        tabLogs: '日志',
+        tabHistory: '历史',
+        tabSettings: '设置',
+
+        // Section titles
+        sectionMode: '模式',
+        sectionConfig: '配置',
+        sectionGeneral: '常规',
+        sectionAppearance: '外观',
+
+        // Language / Theme
+        langLabel: '语言',
+        langAuto: '自动',
+        themeLabel: '主题',
+
+        // Connection status
+        statusNotConnected: '内容脚本未连接',
+
+        // About
+        aboutVersion: '版本',
+        aboutGithub: '在 GitHub 上查看源码',
+        aboutPrivacy: '隐私政策',
+        aboutRate: '评分',
+
+        // Onboarding
+        onboardingTitle: '欢迎使用 X Unfollow！',
+        onboardingStep1: '前往 x.com/你的用户名/following',
+        onboardingStep2: '选择一种取关模式',
+        onboardingStep3: '点击"开始"',
+        onboardingStep1Title: '选择模式',
+        onboardingStep1Desc: '选择取关对象：非互粉用户、不活跃账号或简介过滤。',
+        onboardingStep2Title: '设置白名单',
+        onboardingStep2Desc: '添加你想保护、不被取关的用户名。',
+        onboardingStep3Title: '开始操作',
+        onboardingStep3Desc: '前往 X.com 的关注列表页面，点击"开始"。',
+        onboardingDone: '明白了！'
     }
 };
 
@@ -1079,6 +1324,7 @@ window.i18n = {
         if (lang.startsWith('ja')) return 'ja';
         if (lang.startsWith('pt')) return 'pt';
         if (lang.startsWith('es')) return 'es';
+        if (lang.startsWith('zh')) return 'zh';
         return 'en';
     },
 
