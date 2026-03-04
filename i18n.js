@@ -1,1319 +1,1814 @@
 // Localization - X Unfollow Tool
-// Detects Chrome language and provides translations
+// Supports: tr, en, es, de, fr, ar, ja, pt, zh
 
 const translations = {
-    tr: {
-        // Popup UI
-        title: 'Unfollow Tool',
-        subtitle: 'Takip listenizi kolayca yönetin.',
-        modeTitle: 'Mod Seçimi',
-        modeNonFollowers: 'Takip Etmeyenler',
-        modeNonFollowersDesc: 'Sadece sizi takip etmeyenleri çıkar',
-        modeAll: 'Herkesi Çıkar',
-        modeAllDesc: 'Tüm takip ettiklerini çıkar',
-        modeInactive: 'Pasif Hesaplar',
-        modeInactiveDesc: 'Pasif ve varsayılan avatarlı hesapları çıkar',
-        whitelistTitle: 'Whitelist',
-        whitelistPlaceholder: 'Korunacak kullanıcı adları (her satıra bir tane)\n\nÖrnek:\nelonmusk\ntwitter',
-        whitelistHint: 'Bu kullanıcılar takipten çıkarılmayacak',
-        statUnfollowed: 'Çıkarılan',
-        statSkipped: 'Atlanan',
-        statScanned: 'Taranan',
-        btnStart: 'Başlat',
-        btnStop: 'Durdur',
-        btnPause: 'Durakla',
-        btnResume: 'Devam Et',
-        logTitle: 'İşlem Logları',
-
-        // Menu
-        menuTitle: 'Ayarlar',
-        menuWhitelist: 'Whitelist',
-        menuLogs: 'İşlem Logları',
-        menuLanguage: 'Dil',
-        menuAbout: 'Hakkında',
-        menuHistory: 'Unfollow Geçmişi',
-        menuSpeed: 'Hız Ayarı',
-        menuExport: 'Dışa Aktar',
-        menuImport: 'İçe Aktar',
-        menuTheme: 'Tema',
-        themeDark: 'Koyu',
-        themeLight: 'Açık',
-
-        // Speed
-        speedSlow: 'Yavaş',
-        speedNormal: 'Normal',
-        speedFast: 'Hızlı',
-
-        // Inactive threshold
-        inactiveThresholdLabel: 'Pasiflik Süresi',
-        inactive30: '30 gün',
-        inactive90: '90 gün',
-        inactive180: '180 gün',
-        inactive365: '1 yıl',
-
-        // Limit
-        limitLabel: 'Unfollow Limiti',
-        limitPlaceholder: '0 = limitsiz',
-        limitHint: 'Maksimum unfollow sayısı (0 = limitsiz)',
-
-        // History
-        historyTitle: 'Unfollow Geçmişi',
-        historyEmpty: 'Henüz geçmiş yok',
-        historyClear: 'Geçmişi Temizle',
-
-        // Export/Import
-        exportSuccess: 'Veriler kopyalandı!',
-        importSuccess: 'Veriler içeri aktarıldı!',
-        importError: 'Geçersiz veri formatı',
-        exportTitle: 'Dışa / İçe Aktar',
-
-        // Status messages
-        statusGoToFollowing: 'X.com\'da takip edilenlere gidin',
-        statusGoingToFollowing: 'Following sayfasına gidiliyor',
-        statusGoToProfile: 'Bir profil sayfasına gidin',
-        statusPageError: 'Sayfa kontrol edilemedi',
-        statusRunning: 'İşlem devam ediyor...',
-        statusPaused: 'Duraklatıldı',
-        statusStarted: 'İşlem başlatıldı',
-        statusStopped: 'Durduruldu',
-        statusCompleted: 'Tamamlandı',
-        statusStartError: 'Başlatılamadı. Sayfayı yenileyin.',
-        warningSlowMode: 'Bu mod her profili tek tek kontrol eder, daha uzun sürebilir.',
-
-        // Button texts
-        btnOpenX: 'X.com\'u Aç',
-        btnGoToProfile: 'Profilime Git',
-
-        // Log messages
-        logStarted: 'İşlem başlatıldı',
-        logModeNonFollowers: 'Mod: Takip Etmeyenler',
-        logModeAll: 'Mod: Herkes',
-        logWhitelist: 'Whitelist: {count} kullanıcı',
-        logGoingToFollowing: '@{username}/following sayfasına gidiliyor...',
-        logGoingToHome: 'X.com ana sayfasına gidiliyor...',
-        logModeInactive: 'Mod: Pasif Hesaplar',
-        logModeBioFilter: 'Mod: Bio Filtresi',
-        logModeFollowAll: 'Mod: Tümünü Takip Et',
-        logStopped: 'İşlem durduruldu',
-        logCompleted: 'İşlem tamamlandı',
-        logError: 'Hata: {message}',
-        logStopError: 'Durdurma hatası: {message}',
-
-        // Whitelist validation
-        whitelistInvalid: 'Geçersiz kullanıcı adı: {username}',
-        whitelistValidCount: '{valid} geçerli, {invalid} geçersiz kullanıcı',
-
-        // Bio filter
-        modeBioFilter: 'Bio Filtresi',
-        modeBioFilterDesc: 'Bio anahtar kelimelerine göre filtrele',
-        bioKeywordsLabel: 'Bio Anahtar Kelimeler',
-        bioKeywordsPlaceholder: 'crypto, nft, bot',
-        bioActionLabel: 'Eylem',
-        bioActionUnfollow: 'Bio\'da varsa çıkar',
-        bioActionKeep: 'Bio\'da varsa koru',
-
-        // Follow all
-        modeFollowAll: 'Tümünü Takip Et',
-        modeFollowAllDesc: 'Listedeki herkesi takip et',
-        statFollowed: 'Takip Edilen',
-
-        // Inactive filter
-        inactiveDaysLabel: 'Pasiflik Süresi',
-        minFollowersLabel: 'Min. Takipçi',
-        minFollowersPlaceholder: '0 = filtre yok',
-        inactive60: '60 gün',
-
-        // Demo mode
-        demoModeLabel: 'Demo Mod',
-        demoModeDesc: 'Simülasyon - gerçekte işlem yapmaz',
-
-        // Auto-stop timer
-        timerLabel: 'Zamanlayıcı',
-        timerPlaceholder: '0 = kapalı',
-        timerMinutes: 'dk',
-
-        // Target profile
-        targetLabel: 'Hedef Profil',
-        targetPlaceholder: 'kullaniciadi (boş = kendin)',
-
-        // Stats dashboard
-        menuStats: 'İstatistikler',
-        statsTitle: 'İstatistik Paneli',
-        statsAllTime: 'Toplam Çıkarılan',
-        statsThisWeek: 'Bu Hafta',
-        statsSessions: 'Toplam Oturum',
-        statsNonFollowerRate: 'Takip Etmeyen Oranı',
-
-        // Notification
-        notifSoundLabel: 'Bildirim Sesi',
-        notifCompleteTitle: 'İşlem Tamamlandı!',
-        notifCompleteMsg: 'Çıkarılan: {unfollowed}, Atlanan: {skipped}',
-
-        // Shortcuts
-        shortcutHint: 'Kısayollar: Alt+Shift+S (Başlat/Durdur), Alt+Shift+P (Duraklat)',
-
-        // Rate
-        menuRate: 'Bizi Değerlendirin',
-
-        // Review prompt
-        reviewAsk: 'XUnfollow işinize yarıyor mu?',
-        reviewYes: 'Evet, değerlendir!',
-        reviewLater: 'Sonra',
-        reviewNo: 'Hayır',
-
-        // CSV Export
-        exportCsv: 'CSV',
-        exportCsvSuccess: 'CSV dosyası indirildi!',
-
-        // Skip Verified
-        skipVerifiedLabel: 'Onaylıları Atla',
-
-        // Overactive Mode
-        modeOveractive: 'Aşırı Aktif',
-        modeOveractiveDesc: 'Günlük çok fazla tweet atan hesapları çıkar',
-        overactiveThresholdLabel: 'Günlük Tweet Eşiği',
-        logModeOveractive: 'Mod: Aşırı Aktif',
-
-        // Cooldown
-        cooldownNormal: 'Normal',
-        cooldownSoft: 'Yumuşak bekleme',
-        cooldownRateLimit: 'Rate limit',
-
-        // Refollow
-        refollowBtn: 'Geri Takip',
-        refollowTitle: 'Tekrar takip et',
-        refollowSuccess: '@{username} tekrar takip edildi',
-        refollowError: '@{username} takip edilemedi',
-        refollowedLabel: 'Geri takip edildi',
-
-        // Tab names
-        tabHome: 'Ana',
-        tabLogs: 'Log',
-        tabHistory: 'Geçmiş',
-        tabSettings: 'Ayarlar',
-
-        // Section titles
-        sectionMode: 'Mod',
-        sectionConfig: 'Yapılandırma',
-        sectionGeneral: 'Genel',
-        sectionAppearance: 'Görünüm',
-
-        // Notification permission
-        notifPermissionDenied: 'Bildirim izni reddedildi',
-
-        // Connection status
-        statusNotConnected: 'Content script bağlı değil. Sayfayı yenileyin.',
-
-        // Onboarding
-        onboardingTitle: 'X Unfollow Tool\'a Hoş Geldiniz',
-        onboardingStep1Title: 'Mod Seçin',
-        onboardingStep1Desc: 'Kimi takipten çıkaracağınızı belirleyin: takip etmeyenler, pasif hesaplar veya bio filtresi.',
-        onboardingStep2Title: 'Whitelist Ayarlayın',
-        onboardingStep2Desc: 'Korumak istediğiniz kullanıcı adlarını ekleyin.',
-        onboardingStep3Title: 'İşlemi Başlatın',
-        onboardingStep3Desc: 'X.com\'da following sayfasına gidin ve Başlat\'a tıklayın.',
-        onboardingDone: 'Anladım!'
-    },
-
-    en: {
-        // Popup UI
-        title: 'Unfollow Tool',
-        subtitle: 'Easily manage your following list.',
-        modeTitle: 'Mode Selection',
-        modeNonFollowers: 'Non-Followers',
-        modeNonFollowersDesc: 'Only unfollow those who don\'t follow you',
-        modeAll: 'Unfollow All',
-        modeAllDesc: 'Unfollow everyone you follow',
-        modeInactive: 'Inactive Accounts',
-        modeInactiveDesc: 'Unfollow inactive and default avatar accounts',
-        whitelistTitle: 'Whitelist',
-        whitelistPlaceholder: 'Usernames to protect (one per line)\n\nExample:\nelonmusk\ntwitter',
-        whitelistHint: 'These users will not be unfollowed',
-        statUnfollowed: 'Unfollowed',
-        statSkipped: 'Skipped',
-        statScanned: 'Scanned',
-        btnStart: 'Start',
-        btnStop: 'Stop',
-        btnPause: 'Pause',
-        btnResume: 'Resume',
-        logTitle: 'Activity Log',
-
-        // Menu
-        menuTitle: 'Settings',
-        menuWhitelist: 'Whitelist',
-        menuLogs: 'Activity Log',
-        menuLanguage: 'Language',
-        menuAbout: 'About',
-        menuHistory: 'Unfollow History',
-        menuSpeed: 'Speed',
-        menuExport: 'Export',
-        menuImport: 'Import',
-        menuTheme: 'Theme',
-        themeDark: 'Dark',
-        themeLight: 'Light',
-
-        // Speed
-        speedSlow: 'Slow',
-        speedNormal: 'Normal',
-        speedFast: 'Fast',
-
-        // Inactive threshold
-        inactiveThresholdLabel: 'Inactive Period',
-        inactive30: '30 days',
-        inactive90: '90 days',
-        inactive180: '180 days',
-        inactive365: '1 year',
-
-        // Limit
-        limitLabel: 'Unfollow Limit',
-        limitPlaceholder: '0 = unlimited',
-        limitHint: 'Max unfollows (0 = unlimited)',
-
-        // History
-        historyTitle: 'Unfollow History',
-        historyEmpty: 'No history yet',
-        historyClear: 'Clear History',
-
-        // Export/Import
-        exportSuccess: 'Data copied to clipboard!',
-        importSuccess: 'Data imported successfully!',
-        importError: 'Invalid data format',
-        exportTitle: 'Export / Import',
-
-        // Status messages
-        statusGoToFollowing: 'Go to X.com following page',
-        statusGoingToFollowing: 'Going to following page',
-        statusGoToProfile: 'Go to a profile page',
-        statusPageError: 'Could not check page',
-        statusRunning: 'Running...',
-        statusPaused: 'Paused',
-        statusStarted: 'Started',
-        statusStopped: 'Stopped',
-        statusCompleted: 'Completed',
-        statusStartError: 'Could not start. Refresh the page.',
-        warningSlowMode: 'This mode checks each profile individually. It may take longer.',
-
-        // Button texts
-        btnOpenX: 'Open X.com',
-        btnGoToProfile: 'Go to Profile',
-
-        // Log messages
-        logStarted: 'Process started',
-        logModeNonFollowers: 'Mode: Non-Followers',
-        logModeAll: 'Mode: Everyone',
-        logWhitelist: 'Whitelist: {count} users',
-        logGoingToFollowing: 'Going to @{username}/following...',
-        logGoingToHome: 'Going to X.com home page...',
-        logModeInactive: 'Mode: Inactive Accounts',
-        logModeBioFilter: 'Mode: Bio Filter',
-        logModeFollowAll: 'Mode: Follow All',
-        logStopped: 'Process stopped',
-        logCompleted: 'Process completed',
-        logError: 'Error: {message}',
-        logStopError: 'Stop error: {message}',
-
-        // Whitelist validation
-        whitelistInvalid: 'Invalid username: {username}',
-        whitelistValidCount: '{valid} valid, {invalid} invalid users',
-
-        // Bio filter
-        modeBioFilter: 'Bio Filter',
-        modeBioFilterDesc: 'Filter by bio keywords',
-        bioKeywordsLabel: 'Bio Keywords',
-        bioKeywordsPlaceholder: 'crypto, nft, bot',
-        bioActionLabel: 'Action',
-        bioActionUnfollow: 'Unfollow if in bio',
-        bioActionKeep: 'Keep if in bio',
-
-        // Follow all
-        modeFollowAll: 'Follow All',
-        modeFollowAllDesc: 'Follow everyone on the list',
-        statFollowed: 'Followed',
-
-        // Inactive filter
-        inactiveDaysLabel: 'Inactive Period',
-        minFollowersLabel: 'Min. Followers',
-        minFollowersPlaceholder: '0 = no filter',
-        inactive60: '60 days',
-
-        // Demo mode
-        demoModeLabel: 'Demo Mode',
-        demoModeDesc: 'Simulation only - no real actions',
-
-        // Auto-stop timer
-        timerLabel: 'Timer',
-        timerPlaceholder: '0 = off',
-        timerMinutes: 'min',
-
-        // Target profile
-        targetLabel: 'Target Profile',
-        targetPlaceholder: 'username (empty = self)',
-
-        // Stats dashboard
-        menuStats: 'Statistics',
-        statsTitle: 'Stats Dashboard',
-        statsAllTime: 'Total Unfollowed',
-        statsThisWeek: 'This Week',
-        statsSessions: 'Total Sessions',
-        statsNonFollowerRate: 'Non-Follower Rate',
-
-        // Notification
-        notifSoundLabel: 'Notification Sound',
-        notifCompleteTitle: 'Process Completed!',
-        notifCompleteMsg: 'Unfollowed: {unfollowed}, Skipped: {skipped}',
-
-        // Shortcuts
-        shortcutHint: 'Shortcuts: Alt+Shift+S (Start/Stop), Alt+Shift+P (Pause)',
-
-        // Rate
-        menuRate: 'Rate Us',
-
-        // Review prompt
-        reviewAsk: 'Enjoying XUnfollow?',
-        reviewYes: 'Yes, rate it!',
-        reviewLater: 'Later',
-        reviewNo: 'No thanks',
-
-        // CSV Export
-        exportCsv: 'CSV',
-        exportCsvSuccess: 'CSV file downloaded!',
-
-        // Skip Verified
-        skipVerifiedLabel: 'Skip Verified',
-
-        // Overactive Mode
-        modeOveractive: 'Overactive',
-        modeOveractiveDesc: 'Unfollow accounts tweeting excessively',
-        overactiveThresholdLabel: 'Daily Tweet Threshold',
-        logModeOveractive: 'Mode: Overactive',
-
-        // Cooldown
-        cooldownNormal: 'Normal',
-        cooldownSoft: 'Soft cooldown',
-        cooldownRateLimit: 'Rate limit',
-
-        // Refollow
-        refollowBtn: 'Refollow',
-        refollowTitle: 'Follow back again',
-        refollowSuccess: '@{username} refollowed',
-        refollowError: 'Could not refollow @{username}',
-        refollowedLabel: 'Refollowed',
-
-        // Tab names
-        tabHome: 'Home',
-        tabLogs: 'Log',
-        tabHistory: 'History',
-        tabSettings: 'Settings',
-
-        // Section titles
-        sectionMode: 'Mode',
-        sectionConfig: 'Configuration',
-        sectionGeneral: 'General',
-        sectionAppearance: 'Appearance',
-
-        // Notification permission
-        notifPermissionDenied: 'Notification permission denied',
-
-        // Connection status
-        statusNotConnected: 'Content script not connected. Refresh the page.',
-
-        // Onboarding
-        onboardingTitle: 'Welcome to X Unfollow Tool',
-        onboardingStep1Title: 'Choose a Mode',
-        onboardingStep1Desc: 'Select who to unfollow: non-followers, inactive accounts, or use bio filters.',
-        onboardingStep2Title: 'Set Your Whitelist',
-        onboardingStep2Desc: 'Add usernames you want to protect from being unfollowed.',
-        onboardingStep3Title: 'Start the Process',
-        onboardingStep3Desc: 'Go to your following page on X.com and click Start.',
-        onboardingDone: 'Got it!'
-    },
-
-    ja: {
-        // Popup UI
-        title: 'Unfollow Tool',
-        subtitle: 'フォローリストを簡単に管理。',
-        modeTitle: 'モード選択',
-        modeNonFollowers: 'フォローバックなし',
-        modeNonFollowersDesc: 'フォローバックしていないユーザーのみ解除',
-        modeAll: '全員解除',
-        modeAllDesc: 'フォロー中の全ユーザーを解除',
-        modeInactive: '非アクティブ',
-        modeInactiveDesc: '非アクティブ・デフォルトアバターのアカウントを解除',
-        whitelistTitle: 'ホワイトリスト',
-        whitelistPlaceholder: '保護するユーザー名（1行に1つ）\n\n例:\nelonmusk\ntwitter',
-        whitelistHint: 'これらのユーザーはフォロー解除されません',
-        statUnfollowed: '解除済み',
-        statSkipped: 'スキップ',
-        statScanned: 'スキャン済み',
-        btnStart: '開始',
-        btnStop: '停止',
-        btnPause: '一時停止',
-        btnResume: '再開',
-        logTitle: 'アクティビティログ',
-
-        // Menu
-        menuTitle: '設定',
-        menuWhitelist: 'ホワイトリスト',
-        menuLogs: 'アクティビティログ',
-        menuLanguage: '言語',
-        menuAbout: 'について',
-        menuHistory: 'フォロー解除履歴',
-        menuSpeed: '速度',
-        menuExport: 'エクスポート',
-        menuImport: 'インポート',
-        menuTheme: 'テーマ',
-        themeDark: 'ダーク',
-        themeLight: 'ライト',
-
-        // Speed
-        speedSlow: '低速',
-        speedNormal: '通常',
-        speedFast: '高速',
-
-        // Inactive threshold
-        inactiveThresholdLabel: '非アクティブ期間',
-        inactive30: '30日',
-        inactive90: '90日',
-        inactive180: '180日',
-        inactive365: '1年',
-
-        // Limit
-        limitLabel: 'フォロー解除制限',
-        limitPlaceholder: '0 = 無制限',
-        limitHint: '最大フォロー解除数（0 = 無制限）',
-
-        // History
-        historyTitle: 'フォロー解除履歴',
-        historyEmpty: '履歴がありません',
-        historyClear: '履歴をクリア',
-
-        // Export/Import
-        exportSuccess: 'データをクリップボードにコピーしました！',
-        importSuccess: 'データのインポートに成功しました！',
-        importError: '無効なデータ形式です',
-        exportTitle: 'エクスポート / インポート',
-
-        // Status messages
-        statusGoToFollowing: 'X.comのフォロー中ページに移動してください',
-        statusGoingToFollowing: 'フォロー中ページに移動中',
-        statusGoToProfile: 'プロフィールページに移動してください',
-        statusPageError: 'ページを確認できませんでした',
-        statusRunning: '実行中...',
-        statusPaused: '一時停止中',
-        statusStarted: '開始しました',
-        statusStopped: '停止しました',
-        statusCompleted: '完了しました',
-        statusStartError: '開始できませんでした。ページを更新してください。',
-        warningSlowMode: 'このモードは各プロフィールを個別に確認するため、時間がかかる場合があります。',
-
-        // Button texts
-        btnOpenX: 'X.comを開く',
-        btnGoToProfile: 'プロフィールへ',
-
-        // Log messages
-        logStarted: 'プロセスを開始しました',
-        logModeNonFollowers: 'モード: フォローバックなし',
-        logModeAll: 'モード: 全員',
-        logWhitelist: 'ホワイトリスト: {count}ユーザー',
-        logGoingToFollowing: '@{username}/followingに移動中...',
-        logGoingToHome: 'X.comホームページに移動中...',
-        logModeInactive: 'モード: 非アクティブ',
-        logModeBioFilter: 'モード: バイオフィルター',
-        logModeFollowAll: 'モード: 全員フォロー',
-        logStopped: 'プロセスを停止しました',
-        logCompleted: 'プロセスが完了しました',
-        logError: 'エラー: {message}',
-        logStopError: '停止エラー: {message}',
-
-        // Whitelist validation
-        whitelistInvalid: '無効なユーザー名: {username}',
-        whitelistValidCount: '{valid}件有効、{invalid}件無効',
-
-        // Bio filter
-        modeBioFilter: 'バイオフィルター',
-        modeBioFilterDesc: 'バイオのキーワードでフィルター',
-        bioKeywordsLabel: 'バイオキーワード',
-        bioKeywordsPlaceholder: 'crypto, nft, bot',
-        bioActionLabel: 'アクション',
-        bioActionUnfollow: 'バイオにあれば解除',
-        bioActionKeep: 'バイオにあれば保護',
-
-        // Follow all
-        modeFollowAll: '全員フォロー',
-        modeFollowAllDesc: 'リストの全員をフォロー',
-        statFollowed: 'フォロー済み',
-
-        // Inactive filter
-        inactiveDaysLabel: '非アクティブ期間',
-        minFollowersLabel: '最小フォロワー',
-        minFollowersPlaceholder: '0 = フィルターなし',
-        inactive60: '60日',
-
-        // Demo mode
-        demoModeLabel: 'デモモード',
-        demoModeDesc: 'シミュレーションのみ - 実際の操作なし',
-
-        // Auto-stop timer
-        timerLabel: 'タイマー',
-        timerPlaceholder: '0 = オフ',
-        timerMinutes: '分',
-
-        // Target profile
-        targetLabel: 'ターゲットプロフィール',
-        targetPlaceholder: 'ユーザー名（空 = 自分）',
-
-        // Stats dashboard
-        menuStats: '統計',
-        statsTitle: '統計ダッシュボード',
-        statsAllTime: '合計解除数',
-        statsThisWeek: '今週',
-        statsSessions: '合計セッション',
-        statsNonFollowerRate: '非フォロワー率',
-
-        // Notification
-        notifSoundLabel: '通知音',
-        notifCompleteTitle: 'プロセスが完了しました！',
-        notifCompleteMsg: '解除: {unfollowed}、スキップ: {skipped}',
-
-        // Shortcuts
-        shortcutHint: 'ショートカット: Alt+Shift+S (開始/停止), Alt+Shift+P (一時停止)',
-
-        // Rate
-        menuRate: '評価する',
-
-        // Review prompt
-        reviewAsk: 'XUnfollowは役立っていますか？',
-        reviewYes: '評価する！',
-        reviewLater: '後で',
-        reviewNo: '結構です',
-
-        // CSV Export
-        exportCsv: 'CSV',
-        exportCsvSuccess: 'CSVファイルがダウンロードされました！',
-
-        // Skip Verified
-        skipVerifiedLabel: '認証済みをスキップ',
-
-        // Overactive Mode
-        modeOveractive: '過活動',
-        modeOveractiveDesc: '過剰にツイートするアカウントを解除',
-        overactiveThresholdLabel: '日次ツイート閾値',
-        logModeOveractive: 'モード: 過活動',
-
-        // Cooldown
-        cooldownNormal: '通常',
-        cooldownSoft: 'ソフトクールダウン',
-        cooldownRateLimit: 'レート制限',
-
-        // Refollow
-        refollowBtn: '再フォロー',
-        refollowTitle: '再びフォローする',
-        refollowSuccess: '@{username} を再フォローしました',
-        refollowError: '@{username} を再フォローできませんでした',
-        refollowedLabel: '再フォロー済み',
-
-        // Tab names
-        tabHome: 'ホーム',
-        tabLogs: 'ログ',
-        tabHistory: '履歴',
-        tabSettings: '設定',
-
-        // Section titles
-        sectionMode: 'モード',
-        sectionConfig: '設定',
-        sectionGeneral: '一般',
-        sectionAppearance: '外観',
-
-        // Notification permission
-        notifPermissionDenied: '通知の許可が拒否されました',
-
-        // Connection status
-        statusNotConnected: 'コンテンツスクリプトが接続されていません。ページを更新してください。',
-
-        // Onboarding
-        onboardingTitle: 'X Unfollow Toolへようこそ',
-        onboardingStep1Title: 'モードを選択',
-        onboardingStep1Desc: 'フォロー解除する対象を選択：非フォロワー、非アクティブ、バイオフィルター。',
-        onboardingStep2Title: 'ホワイトリストを設定',
-        onboardingStep2Desc: 'フォロー解除から保護するユーザー名を追加。',
-        onboardingStep3Title: 'プロセスを開始',
-        onboardingStep3Desc: 'X.comのフォロー中ページに移動して開始をクリック。',
-        onboardingDone: 'わかりました！'
-    },
-
-    pt: {
-        // Popup UI
-        title: 'Unfollow Tool',
-        subtitle: 'Gerencie facilmente sua lista de seguindo.',
-        modeTitle: 'Seleção de Modo',
-        modeNonFollowers: 'Não Seguidores',
-        modeNonFollowersDesc: 'Deixar de seguir apenas quem não te segue',
-        modeAll: 'Deixar de Seguir Todos',
-        modeAllDesc: 'Deixar de seguir todos que você segue',
-        modeInactive: 'Contas Inativas',
-        modeInactiveDesc: 'Remover contas inativas e com avatar padrão',
-        whitelistTitle: 'Lista Branca',
-        whitelistPlaceholder: 'Nomes de usuário a proteger (um por linha)\n\nExemplo:\nelonmusk\ntwitter',
-        whitelistHint: 'Estes usuários não serão removidos',
-        statUnfollowed: 'Removidos',
-        statSkipped: 'Pulados',
-        statScanned: 'Verificados',
-        btnStart: 'Iniciar',
-        btnStop: 'Parar',
-        btnPause: 'Pausar',
-        btnResume: 'Continuar',
-        logTitle: 'Log de Atividades',
-
-        // Menu
-        menuTitle: 'Configurações',
-        menuWhitelist: 'Lista Branca',
-        menuLogs: 'Log de Atividades',
-        menuLanguage: 'Idioma',
-        menuAbout: 'Sobre',
-        menuHistory: 'Histórico de Unfollow',
-        menuSpeed: 'Velocidade',
-        menuExport: 'Exportar',
-        menuImport: 'Importar',
-        menuTheme: 'Tema',
-        themeDark: 'Escuro',
-        themeLight: 'Claro',
-
-        // Speed
-        speedSlow: 'Lento',
-        speedNormal: 'Normal',
-        speedFast: 'Rápido',
-
-        // Inactive threshold
-        inactiveThresholdLabel: 'Período de Inatividade',
-        inactive30: '30 dias',
-        inactive90: '90 dias',
-        inactive180: '180 dias',
-        inactive365: '1 ano',
-
-        // Limit
-        limitLabel: 'Limite de Unfollow',
-        limitPlaceholder: '0 = ilimitado',
-        limitHint: 'Máximo de unfollows (0 = ilimitado)',
-
-        // History
-        historyTitle: 'Histórico de Unfollow',
-        historyEmpty: 'Nenhum histórico ainda',
-        historyClear: 'Limpar Histórico',
-
-        // Export/Import
-        exportSuccess: 'Dados copiados para a área de transferência!',
-        importSuccess: 'Dados importados com sucesso!',
-        importError: 'Formato de dados inválido',
-        exportTitle: 'Exportar / Importar',
-
-        // Status messages
-        statusGoToFollowing: 'Vá para a página de seguindo no X.com',
-        statusGoingToFollowing: 'Indo para a página de seguindo',
-        statusGoToProfile: 'Vá para uma página de perfil',
-        statusPageError: 'Não foi possível verificar a página',
-        statusRunning: 'Executando...',
-        statusPaused: 'Pausado',
-        statusStarted: 'Iniciado',
-        statusStopped: 'Parado',
-        statusCompleted: 'Concluído',
-        statusStartError: 'Não foi possível iniciar. Atualize a página.',
-        warningSlowMode: 'Este modo verifica cada perfil individualmente. Pode demorar mais.',
-
-        // Button texts
-        btnOpenX: 'Abrir X.com',
-        btnGoToProfile: 'Ir para Perfil',
-
-        // Log messages
-        logStarted: 'Processo iniciado',
-        logModeNonFollowers: 'Modo: Não Seguidores',
-        logModeAll: 'Modo: Todos',
-        logWhitelist: 'Lista Branca: {count} usuários',
-        logGoingToFollowing: 'Indo para @{username}/following...',
-        logGoingToHome: 'Indo para a página inicial do X.com...',
-        logModeInactive: 'Modo: Contas Inativas',
-        logModeBioFilter: 'Modo: Filtro de Bio',
-        logModeFollowAll: 'Modo: Seguir Todos',
-        logStopped: 'Processo parado',
-        logCompleted: 'Processo concluído',
-        logError: 'Erro: {message}',
-        logStopError: 'Erro ao parar: {message}',
-
-        // Whitelist validation
-        whitelistInvalid: 'Nome de usuário inválido: {username}',
-        whitelistValidCount: '{valid} válidos, {invalid} inválidos',
-
-        // Bio filter
-        modeBioFilter: 'Filtro de Bio',
-        modeBioFilterDesc: 'Filtrar por palavras-chave da bio',
-        bioKeywordsLabel: 'Palavras-chave da Bio',
-        bioKeywordsPlaceholder: 'crypto, nft, bot',
-        bioActionLabel: 'Ação',
-        bioActionUnfollow: 'Remover se na bio',
-        bioActionKeep: 'Manter se na bio',
-
-        // Follow all
-        modeFollowAll: 'Seguir Todos',
-        modeFollowAllDesc: 'Seguir todos na lista',
-        statFollowed: 'Seguidos',
-
-        // Inactive filter
-        inactiveDaysLabel: 'Período de Inatividade',
-        minFollowersLabel: 'Min. Seguidores',
-        minFollowersPlaceholder: '0 = sem filtro',
-        inactive60: '60 dias',
-
-        // Demo mode
-        demoModeLabel: 'Modo Demo',
-        demoModeDesc: 'Apenas simulação - sem ações reais',
-
-        // Auto-stop timer
-        timerLabel: 'Temporizador',
-        timerPlaceholder: '0 = desligado',
-        timerMinutes: 'min',
-
-        // Target profile
-        targetLabel: 'Perfil Alvo',
-        targetPlaceholder: 'usuário (vazio = próprio)',
-
-        // Stats dashboard
-        menuStats: 'Estatísticas',
-        statsTitle: 'Painel de Estatísticas',
-        statsAllTime: 'Total Removidos',
-        statsThisWeek: 'Esta Semana',
-        statsSessions: 'Total de Sessões',
-        statsNonFollowerRate: 'Taxa de Não Seguidores',
-
-        // Notification
-        notifSoundLabel: 'Som de Notificação',
-        notifCompleteTitle: 'Processo Concluído!',
-        notifCompleteMsg: 'Removidos: {unfollowed}, Pulados: {skipped}',
-
-        // Shortcuts
-        shortcutHint: 'Atalhos: Alt+Shift+S (Iniciar/Parar), Alt+Shift+P (Pausar)',
-
-        // Rate
-        menuRate: 'Avalie-nos',
-
-        // Review prompt
-        reviewAsk: 'Está gostando do XUnfollow?',
-        reviewYes: 'Sim, avaliar!',
-        reviewLater: 'Depois',
-        reviewNo: 'Não, obrigado',
-
-        // CSV Export
-        exportCsv: 'CSV',
-        exportCsvSuccess: 'Arquivo CSV baixado!',
-
-        // Skip Verified
-        skipVerifiedLabel: 'Pular Verificados',
-
-        // Overactive Mode
-        modeOveractive: 'Superativo',
-        modeOveractiveDesc: 'Remover contas que tuitam excessivamente',
-        overactiveThresholdLabel: 'Limite Diário de Tweets',
-        logModeOveractive: 'Modo: Superativo',
-
-        // Cooldown
-        cooldownNormal: 'Normal',
-        cooldownSoft: 'Cooldown suave',
-        cooldownRateLimit: 'Rate limit',
-
-        // Refollow
-        refollowBtn: 'Reseguir',
-        refollowTitle: 'Seguir novamente',
-        refollowSuccess: '@{username} seguido novamente',
-        refollowError: 'Não foi possível reseguir @{username}',
-        refollowedLabel: 'Reseguido',
-
-        // Tab names
-        tabHome: 'Início',
-        tabLogs: 'Log',
-        tabHistory: 'Histórico',
-        tabSettings: 'Config',
-
-        // Section titles
-        sectionMode: 'Modo',
-        sectionConfig: 'Configuração',
-        sectionGeneral: 'Geral',
-        sectionAppearance: 'Aparência',
-
-        // Notification permission
-        notifPermissionDenied: 'Permissão de notificação negada',
-
-        // Connection status
-        statusNotConnected: 'Content script não conectado. Atualize a página.',
-
-        // Onboarding
-        onboardingTitle: 'Bem-vindo ao X Unfollow Tool',
-        onboardingStep1Title: 'Escolha um Modo',
-        onboardingStep1Desc: 'Selecione quem deixar de seguir: não seguidores, inativos ou filtro de bio.',
-        onboardingStep2Title: 'Configure sua Lista Branca',
-        onboardingStep2Desc: 'Adicione nomes de usuário que deseja proteger.',
-        onboardingStep3Title: 'Inicie o Processo',
-        onboardingStep3Desc: 'Vá para a página de seguindo no X.com e clique em Iniciar.',
-        onboardingDone: 'Entendi!'
-    },
-
-    es: {
-        // Popup UI
-        title: 'Unfollow Tool',
-        subtitle: 'Gestiona fácilmente tu lista de seguidos.',
-        modeTitle: 'Selección de Modo',
-        modeNonFollowers: 'No Seguidores',
-        modeNonFollowersDesc: 'Solo dejar de seguir a quienes no te siguen',
-        modeAll: 'Dejar de Seguir a Todos',
-        modeAllDesc: 'Dejar de seguir a todos los que sigues',
-        modeInactive: 'Cuentas Inactivas',
-        modeInactiveDesc: 'Dejar de seguir cuentas inactivas y con avatar predeterminado',
-        whitelistTitle: 'Lista Blanca',
-        whitelistPlaceholder: 'Nombres de usuario a proteger (uno por línea)\n\nEjemplo:\nelonmusk\ntwitter',
-        whitelistHint: 'Estos usuarios no serán eliminados',
-        statUnfollowed: 'Eliminados',
-        statSkipped: 'Omitidos',
-        statScanned: 'Escaneados',
-        btnStart: 'Iniciar',
-        btnStop: 'Detener',
-        btnPause: 'Pausar',
-        btnResume: 'Reanudar',
-        logTitle: 'Registro de Actividad',
-
-        // Menu
-        menuTitle: 'Configuración',
-        menuWhitelist: 'Lista Blanca',
-        menuLogs: 'Registro de Actividad',
-        menuLanguage: 'Idioma',
-        menuAbout: 'Acerca de',
-        menuHistory: 'Historial de Unfollow',
-        menuSpeed: 'Velocidad',
-        menuExport: 'Exportar',
-        menuImport: 'Importar',
-        menuTheme: 'Tema',
-        themeDark: 'Oscuro',
-        themeLight: 'Claro',
-
-        // Speed
-        speedSlow: 'Lento',
-        speedNormal: 'Normal',
-        speedFast: 'Rápido',
-
-        // Inactive threshold
-        inactiveThresholdLabel: 'Periodo de Inactividad',
-        inactive30: '30 días',
-        inactive90: '90 días',
-        inactive180: '180 días',
-        inactive365: '1 año',
-
-        // Limit
-        limitLabel: 'Límite de Unfollow',
-        limitPlaceholder: '0 = ilimitado',
-        limitHint: 'Máximo de unfollows (0 = ilimitado)',
-
-        // History
-        historyTitle: 'Historial de Unfollow',
-        historyEmpty: 'Sin historial aún',
-        historyClear: 'Borrar Historial',
-
-        // Export/Import
-        exportSuccess: '¡Datos copiados al portapapeles!',
-        importSuccess: '¡Datos importados exitosamente!',
-        importError: 'Formato de datos inválido',
-        exportTitle: 'Exportar / Importar',
-
-        // Status messages
-        statusGoToFollowing: 'Ve a la página de seguidos en X.com',
-        statusGoingToFollowing: 'Yendo a la página de seguidos',
-        statusGoToProfile: 'Ve a una página de perfil',
-        statusPageError: 'No se pudo verificar la página',
-        statusRunning: 'Ejecutando...',
-        statusPaused: 'Pausado',
-        statusStarted: 'Iniciado',
-        statusStopped: 'Detenido',
-        statusCompleted: 'Completado',
-        statusStartError: 'No se pudo iniciar. Actualiza la página.',
-        warningSlowMode: 'Este modo verifica cada perfil individualmente. Puede tardar más.',
-
-        // Button texts
-        btnOpenX: 'Abrir X.com',
-        btnGoToProfile: 'Ir al Perfil',
-
-        // Log messages
-        logStarted: 'Proceso iniciado',
-        logModeNonFollowers: 'Modo: No Seguidores',
-        logModeAll: 'Modo: Todos',
-        logWhitelist: 'Lista Blanca: {count} usuarios',
-        logGoingToFollowing: 'Yendo a @{username}/following...',
-        logGoingToHome: 'Yendo a la página principal de X.com...',
-        logModeInactive: 'Modo: Cuentas Inactivas',
-        logModeBioFilter: 'Modo: Filtro de Bio',
-        logModeFollowAll: 'Modo: Seguir a Todos',
-        logStopped: 'Proceso detenido',
-        logCompleted: 'Proceso completado',
-        logError: 'Error: {message}',
-        logStopError: 'Error al detener: {message}',
-
-        // Whitelist validation
-        whitelistInvalid: 'Nombre de usuario inválido: {username}',
-        whitelistValidCount: '{valid} válidos, {invalid} inválidos',
-
-        // Bio filter
-        modeBioFilter: 'Filtro de Bio',
-        modeBioFilterDesc: 'Filtrar por palabras clave de la bio',
-        bioKeywordsLabel: 'Palabras clave de Bio',
-        bioKeywordsPlaceholder: 'crypto, nft, bot',
-        bioActionLabel: 'Acción',
-        bioActionUnfollow: 'Dejar de seguir si está en bio',
-        bioActionKeep: 'Mantener si está en bio',
-
-        // Follow all
-        modeFollowAll: 'Seguir a Todos',
-        modeFollowAllDesc: 'Seguir a todos en la lista',
-        statFollowed: 'Seguidos',
-
-        // Inactive filter
-        inactiveDaysLabel: 'Periodo de Inactividad',
-        minFollowersLabel: 'Min. Seguidores',
-        minFollowersPlaceholder: '0 = sin filtro',
-        inactive60: '60 días',
-
-        // Demo mode
-        demoModeLabel: 'Modo Demo',
-        demoModeDesc: 'Solo simulación - sin acciones reales',
-
-        // Auto-stop timer
-        timerLabel: 'Temporizador',
-        timerPlaceholder: '0 = apagado',
-        timerMinutes: 'min',
-
-        // Target profile
-        targetLabel: 'Perfil Objetivo',
-        targetPlaceholder: 'usuario (vacío = propio)',
-
-        // Stats dashboard
-        menuStats: 'Estadísticas',
-        statsTitle: 'Panel de Estadísticas',
-        statsAllTime: 'Total Eliminados',
-        statsThisWeek: 'Esta Semana',
-        statsSessions: 'Total de Sesiones',
-        statsNonFollowerRate: 'Tasa de No Seguidores',
-
-        // Notification
-        notifSoundLabel: 'Sonido de Notificación',
-        notifCompleteTitle: '¡Proceso Completado!',
-        notifCompleteMsg: 'Eliminados: {unfollowed}, Omitidos: {skipped}',
-
-        // Shortcuts
-        shortcutHint: 'Atajos: Alt+Shift+S (Iniciar/Detener), Alt+Shift+P (Pausar)',
-
-        // Rate
-        menuRate: 'Califícanos',
-
-        // Review prompt
-        reviewAsk: '¿Te gusta XUnfollow?',
-        reviewYes: '¡Sí, calificar!',
-        reviewLater: 'Después',
-        reviewNo: 'No, gracias',
-
-        // CSV Export
-        exportCsv: 'CSV',
-        exportCsvSuccess: '¡Archivo CSV descargado!',
-
-        // Skip Verified
-        skipVerifiedLabel: 'Omitir Verificados',
-
-        // Overactive Mode
-        modeOveractive: 'Superactivo',
-        modeOveractiveDesc: 'Dejar de seguir cuentas que tuitean en exceso',
-        overactiveThresholdLabel: 'Umbral Diario de Tweets',
-        logModeOveractive: 'Modo: Superactivo',
-
-        // Cooldown
-        cooldownNormal: 'Normal',
-        cooldownSoft: 'Cooldown suave',
-        cooldownRateLimit: 'Rate limit',
-
-        // Refollow
-        refollowBtn: 'Reseguir',
-        refollowTitle: 'Seguir de nuevo',
-        refollowSuccess: '@{username} seguido de nuevo',
-        refollowError: 'No se pudo reseguir a @{username}',
-        refollowedLabel: 'Reseguido',
-
-        // Tab names
-        tabHome: 'Inicio',
-        tabLogs: 'Log',
-        tabHistory: 'Historial',
-        tabSettings: 'Ajustes',
-
-        // Section titles
-        sectionMode: 'Modo',
-        sectionConfig: 'Configuración',
-        sectionGeneral: 'General',
-        sectionAppearance: 'Apariencia',
-
-        // Notification permission
-        notifPermissionDenied: 'Permiso de notificación denegado',
-
-        // Connection status
-        statusNotConnected: 'Content script no conectado. Actualiza la página.',
-
-        // Onboarding
-        onboardingTitle: 'Bienvenido a X Unfollow Tool',
-        onboardingStep1Title: 'Elige un Modo',
-        onboardingStep1Desc: 'Selecciona a quién dejar de seguir: no seguidores, inactivos o filtro de bio.',
-        onboardingStep2Title: 'Configura tu Lista Blanca',
-        onboardingStep2Desc: 'Agrega nombres de usuario que deseas proteger.',
-        onboardingStep3Title: 'Inicia el Proceso',
-        onboardingStep3Desc: 'Ve a la página de seguidos en X.com y haz clic en Iniciar.',
-        onboardingDone: '¡Entendido!'
-    },
-
-    zh: {
-        // Popup UI
-        title: 'Unfollow 工具',
-        subtitle: '轻松管理你的关注列表。',
-        modeTitle: '选择模式',
-        modeNonFollowers: '非互粉用户',
-        modeNonFollowersDesc: '仅取关没有回关你的用户',
-        modeAll: '取关所有人',
-        modeAllDesc: '取关所有正在关注的用户',
-        modeInactive: '不活跃账号',
-        modeInactiveDesc: '取关不活跃及使用默认头像的账号',
-        whitelistTitle: '白名单',
-        whitelistPlaceholder: '受保护的用户名（每行一个）\n\n示例：\nelonmusk\ntwitter',
-        whitelistHint: '这些用户不会被取关',
-        statUnfollowed: '已取关',
-        statSkipped: '已跳过',
-        statScanned: '已扫描',
-        btnStart: '开始',
-        btnStop: '停止',
-        btnPause: '暂停',
-        btnResume: '继续',
-        logTitle: '操作日志',
-
-        // Menu
-        menuTitle: '设置',
-        menuWhitelist: '白名单',
-        menuLogs: '操作日志',
-        menuLanguage: '语言',
-        menuAbout: '关于',
-        menuHistory: '取关历史',
-        menuSpeed: '速度设置',
-        menuExport: '导出',
-        menuImport: '导入',
-        menuTheme: '主题',
-        themeDark: '深色',
-        themeLight: '浅色',
-
-        // Speed
-        speedSlow: '慢速',
-        speedNormal: '正常',
-        speedFast: '快速',
-
-        // Inactive threshold
-        inactiveThresholdLabel: '不活跃时长',
-        inactive30: '30 天',
-        inactive90: '90 天',
-        inactive180: '180 天',
-        inactive365: '1 年',
-
-        // Limit
-        limitLabel: '取关上限',
-        limitPlaceholder: '例如：100',
-        limitHint: '0 = 无限制',
-
-        // History
-        historyTitle: '取关历史',
-        historyEmpty: '暂无取关记录',
-        historyClear: '清空历史',
-
-        // Export/Import
-        exportSuccess: '已复制到剪贴板！',
-        importSuccess: '导入成功！',
-        importError: '导入失败：格式无效',
-        exportTitle: '导出 / 导入',
-
-        // Status messages
-        statusGoToFollowing: '请前往你的关注列表页面',
-        statusGoingToFollowing: '正在跳转至关注页面',
-        statusGoToProfile: '请先前往你的个人主页',
-        statusPageError: '无法检测当前页面',
-        statusRunning: '运行中',
-        statusPaused: '已暂停',
-        statusStarted: '已开始',
-        statusStopped: '已停止',
-        statusCompleted: '已完成！',
-        statusStartError: '启动失败，请重试',
-        warningSlowMode: '该模式将逐一检查每个资料页，可能需要较长时间。',
-
-        // Button texts
-        btnOpenX: '打开 X.com',
-        btnGoToProfile: '前往个人主页',
-
-        // Log messages
-        logStarted: '操作已开始',
-        logModeNonFollowers: '模式：非互粉用户',
-        logModeAll: '模式：所有用户',
-        logWhitelist: '白名单：{count} 个用户',
-        logGoingToFollowing: '正在跳转至 @{username} 的关注页面',
-        logGoingToHome: '正在跳转至主页',
-        logModeInactive: '模式：不活跃账号',
-        logModeBioFilter: '模式：简介过滤',
-        logModeFollowAll: '模式：关注所有人',
-        logStopped: '操作已停止',
-        logCompleted: '操作完成',
-        logError: '错误：{message}',
-        logStopError: '停止时出错：{message}',
-
-        // Whitelist validation
-        whitelistInvalid: '无效用户名：{username}',
-        whitelistValidCount: '有效：{valid}，无效：{invalid}',
-
-        // Bio filter
-        modeBioFilter: '简介过滤',
-        modeBioFilterDesc: '根据简介关键词过滤',
-        bioKeywordsLabel: '关键词',
-        bioKeywordsPlaceholder: '输入关键词，用逗号分隔',
-        bioActionLabel: '操作',
-        bioActionUnfollow: '取关匹配项',
-        bioActionKeep: '保留匹配项',
-
-        // Follow all
-        modeFollowAll: '关注所有人',
-        modeFollowAllDesc: '关注列表中的所有用户',
-        statFollowed: '已关注',
-
-        // Inactive filter
-        inactiveDaysLabel: '不活跃天数',
-        minFollowersLabel: '最少粉丝数',
-        minFollowersPlaceholder: '例如：1000',
-        minFollowersHint: '跳过粉丝数超过此值的账号（0 = 不限）',
-        inactive60: '60 天',
-
-        // Demo mode
-        demoModeLabel: '演示模式',
-        demoModeHint: '模拟操作，不实际取关',
-        demoModeDesc: '仅模拟，不执行实际操作',
-
-        // Auto-stop timer
-        timerLabel: '自动停止计时器（分钟）',
-        timerPlaceholder: '例如：30',
-        timerHint: '0 = 不自动停止',
-        timerMinutes: '分钟',
-
-        // Target profile
-        targetLabel: '目标用户',
-        targetProfileLabel: '目标用户（可选）',
-        targetProfilePlaceholder: '用户名（不含 @）',
-        targetProfileHint: '留空则使用当前标签页',
-        targetPlaceholder: '用户名（留空 = 自己）',
-
-        // Stats dashboard
-        menuStats: '统计数据',
-        statsTitle: '统计数据',
-        statsAllTime: '累计取关',
-        statsThisWeek: '本周取关',
-        statsSessions: '会话数',
-        statsNonFollowerRate: '非互粉率',
-        dashboardTitle: '统计数据',
-        dashAllTime: '累计取关',
-        dashThisWeek: '本周取关',
-        dashSessions: '会话数',
-        dashNonFollowerRate: '非互粉率',
-
-        // Notification
-        notifSoundLabel: '完成时通知',
-        notifCompleteTitle: '操作完成！',
-        notifCompleteMsg: '取关：{unfollowed}，跳过：{skipped}',
-        notifPermissionDenied: '通知权限被拒绝',
-
-        // Shortcuts
-        shortcutHint: '快捷键：Alt+Shift+S（开始/停止），Alt+Shift+P（暂停）',
-
-        // Rate
-        menuRate: '评分',
-
-        // Review prompt
-        reviewAsk: '喜欢这个扩展吗？',
-        reviewTitle: '喜欢这个扩展吗？',
-        reviewMessage: '你的好评对我们帮助很大！🙏',
-        reviewYes: '⭐ 去评分',
-        reviewLater: '稍后再说',
-        reviewNo: '不了',
-
-        // CSV Export
-        exportCsv: 'CSV',
-        exportCsvSuccess: 'CSV 导出成功！',
-        exportImportTitle: '导出 / 导入',
-        exportBtn: '导出设置',
-        exportCsvBtn: '导出 CSV',
-        importBtn: '导入',
-        exportImportPlaceholder: '粘贴导出的 JSON 数据...',
-
-        // Skip Verified
-        skipVerifiedLabel: '跳过认证账号',
-
-        // Overactive Mode
-        modeOveractive: '过度活跃',
-        modeOveractiveDesc: '取关发推频率过高的账号',
-        overactiveThresholdLabel: '每日推文阈值',
-        overactiveThresholdHint: '超过此数值视为过度活跃',
-        logModeOveractive: '模式：过度活跃',
-
-        // Cooldown
-        cooldownNormal: '正常运行',
-        cooldownSoft: '软冷却中',
-        cooldownRateLimit: '频率限制中',
-
-        // Refollow
-        refollowBtn: '重新关注',
-        refollowTitle: '重新关注',
-        refollowSuccess: '已重新关注 @{username}',
-        refollowError: '重新关注 @{username} 失败',
-        refollowedLabel: '已重新关注',
-
-        // Tab names
-        tabHome: '主页',
-        tabMain: '主页',
-        tabLogs: '日志',
-        tabHistory: '历史',
-        tabSettings: '设置',
-
-        // Section titles
-        sectionMode: '模式',
-        sectionConfig: '配置',
-        sectionGeneral: '常规',
-        sectionAppearance: '外观',
-
-        // Language / Theme
-        langLabel: '语言',
-        langAuto: '自动',
-        themeLabel: '主题',
-
-        // Connection status
-        statusNotConnected: '内容脚本未连接',
-
-        // About
-        aboutVersion: '版本',
-        aboutGithub: '在 GitHub 上查看源码',
-        aboutPrivacy: '隐私政策',
-        aboutRate: '评分',
-
-        // Onboarding
-        onboardingTitle: '欢迎使用 X Unfollow！',
-        onboardingStep1: '前往 x.com/你的用户名/following',
-        onboardingStep2: '选择一种取关模式',
-        onboardingStep3: '点击"开始"',
-        onboardingStep1Title: '选择模式',
-        onboardingStep1Desc: '选择取关对象：非互粉用户、不活跃账号或简介过滤。',
-        onboardingStep2Title: '设置白名单',
-        onboardingStep2Desc: '添加你想保护、不被取关的用户名。',
-        onboardingStep3Title: '开始操作',
-        onboardingStep3Desc: '前往 X.com 的关注列表页面，点击"开始"。',
-        onboardingDone: '明白了！'
-    }
-};
-
-// i18n object
+
+// ═══════════════════════════════════════════════════════════
+// TURKISH
+// ═══════════════════════════════════════════════════════════
+tr: {
+    title: 'X Unfollow Tool',
+    subtitle: 'Takip listenizi kolayca yönetin.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'Akıllı takip temizleyici',
+    privacyBanner: '%100 yerel — verileriniz tarayıcınızı terk etmez',
+
+    // Modes
+    modeTitle: 'Mod Seçimi',
+    modeNonFollowers: 'Takip Etmeyenler',
+    modeNonFollowersDesc: 'Sizi takip etmeyen hesapları çıkar',
+    modeAll: 'Herkesi Çıkar',
+    modeAllDesc: 'Tüm takip ettiklerini çıkar',
+    modeInactive: 'Pasif Hesaplar',
+    modeInactiveDesc: 'Pasif ve varsayılan avatarlı hesapları çıkar',
+    modeBioFilter: 'Bio Filtresi',
+    modeBioFilterDesc: 'Bio anahtar kelimelerine göre filtrele',
+    modeOveractive: 'Aşırı Aktif',
+    modeOveractiveDesc: 'Günlük çok fazla tweet atan hesapları çıkar',
+    modeFollowAll: 'Tümünü Takip Et',
+    modeFollowAllDesc: 'Listedeki herkesi takip et',
+
+    // Section labels
+    sectionMode: 'MOD',
+    sectionConfig: 'Yapılandırma',
+    sectionGeneral: 'Genel',
+    sectionAppearance: 'Görünüm',
+    chooseModeTitle: 'MOD SEÇ',
+    btnChange: 'Değiştir',
+    btnDone: 'Tamam',
+
+    // Whitelist
+    whitelistTitle: 'Whitelist',
+    whitelistPlaceholder: 'Korunacak kullanıcı adları (her satıra bir tane)\n\nÖrnek:\nelonmusk\ntwitter',
+    whitelistHint: 'Bu kullanıcılar takipten çıkarılmayacak',
+    whitelistValidCount: '{valid} geçerli, {invalid} geçersiz kullanıcı',
+    whitelistInvalid: 'Geçersiz kullanıcı adı: {username}',
+
+    // Stats
+    statUnfollowed: 'ÇIKARILAN',
+    statSkipped: 'ATLANAN',
+    statScanned: 'TARANAN',
+    statFollowed: 'TAKİP EDİLEN',
+    statsAllTime: 'TOPLAM',
+    statsThisWeek: 'BU HAFTA',
+    statsSessions: 'OTURUM',
+    statsNonFollowerRate: 'Takip Etmeyenlerin Oranı',
+    statsTitle: 'İstatistikler',
+
+    // Buttons
+    btnStart: 'Başlat',
+    btnStartUnfollowing: 'Takibi Bırak',
+    btnStop: 'Durdur',
+    btnPause: 'Durakla',
+    btnResume: 'Devam Et',
+    btnPreview: 'Önizle',
+    btnOpenX: "X.com'u Aç",
+    btnGoToProfile: 'Profilime Git',
+
+    // Menu
+    menuTitle: 'Ayarlar',
+    menuWhitelist: 'Whitelist',
+    menuLogs: 'İşlem Logları',
+    menuLanguage: 'Dil',
+    menuAbout: 'Hakkında',
+    menuHistory: 'Unfollow Geçmişi',
+    menuSpeed: 'Hız Ayarı',
+    menuExport: 'Dışa Aktar',
+    menuImport: 'İçe Aktar',
+    menuTheme: 'Tema',
+    menuStats: 'İstatistikler',
+    menuRate: 'Bizi Değerlendirin',
+
+    // Theme
+    themeDark: 'Koyu',
+    themeLight: 'Açık',
+
+    // Speed
+    speedSlow: 'Yavaş',
+    speedNormal: 'Normal',
+    speedFast: 'Hızlı',
+
+    // Inactive
+    inactiveThresholdLabel: 'Pasiflik Eşiği',
+    inactiveDaysLabel: 'Pasiflik Süresi',
+    inactive30: '30 gün',
+    inactive60: '60 gün',
+    inactive90: '90 gün',
+    inactive180: '180 gün',
+    inactive365: '1 yıl',
+    minFollowersLabel: 'Min. Takipçi',
+    minFollowersPlaceholder: '0 = filtre yok',
+
+    // Limit
+    limitLabel: 'Unfollow Limiti',
+    limitPlaceholder: '0 = limitsiz',
+    limitHint: 'Maksimum unfollow sayısı (0 = limitsiz)',
+
+    // Bio filter
+    bioKeywordsLabel: 'Bio Anahtar Kelimeler',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'Eylem',
+    bioActionUnfollow: "Bio'da varsa çıkar",
+    bioActionKeep: "Bio'da varsa koru",
+
+    // Overactive
+    overactiveThresholdLabel: 'Günlük Tweet Eşiği',
+
+    // Demo
+    demoModeLabel: 'Demo Mod',
+    demoModeDesc: 'Simülasyon — gerçekte işlem yapmaz',
+
+    // Timer / Target
+    timerLabel: 'Zamanlayıcı',
+    timerPlaceholder: '0 = kapalı',
+    timerMinutes: 'dk',
+    targetLabel: 'Hedef Profil',
+    targetPlaceholder: 'kullanıcıadı (boş = kendin)',
+
+    // Misc settings
+    skipVerifiedLabel: 'Onaylıları Atla',
+    notifSoundLabel: 'Bildirim Sesi',
+
+    // History
+    historyTitle: 'Unfollow Geçmişi',
+    historyEmpty: 'Henüz geçmiş yok',
+    historyClear: 'Geçmişi Temizle',
+
+    // Export/Import
+    exportTitle: 'Dışa / İçe Aktar',
+    exportSuccess: 'Veriler kopyalandı!',
+    exportCsvSuccess: 'CSV dosyası indirildi!',
+    exportCsv: 'CSV',
+    importSuccess: 'Veriler içeri aktarıldı!',
+    importError: 'Geçersiz veri formatı',
+
+    // Log
+    logTitle: 'İşlem Logları',
+    logStarted: 'İşlem başlatıldı',
+    logStopped: 'İşlem durduruldu',
+    logCompleted: 'İşlem tamamlandı',
+    logError: 'Hata: {message}',
+    logStopError: 'Durdurma hatası: {message}',
+    logModeNonFollowers: 'Mod: Takip Etmeyenler',
+    logModeAll: 'Mod: Herkes',
+    logModeInactive: 'Mod: Pasif Hesaplar',
+    logModeBioFilter: 'Mod: Bio Filtresi',
+    logModeFollowAll: 'Mod: Tümünü Takip Et',
+    logModeOveractive: 'Mod: Aşırı Aktif',
+    logWhitelist: 'Whitelist: {count} kullanıcı',
+    logGoingToFollowing: '@{username}/following sayfasına gidiliyor...',
+    logGoingToHome: 'X.com ana sayfasına gidiliyor...',
+
+    // Status
+    statusGoToFollowing: "X.com'da takip edilenlere gidin",
+    statusGoingToFollowing: 'Following sayfasına gidiliyor',
+    statusGoToProfile: 'Bir profil sayfasına gidin',
+    statusPageError: 'Sayfa kontrol edilemedi',
+    statusRunning: 'İşlem devam ediyor...',
+    statusPaused: 'Duraklatıldı',
+    statusStarted: 'İşlem başlatıldı',
+    statusStopped: 'Durduruldu',
+    statusCompleted: 'Tamamlandı',
+    statusStartError: 'Başlatılamadı. Sayfayı yenileyin.',
+    statusNotConnected: 'Content script bağlı değil. Sayfayı yenileyin.',
+    warningSlowMode: 'Bu mod her profili tek tek kontrol eder, daha uzun sürebilir.',
+
+    // Rate limit
+    rateLimitTitle: 'Rate limit aşıldı',
+    rateLimitDesc: 'X kısa bir mola istiyor — otomatik devam ediyor.',
+    rateLimitRemaining: 'kaldı',
+
+    // Cooldown
+    cooldownLabel: 'BEKLEME',
+    cooldownNormal: 'Normal',
+    cooldownSoft: 'Yumuşak bekleme',
+    cooldownRateLimit: 'Rate limit',
+
+    // Session complete
+    sessionCompleteTitle: 'Oturum Tamamlandı',
+    sessionCompleteSubtitle: 'Mod • Bitti',
+    startNewSession: 'Yeni Oturum Başlat',
+
+    // Review
+    reviewAsk: 'X Unfollow Tool işinize yarıyor mu?',
+    reviewYes: 'Değerlendirin!',
+    reviewLater: 'Sonra',
+    reviewNo: 'Hayır teşekkürler',
+
+    // Refollow
+    refollowBtn: 'Geri Takip',
+    refollowTitle: 'Tekrar takip et',
+    refollowSuccess: '@{username} tekrar takip edildi',
+    refollowError: '@{username} takip edilemedi',
+    refollowedLabel: 'Geri takip edildi',
+
+    // Tabs
+    tabHome: 'Ana',
+    tabLogs: 'Log',
+    tabHistory: 'Geçmiş',
+    tabSettings: 'Ayarlar',
+
+    // Notifications
+    notifPermissionDenied: 'Bildirim izni reddedildi',
+    notifCompleteTitle: 'İşlem Tamamlandı!',
+    notifCompleteMsg: 'Çıkarılan: {unfollowed}, Atlanan: {skipped}',
+
+    // Shortcut
+    shortcutHint: 'Kısayollar: Alt+Shift+S (Başlat/Durdur), Alt+Shift+P (Durakla)',
+
+    // Onboarding
+    onboardingTitle: "X Unfollow Tool'a Hoş Geldiniz",
+    onboardingSubtitle: 'Takip listenizi akıllıca, güvenli ve %100 yerel olarak temizleyin.',
+    onboardingStep1Title: 'x.com/following Adresini Açın',
+    onboardingStep1Desc: 'Tarayıcınızda X.com takip ettiğiniz sayfasına gidin.',
+    onboardingStep2Title: 'Mod Seçin',
+    onboardingStep2Desc: 'Kimi takipten çıkaracağınızı seçin: takip etmeyenler, pasif hesaplar veya bio filtresi.',
+    onboardingStep3Title: 'Başlatın',
+    onboardingStep3Desc: "Başlat'a tıklayın — gerisini güvenle biz hallederiz.",
+    onboardingDone: 'Hadi Başlayalım!',
+},
+
+// ═══════════════════════════════════════════════════════════
+// ENGLISH
+// ═══════════════════════════════════════════════════════════
+en: {
+    title: 'X Unfollow Tool',
+    subtitle: 'Manage your following list with ease.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'Smart following cleanup',
+    privacyBanner: '100% local — your data never leaves this browser',
+
+    modeTitle: 'Mode Selection',
+    modeNonFollowers: 'Non-Followers',
+    modeNonFollowersDesc: "Accounts that don't follow you back",
+    modeAll: 'Unfollow All',
+    modeAllDesc: 'Unfollow everyone you follow',
+    modeInactive: 'Inactive Accounts',
+    modeInactiveDesc: 'Unfollow inactive and default avatar accounts',
+    modeBioFilter: 'Bio Filter',
+    modeBioFilterDesc: 'Filter by bio keywords',
+    modeOveractive: 'Overactive',
+    modeOveractiveDesc: 'Accounts tweeting excessively per day',
+    modeFollowAll: 'Follow All',
+    modeFollowAllDesc: 'Follow everyone on the list',
+
+    sectionMode: 'MODE',
+    sectionConfig: 'Configuration',
+    sectionGeneral: 'General',
+    sectionAppearance: 'Appearance',
+    chooseModeTitle: 'CHOOSE MODE',
+    btnChange: 'Change',
+    btnDone: 'Done',
+
+    whitelistTitle: 'Whitelist',
+    whitelistPlaceholder: 'Usernames to protect (one per line)\n\nExample:\nelonmusk\ntwitter',
+    whitelistHint: 'These users will not be unfollowed',
+    whitelistValidCount: '{valid} valid, {invalid} invalid users',
+    whitelistInvalid: 'Invalid username: {username}',
+
+    statUnfollowed: 'UNFOLLOWED',
+    statSkipped: 'SKIPPED',
+    statScanned: 'SCANNED',
+    statFollowed: 'FOLLOWED',
+    statsAllTime: 'ALL TIME',
+    statsThisWeek: 'THIS WEEK',
+    statsSessions: 'SESSIONS',
+    statsNonFollowerRate: 'Non-Follower Rate',
+    statsTitle: 'Statistics',
+
+    btnStart: 'Start',
+    btnStartUnfollowing: 'Start Unfollowing',
+    btnStop: 'Stop',
+    btnPause: 'Pause',
+    btnResume: 'Resume',
+    btnPreview: 'Preview',
+    btnOpenX: 'Open X.com',
+    btnGoToProfile: 'Go to Profile',
+
+    menuTitle: 'Settings',
+    menuWhitelist: 'Whitelist',
+    menuLogs: 'Activity Log',
+    menuLanguage: 'Language',
+    menuAbout: 'About',
+    menuHistory: 'Unfollow History',
+    menuSpeed: 'Speed',
+    menuExport: 'Export',
+    menuImport: 'Import',
+    menuTheme: 'Theme',
+    menuStats: 'Statistics',
+    menuRate: 'Rate Us',
+
+    themeDark: 'Dark',
+    themeLight: 'Light',
+
+    speedSlow: 'Slow',
+    speedNormal: 'Normal',
+    speedFast: 'Fast',
+
+    inactiveThresholdLabel: 'Inactive Threshold',
+    inactiveDaysLabel: 'Inactive Period',
+    inactive30: '30 days',
+    inactive60: '60 days',
+    inactive90: '90 days',
+    inactive180: '180 days',
+    inactive365: '1 year',
+    minFollowersLabel: 'Min. Followers',
+    minFollowersPlaceholder: '0 = no filter',
+
+    limitLabel: 'Unfollow Limit',
+    limitPlaceholder: '0 = unlimited',
+    limitHint: 'Max unfollows (0 = unlimited)',
+
+    bioKeywordsLabel: 'Bio Keywords',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'Action',
+    bioActionUnfollow: 'Unfollow if bio matches',
+    bioActionKeep: 'Keep if bio matches',
+
+    overactiveThresholdLabel: 'Daily Tweet Threshold',
+
+    demoModeLabel: 'Demo Mode',
+    demoModeDesc: 'Simulation — no real actions taken',
+
+    timerLabel: 'Timer',
+    timerPlaceholder: '0 = off',
+    timerMinutes: 'min',
+    targetLabel: 'Target Profile',
+    targetPlaceholder: 'username (empty = yourself)',
+
+    skipVerifiedLabel: 'Skip Verified',
+    notifSoundLabel: 'Notification Sound',
+
+    historyTitle: 'Unfollow History',
+    historyEmpty: 'No history yet',
+    historyClear: 'Clear History',
+
+    exportTitle: 'Export / Import',
+    exportSuccess: 'Data copied!',
+    exportCsvSuccess: 'CSV downloaded!',
+    exportCsv: 'CSV',
+    importSuccess: 'Data imported!',
+    importError: 'Invalid data format',
+
+    logTitle: 'Activity Log',
+    logStarted: 'Process started',
+    logStopped: 'Process stopped',
+    logCompleted: 'Process completed',
+    logError: 'Error: {message}',
+    logStopError: 'Stop error: {message}',
+    logModeNonFollowers: 'Mode: Non-Followers',
+    logModeAll: 'Mode: Everyone',
+    logModeInactive: 'Mode: Inactive Accounts',
+    logModeBioFilter: 'Mode: Bio Filter',
+    logModeFollowAll: 'Mode: Follow All',
+    logModeOveractive: 'Mode: Overactive',
+    logWhitelist: 'Whitelist: {count} users',
+    logGoingToFollowing: 'Navigating to @{username}/following...',
+    logGoingToHome: 'Navigating to X.com home...',
+
+    statusGoToFollowing: 'Go to your following page on X.com',
+    statusGoingToFollowing: 'Navigating to following page',
+    statusGoToProfile: 'Go to a profile page',
+    statusPageError: 'Could not check page',
+    statusRunning: 'Running...',
+    statusPaused: 'Paused',
+    statusStarted: 'Started',
+    statusStopped: 'Stopped',
+    statusCompleted: 'Completed',
+    statusStartError: 'Could not start. Please refresh the page.',
+    statusNotConnected: 'Content script not connected. Refresh the page.',
+    warningSlowMode: 'This mode checks each profile individually and may take longer.',
+
+    rateLimitTitle: 'Rate limit reached',
+    rateLimitDesc: 'X is asking for a short break — resuming automatically.',
+    rateLimitRemaining: 'remaining',
+
+    cooldownLabel: 'COOLDOWN',
+    cooldownNormal: 'Normal',
+    cooldownSoft: 'Soft wait',
+    cooldownRateLimit: 'Rate limit',
+
+    sessionCompleteTitle: 'Session Complete',
+    sessionCompleteSubtitle: 'Mode • Finished',
+    startNewSession: 'Start New Session',
+
+    reviewAsk: 'Enjoying X Unfollow Tool?',
+    reviewYes: 'Leave a Review',
+    reviewLater: 'Later',
+    reviewNo: 'No thanks',
+
+    refollowBtn: 'Re-follow',
+    refollowTitle: 'Follow again',
+    refollowSuccess: '@{username} followed again',
+    refollowError: 'Could not follow @{username}',
+    refollowedLabel: 'Followed again',
+
+    tabHome: 'Home',
+    tabLogs: 'Log',
+    tabHistory: 'History',
+    tabSettings: 'Settings',
+
+    notifPermissionDenied: 'Notification permission denied',
+    notifCompleteTitle: 'Done!',
+    notifCompleteMsg: 'Unfollowed: {unfollowed}, Skipped: {skipped}',
+
+    shortcutHint: 'Shortcuts: Alt+Shift+S (Start/Stop), Alt+Shift+P (Pause)',
+
+    onboardingTitle: 'Welcome to X Unfollow Tool',
+    onboardingSubtitle: 'Clean up who you follow — intelligently, safely, and 100% locally.',
+    onboardingStep1Title: 'Open x.com/following',
+    onboardingStep1Desc: 'Navigate to your following list on X.com in your browser.',
+    onboardingStep2Title: 'Pick a Mode',
+    onboardingStep2Desc: "Choose who should be unfollowed: non-followers, inactive accounts, or use bio filters.",
+    onboardingStep3Title: 'Hit Start',
+    onboardingStep3Desc: "Click Start — we'll handle the rest safely and automatically.",
+    onboardingDone: 'Get Started',
+},
+
+// ═══════════════════════════════════════════════════════════
+// SPANISH
+// ═══════════════════════════════════════════════════════════
+es: {
+    title: 'X Unfollow Tool',
+    subtitle: 'Gestiona tu lista de seguidos fácilmente.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'Limpieza inteligente de seguidos',
+    privacyBanner: '100% local — tus datos nunca salen de este navegador',
+
+    modeTitle: 'Selección de modo',
+    modeNonFollowers: 'No seguidores',
+    modeNonFollowersDesc: 'Cuentas que no te siguen de vuelta',
+    modeAll: 'Dejar de seguir a todos',
+    modeAllDesc: 'Deja de seguir a todos',
+    modeInactive: 'Cuentas inactivas',
+    modeInactiveDesc: 'Dejar de seguir cuentas inactivas y con avatar predeterminado',
+    modeBioFilter: 'Filtro de bio',
+    modeBioFilterDesc: 'Filtrar por palabras clave en la bio',
+    modeOveractive: 'Hiperactivos',
+    modeOveractiveDesc: 'Cuentas que tuitean demasiado al día',
+    modeFollowAll: 'Seguir a todos',
+    modeFollowAllDesc: 'Sigue a todos en la lista',
+
+    sectionMode: 'MODO',
+    sectionConfig: 'Configuración',
+    sectionGeneral: 'General',
+    sectionAppearance: 'Apariencia',
+    chooseModeTitle: 'ELEGIR MODO',
+    btnChange: 'Cambiar',
+    btnDone: 'Listo',
+
+    whitelistTitle: 'Lista blanca',
+    whitelistPlaceholder: 'Nombres de usuario a proteger (uno por línea)\n\nEjemplo:\nelonmusk\ntwitter',
+    whitelistHint: 'Estos usuarios no serán eliminados',
+    whitelistValidCount: '{valid} válidos, {invalid} inválidos',
+    whitelistInvalid: 'Nombre de usuario inválido: {username}',
+
+    statUnfollowed: 'ELIMINADOS',
+    statSkipped: 'OMITIDOS',
+    statScanned: 'ANALIZADOS',
+    statFollowed: 'SEGUIDOS',
+    statsAllTime: 'TOTAL',
+    statsThisWeek: 'ESTA SEMANA',
+    statsSessions: 'SESIONES',
+    statsNonFollowerRate: 'Tasa de no seguidores',
+    statsTitle: 'Estadísticas',
+
+    btnStart: 'Iniciar',
+    btnStartUnfollowing: 'Empezar a dejar de seguir',
+    btnStop: 'Detener',
+    btnPause: 'Pausar',
+    btnResume: 'Continuar',
+    btnPreview: 'Vista previa',
+    btnOpenX: 'Abrir X.com',
+    btnGoToProfile: 'Ir a mi perfil',
+
+    menuTitle: 'Configuración',
+    menuWhitelist: 'Lista blanca',
+    menuLogs: 'Registro de actividad',
+    menuLanguage: 'Idioma',
+    menuAbout: 'Acerca de',
+    menuHistory: 'Historial de unfollow',
+    menuSpeed: 'Velocidad',
+    menuExport: 'Exportar',
+    menuImport: 'Importar',
+    menuTheme: 'Tema',
+    menuStats: 'Estadísticas',
+    menuRate: 'Calificarnos',
+
+    themeDark: 'Oscuro',
+    themeLight: 'Claro',
+
+    speedSlow: 'Lento',
+    speedNormal: 'Normal',
+    speedFast: 'Rápido',
+
+    inactiveThresholdLabel: 'Umbral de inactividad',
+    inactiveDaysLabel: 'Período de inactividad',
+    inactive30: '30 días',
+    inactive60: '60 días',
+    inactive90: '90 días',
+    inactive180: '180 días',
+    inactive365: '1 año',
+    minFollowersLabel: 'Mín. seguidores',
+    minFollowersPlaceholder: '0 = sin filtro',
+
+    limitLabel: 'Límite de unfollow',
+    limitPlaceholder: '0 = ilimitado',
+    limitHint: 'Máximo de unfollows (0 = ilimitado)',
+
+    bioKeywordsLabel: 'Palabras clave en bio',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'Acción',
+    bioActionUnfollow: 'Dejar de seguir si la bio coincide',
+    bioActionKeep: 'Mantener si la bio coincide',
+
+    overactiveThresholdLabel: 'Umbral de tuits diarios',
+
+    demoModeLabel: 'Modo demostración',
+    demoModeDesc: 'Simulación — no se realizan acciones reales',
+
+    timerLabel: 'Temporizador',
+    timerPlaceholder: '0 = apagado',
+    timerMinutes: 'min',
+    targetLabel: 'Perfil objetivo',
+    targetPlaceholder: 'usuario (vacío = tú mismo)',
+
+    skipVerifiedLabel: 'Omitir verificados',
+    notifSoundLabel: 'Sonido de notificación',
+
+    historyTitle: 'Historial de unfollow',
+    historyEmpty: 'Sin historial aún',
+    historyClear: 'Limpiar historial',
+
+    exportTitle: 'Exportar / Importar',
+    exportSuccess: '¡Datos copiados!',
+    exportCsvSuccess: '¡CSV descargado!',
+    exportCsv: 'CSV',
+    importSuccess: '¡Datos importados!',
+    importError: 'Formato de datos inválido',
+
+    logTitle: 'Registro de actividad',
+    logStarted: 'Proceso iniciado',
+    logStopped: 'Proceso detenido',
+    logCompleted: 'Proceso completado',
+    logError: 'Error: {message}',
+    logStopError: 'Error al detener: {message}',
+    logModeNonFollowers: 'Modo: No seguidores',
+    logModeAll: 'Modo: Todos',
+    logModeInactive: 'Modo: Cuentas inactivas',
+    logModeBioFilter: 'Modo: Filtro de bio',
+    logModeFollowAll: 'Modo: Seguir a todos',
+    logModeOveractive: 'Modo: Hiperactivos',
+    logWhitelist: 'Lista blanca: {count} usuarios',
+    logGoingToFollowing: 'Navegando a @{username}/following...',
+    logGoingToHome: 'Navegando a X.com...',
+
+    statusGoToFollowing: 'Ve a tu página de seguidos en X.com',
+    statusGoingToFollowing: 'Navegando a página de seguidos',
+    statusGoToProfile: 'Ve a una página de perfil',
+    statusPageError: 'No se pudo verificar la página',
+    statusRunning: 'En ejecución...',
+    statusPaused: 'Pausado',
+    statusStarted: 'Iniciado',
+    statusStopped: 'Detenido',
+    statusCompleted: 'Completado',
+    statusStartError: 'No se pudo iniciar. Actualiza la página.',
+    statusNotConnected: 'Script de contenido no conectado. Actualiza la página.',
+    warningSlowMode: 'Este modo comprueba cada perfil individualmente y puede tardar más.',
+
+    rateLimitTitle: 'Límite de velocidad alcanzado',
+    rateLimitDesc: 'X pide un breve descanso — reanudando automáticamente.',
+    rateLimitRemaining: 'restante',
+
+    cooldownLabel: 'ESPERA',
+    cooldownNormal: 'Normal',
+    cooldownSoft: 'Espera suave',
+    cooldownRateLimit: 'Límite de velocidad',
+
+    sessionCompleteTitle: 'Sesión completada',
+    sessionCompleteSubtitle: 'Modo • Finalizado',
+    startNewSession: 'Iniciar nueva sesión',
+
+    reviewAsk: '¿Disfrutando X Unfollow Tool?',
+    reviewYes: 'Dejar una reseña',
+    reviewLater: 'Más tarde',
+    reviewNo: 'No, gracias',
+
+    refollowBtn: 'Volver a seguir',
+    refollowTitle: 'Seguir de nuevo',
+    refollowSuccess: '@{username} seguido de nuevo',
+    refollowError: 'No se pudo seguir a @{username}',
+    refollowedLabel: 'Seguido de nuevo',
+
+    tabHome: 'Inicio',
+    tabLogs: 'Registro',
+    tabHistory: 'Historial',
+    tabSettings: 'Ajustes',
+
+    notifPermissionDenied: 'Permiso de notificación denegado',
+    notifCompleteTitle: '¡Completado!',
+    notifCompleteMsg: 'Eliminados: {unfollowed}, Omitidos: {skipped}',
+
+    shortcutHint: 'Atajos: Alt+Shift+S (Iniciar/Detener), Alt+Shift+P (Pausar)',
+
+    onboardingTitle: 'Bienvenido a X Unfollow Tool',
+    onboardingSubtitle: 'Limpia a quienes sigues de forma inteligente, segura y 100% local.',
+    onboardingStep1Title: 'Abre x.com/following',
+    onboardingStep1Desc: 'Ve a tu lista de seguidos en X.com en tu navegador.',
+    onboardingStep2Title: 'Elige un modo',
+    onboardingStep2Desc: 'Elige a quién dejar de seguir: no seguidores, cuentas inactivas o filtro de bio.',
+    onboardingStep3Title: 'Pulsa Iniciar',
+    onboardingStep3Desc: 'Haz clic en Iniciar — nosotros nos encargamos del resto de forma segura.',
+    onboardingDone: 'Empezar',
+},
+
+// ═══════════════════════════════════════════════════════════
+// GERMAN
+// ═══════════════════════════════════════════════════════════
+de: {
+    title: 'X Unfollow Tool',
+    subtitle: 'Verwalte deine Folgeliste ganz einfach.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'Intelligente Folge-Bereinigung',
+    privacyBanner: '100% lokal — deine Daten verlassen diesen Browser nicht',
+
+    modeTitle: 'Modus-Auswahl',
+    modeNonFollowers: 'Nicht-Follower',
+    modeNonFollowersDesc: 'Konten, die dir nicht zurückfolgen',
+    modeAll: 'Allen entfolgen',
+    modeAllDesc: 'Allen entfolgen, denen du folgst',
+    modeInactive: 'Inaktive Konten',
+    modeInactiveDesc: 'Inaktiven Konten und Standard-Avatar-Konten entfolgen',
+    modeBioFilter: 'Bio-Filter',
+    modeBioFilterDesc: 'Nach Bio-Schlüsselwörtern filtern',
+    modeOveractive: 'Überaktiv',
+    modeOveractiveDesc: 'Konten, die täglich zu viel twittern',
+    modeFollowAll: 'Allen folgen',
+    modeFollowAllDesc: 'Allen auf der Liste folgen',
+
+    sectionMode: 'MODUS',
+    sectionConfig: 'Konfiguration',
+    sectionGeneral: 'Allgemein',
+    sectionAppearance: 'Erscheinungsbild',
+    chooseModeTitle: 'MODUS WÄHLEN',
+    btnChange: 'Ändern',
+    btnDone: 'Fertig',
+
+    whitelistTitle: 'Whitelist',
+    whitelistPlaceholder: 'Zu schützende Benutzernamen (einer pro Zeile)\n\nBeispiel:\nelonmusk\ntwitter',
+    whitelistHint: 'Diesen Nutzern wird nicht entfolgt',
+    whitelistValidCount: '{valid} gültig, {invalid} ungültig',
+    whitelistInvalid: 'Ungültiger Benutzername: {username}',
+
+    statUnfollowed: 'ENTFOLGT',
+    statSkipped: 'ÜBERSPRUNGEN',
+    statScanned: 'GESCANNT',
+    statFollowed: 'GEFOLGT',
+    statsAllTime: 'GESAMT',
+    statsThisWeek: 'DIESE WOCHE',
+    statsSessions: 'SITZUNGEN',
+    statsNonFollowerRate: 'Nicht-Follower-Quote',
+    statsTitle: 'Statistiken',
+
+    btnStart: 'Starten',
+    btnStartUnfollowing: 'Entfolgen starten',
+    btnStop: 'Stoppen',
+    btnPause: 'Pausieren',
+    btnResume: 'Fortsetzen',
+    btnPreview: 'Vorschau',
+    btnOpenX: 'X.com öffnen',
+    btnGoToProfile: 'Zum Profil',
+
+    menuTitle: 'Einstellungen',
+    menuWhitelist: 'Whitelist',
+    menuLogs: 'Aktivitätsprotokoll',
+    menuLanguage: 'Sprache',
+    menuAbout: 'Über',
+    menuHistory: 'Entfolge-Verlauf',
+    menuSpeed: 'Geschwindigkeit',
+    menuExport: 'Exportieren',
+    menuImport: 'Importieren',
+    menuTheme: 'Design',
+    menuStats: 'Statistiken',
+    menuRate: 'Bewerten',
+
+    themeDark: 'Dunkel',
+    themeLight: 'Hell',
+
+    speedSlow: 'Langsam',
+    speedNormal: 'Normal',
+    speedFast: 'Schnell',
+
+    inactiveThresholdLabel: 'Inaktivitätsschwelle',
+    inactiveDaysLabel: 'Inaktivitätszeitraum',
+    inactive30: '30 Tage',
+    inactive60: '60 Tage',
+    inactive90: '90 Tage',
+    inactive180: '180 Tage',
+    inactive365: '1 Jahr',
+    minFollowersLabel: 'Mind. Follower',
+    minFollowersPlaceholder: '0 = kein Filter',
+
+    limitLabel: 'Entfolge-Limit',
+    limitPlaceholder: '0 = unbegrenzt',
+    limitHint: 'Max. Entfolgungen (0 = unbegrenzt)',
+
+    bioKeywordsLabel: 'Bio-Schlüsselwörter',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'Aktion',
+    bioActionUnfollow: 'Entfolgen wenn Bio übereinstimmt',
+    bioActionKeep: 'Behalten wenn Bio übereinstimmt',
+
+    overactiveThresholdLabel: 'Täglicher Tweet-Schwellenwert',
+
+    demoModeLabel: 'Demo-Modus',
+    demoModeDesc: 'Simulation — keine echten Aktionen',
+
+    timerLabel: 'Timer',
+    timerPlaceholder: '0 = aus',
+    timerMinutes: 'Min.',
+    targetLabel: 'Zielprofil',
+    targetPlaceholder: 'Benutzername (leer = du selbst)',
+
+    skipVerifiedLabel: 'Verifizierte überspringen',
+    notifSoundLabel: 'Benachrichtigungston',
+
+    historyTitle: 'Entfolge-Verlauf',
+    historyEmpty: 'Noch kein Verlauf',
+    historyClear: 'Verlauf löschen',
+
+    exportTitle: 'Exportieren / Importieren',
+    exportSuccess: 'Daten kopiert!',
+    exportCsvSuccess: 'CSV heruntergeladen!',
+    exportCsv: 'CSV',
+    importSuccess: 'Daten importiert!',
+    importError: 'Ungültiges Datenformat',
+
+    logTitle: 'Aktivitätsprotokoll',
+    logStarted: 'Vorgang gestartet',
+    logStopped: 'Vorgang gestoppt',
+    logCompleted: 'Vorgang abgeschlossen',
+    logError: 'Fehler: {message}',
+    logStopError: 'Stopfehler: {message}',
+    logModeNonFollowers: 'Modus: Nicht-Follower',
+    logModeAll: 'Modus: Alle',
+    logModeInactive: 'Modus: Inaktive Konten',
+    logModeBioFilter: 'Modus: Bio-Filter',
+    logModeFollowAll: 'Modus: Allen folgen',
+    logModeOveractive: 'Modus: Überaktiv',
+    logWhitelist: 'Whitelist: {count} Nutzer',
+    logGoingToFollowing: 'Navigiere zu @{username}/following...',
+    logGoingToHome: 'Navigiere zur X.com-Startseite...',
+
+    statusGoToFollowing: 'Gehe zu deiner Folge-Seite auf X.com',
+    statusGoingToFollowing: 'Navigiere zur Folge-Seite',
+    statusGoToProfile: 'Gehe zu einer Profilseite',
+    statusPageError: 'Seite konnte nicht geprüft werden',
+    statusRunning: 'Läuft...',
+    statusPaused: 'Pausiert',
+    statusStarted: 'Gestartet',
+    statusStopped: 'Gestoppt',
+    statusCompleted: 'Abgeschlossen',
+    statusStartError: 'Konnte nicht starten. Bitte Seite neu laden.',
+    statusNotConnected: 'Content-Skript nicht verbunden. Seite neu laden.',
+    warningSlowMode: 'Dieser Modus prüft jedes Profil einzeln und kann länger dauern.',
+
+    rateLimitTitle: 'Rate-Limit erreicht',
+    rateLimitDesc: 'X bittet um eine kurze Pause — wird automatisch fortgesetzt.',
+    rateLimitRemaining: 'verbleibend',
+
+    cooldownLabel: 'WARTEZEIT',
+    cooldownNormal: 'Normal',
+    cooldownSoft: 'Sanfte Wartezeit',
+    cooldownRateLimit: 'Rate-Limit',
+
+    sessionCompleteTitle: 'Sitzung abgeschlossen',
+    sessionCompleteSubtitle: 'Modus • Fertig',
+    startNewSession: 'Neue Sitzung starten',
+
+    reviewAsk: 'Gefällt dir X Unfollow Tool?',
+    reviewYes: 'Bewertung abgeben',
+    reviewLater: 'Später',
+    reviewNo: 'Nein danke',
+
+    refollowBtn: 'Zurückfolgen',
+    refollowTitle: 'Erneut folgen',
+    refollowSuccess: '@{username} erneut gefolgt',
+    refollowError: 'Konnte @{username} nicht folgen',
+    refollowedLabel: 'Erneut gefolgt',
+
+    tabHome: 'Start',
+    tabLogs: 'Protokoll',
+    tabHistory: 'Verlauf',
+    tabSettings: 'Einstellungen',
+
+    notifPermissionDenied: 'Benachrichtigungsberechtigung verweigert',
+    notifCompleteTitle: 'Fertig!',
+    notifCompleteMsg: 'Entfolgt: {unfollowed}, Übersprungen: {skipped}',
+
+    shortcutHint: 'Kürzel: Alt+Shift+S (Starten/Stoppen), Alt+Shift+P (Pausieren)',
+
+    onboardingTitle: 'Willkommen bei X Unfollow Tool',
+    onboardingSubtitle: 'Bereinige deine Folgeliste — intelligent, sicher und 100% lokal.',
+    onboardingStep1Title: 'Öffne x.com/following',
+    onboardingStep1Desc: 'Navigiere in deinem Browser zu deiner Folgeliste auf X.com.',
+    onboardingStep2Title: 'Wähle einen Modus',
+    onboardingStep2Desc: 'Wähle, wem du entfolgen möchtest: Nicht-Follower, inaktive Konten oder Bio-Filter.',
+    onboardingStep3Title: 'Starte',
+    onboardingStep3Desc: 'Klicke auf Starten — wir erledigen den Rest sicher und automatisch.',
+    onboardingDone: 'Los geht\'s!',
+},
+
+// ═══════════════════════════════════════════════════════════
+// FRENCH
+// ═══════════════════════════════════════════════════════════
+fr: {
+    title: 'X Unfollow Tool',
+    subtitle: 'Gérez facilement votre liste de suivis.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'Nettoyage intelligent de vos abonnements',
+    privacyBanner: '100% local — vos données ne quittent jamais ce navigateur',
+
+    modeTitle: 'Sélection du mode',
+    modeNonFollowers: 'Non-abonnés',
+    modeNonFollowersDesc: 'Comptes qui ne vous suivent pas en retour',
+    modeAll: 'Se désabonner de tous',
+    modeAllDesc: 'Se désabonner de tous ceux que vous suivez',
+    modeInactive: 'Comptes inactifs',
+    modeInactiveDesc: 'Se désabonner des comptes inactifs et à avatar par défaut',
+    modeBioFilter: 'Filtre bio',
+    modeBioFilterDesc: 'Filtrer par mots-clés dans la bio',
+    modeOveractive: 'Hyperactifs',
+    modeOveractiveDesc: 'Comptes qui tweetent excessivement par jour',
+    modeFollowAll: 'Suivre tout le monde',
+    modeFollowAllDesc: 'Suivre tout le monde sur la liste',
+
+    sectionMode: 'MODE',
+    sectionConfig: 'Configuration',
+    sectionGeneral: 'Général',
+    sectionAppearance: 'Apparence',
+    chooseModeTitle: 'CHOISIR LE MODE',
+    btnChange: 'Changer',
+    btnDone: 'Terminé',
+
+    whitelistTitle: 'Liste blanche',
+    whitelistPlaceholder: 'Noms d\'utilisateur à protéger (un par ligne)\n\nExemple:\nelonmusk\ntwitter',
+    whitelistHint: 'Ces utilisateurs ne seront pas désabonnés',
+    whitelistValidCount: '{valid} valides, {invalid} invalides',
+    whitelistInvalid: 'Nom d\'utilisateur invalide : {username}',
+
+    statUnfollowed: 'DÉSABONNÉS',
+    statSkipped: 'IGNORÉS',
+    statScanned: 'ANALYSÉS',
+    statFollowed: 'SUIVIS',
+    statsAllTime: 'TOTAL',
+    statsThisWeek: 'CETTE SEMAINE',
+    statsSessions: 'SESSIONS',
+    statsNonFollowerRate: 'Taux de non-abonnés',
+    statsTitle: 'Statistiques',
+
+    btnStart: 'Démarrer',
+    btnStartUnfollowing: 'Commencer à se désabonner',
+    btnStop: 'Arrêter',
+    btnPause: 'Pause',
+    btnResume: 'Reprendre',
+    btnPreview: 'Aperçu',
+    btnOpenX: 'Ouvrir X.com',
+    btnGoToProfile: 'Aller au profil',
+
+    menuTitle: 'Paramètres',
+    menuWhitelist: 'Liste blanche',
+    menuLogs: 'Journal d\'activité',
+    menuLanguage: 'Langue',
+    menuAbout: 'À propos',
+    menuHistory: 'Historique de désabonnement',
+    menuSpeed: 'Vitesse',
+    menuExport: 'Exporter',
+    menuImport: 'Importer',
+    menuTheme: 'Thème',
+    menuStats: 'Statistiques',
+    menuRate: 'Nous évaluer',
+
+    themeDark: 'Sombre',
+    themeLight: 'Clair',
+
+    speedSlow: 'Lent',
+    speedNormal: 'Normal',
+    speedFast: 'Rapide',
+
+    inactiveThresholdLabel: 'Seuil d\'inactivité',
+    inactiveDaysLabel: 'Période d\'inactivité',
+    inactive30: '30 jours',
+    inactive60: '60 jours',
+    inactive90: '90 jours',
+    inactive180: '180 jours',
+    inactive365: '1 an',
+    minFollowersLabel: 'Min. abonnés',
+    minFollowersPlaceholder: '0 = pas de filtre',
+
+    limitLabel: 'Limite de désabonnements',
+    limitPlaceholder: '0 = illimité',
+    limitHint: 'Maximum de désabonnements (0 = illimité)',
+
+    bioKeywordsLabel: 'Mots-clés bio',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'Action',
+    bioActionUnfollow: 'Se désabonner si la bio correspond',
+    bioActionKeep: 'Conserver si la bio correspond',
+
+    overactiveThresholdLabel: 'Seuil de tweets quotidiens',
+
+    demoModeLabel: 'Mode démo',
+    demoModeDesc: 'Simulation — aucune action réelle effectuée',
+
+    timerLabel: 'Minuteur',
+    timerPlaceholder: '0 = désactivé',
+    timerMinutes: 'min',
+    targetLabel: 'Profil cible',
+    targetPlaceholder: 'nom d\'utilisateur (vide = vous-même)',
+
+    skipVerifiedLabel: 'Ignorer les vérifiés',
+    notifSoundLabel: 'Son de notification',
+
+    historyTitle: 'Historique de désabonnement',
+    historyEmpty: 'Pas encore d\'historique',
+    historyClear: 'Effacer l\'historique',
+
+    exportTitle: 'Exporter / Importer',
+    exportSuccess: 'Données copiées !',
+    exportCsvSuccess: 'CSV téléchargé !',
+    exportCsv: 'CSV',
+    importSuccess: 'Données importées !',
+    importError: 'Format de données invalide',
+
+    logTitle: 'Journal d\'activité',
+    logStarted: 'Processus démarré',
+    logStopped: 'Processus arrêté',
+    logCompleted: 'Processus terminé',
+    logError: 'Erreur : {message}',
+    logStopError: 'Erreur d\'arrêt : {message}',
+    logModeNonFollowers: 'Mode : Non-abonnés',
+    logModeAll: 'Mode : Tous',
+    logModeInactive: 'Mode : Comptes inactifs',
+    logModeBioFilter: 'Mode : Filtre bio',
+    logModeFollowAll: 'Mode : Suivre tout le monde',
+    logModeOveractive: 'Mode : Hyperactifs',
+    logWhitelist: 'Liste blanche : {count} utilisateurs',
+    logGoingToFollowing: 'Navigation vers @{username}/following...',
+    logGoingToHome: 'Navigation vers X.com...',
+
+    statusGoToFollowing: 'Allez sur votre page de suivis sur X.com',
+    statusGoingToFollowing: 'Navigation vers la page de suivis',
+    statusGoToProfile: 'Allez sur une page de profil',
+    statusPageError: 'Impossible de vérifier la page',
+    statusRunning: 'En cours...',
+    statusPaused: 'En pause',
+    statusStarted: 'Démarré',
+    statusStopped: 'Arrêté',
+    statusCompleted: 'Terminé',
+    statusStartError: 'Impossible de démarrer. Veuillez actualiser la page.',
+    statusNotConnected: 'Script de contenu non connecté. Actualisez la page.',
+    warningSlowMode: 'Ce mode vérifie chaque profil individuellement et peut prendre plus de temps.',
+
+    rateLimitTitle: 'Limite de débit atteinte',
+    rateLimitDesc: 'X demande une courte pause — reprise automatique.',
+    rateLimitRemaining: 'restant',
+
+    cooldownLabel: 'ATTENTE',
+    cooldownNormal: 'Normal',
+    cooldownSoft: 'Attente douce',
+    cooldownRateLimit: 'Limite de débit',
+
+    sessionCompleteTitle: 'Session terminée',
+    sessionCompleteSubtitle: 'Mode • Terminé',
+    startNewSession: 'Démarrer une nouvelle session',
+
+    reviewAsk: 'Vous appréciez X Unfollow Tool ?',
+    reviewYes: 'Laisser un avis',
+    reviewLater: 'Plus tard',
+    reviewNo: 'Non merci',
+
+    refollowBtn: 'Réabonner',
+    refollowTitle: 'Suivre à nouveau',
+    refollowSuccess: '@{username} suivi à nouveau',
+    refollowError: 'Impossible de suivre @{username}',
+    refollowedLabel: 'Suivi à nouveau',
+
+    tabHome: 'Accueil',
+    tabLogs: 'Journal',
+    tabHistory: 'Historique',
+    tabSettings: 'Paramètres',
+
+    notifPermissionDenied: 'Permission de notification refusée',
+    notifCompleteTitle: 'Terminé !',
+    notifCompleteMsg: 'Désabonnés : {unfollowed}, Ignorés : {skipped}',
+
+    shortcutHint: 'Raccourcis : Alt+Shift+S (Démarrer/Arrêter), Alt+Shift+P (Pause)',
+
+    onboardingTitle: 'Bienvenue sur X Unfollow Tool',
+    onboardingSubtitle: 'Nettoyez vos abonnements — intelligemment, en toute sécurité et 100% localement.',
+    onboardingStep1Title: 'Ouvrez x.com/following',
+    onboardingStep1Desc: 'Accédez à votre liste de suivis sur X.com dans votre navigateur.',
+    onboardingStep2Title: 'Choisissez un mode',
+    onboardingStep2Desc: 'Choisissez qui désabonner : non-abonnés, comptes inactifs ou filtre bio.',
+    onboardingStep3Title: 'Appuyez sur Démarrer',
+    onboardingStep3Desc: 'Cliquez sur Démarrer — nous nous occupons du reste en toute sécurité.',
+    onboardingDone: 'Commencer',
+},
+
+// ═══════════════════════════════════════════════════════════
+// ARABIC
+// ═══════════════════════════════════════════════════════════
+ar: {
+    title: 'X Unfollow Tool',
+    subtitle: 'أدر قائمة متابعيك بسهولة.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'تنظيف المتابعات بذكاء',
+    privacyBanner: '١٠٠٪ محلي — بياناتك لا تغادر هذا المتصفح أبداً',
+
+    modeTitle: 'اختيار الوضع',
+    modeNonFollowers: 'غير المتابعين',
+    modeNonFollowersDesc: 'الحسابات التي لا تتابعك بالمقابل',
+    modeAll: 'إلغاء متابعة الجميع',
+    modeAllDesc: 'إلغاء متابعة جميع من تتابعهم',
+    modeInactive: 'الحسابات غير النشطة',
+    modeInactiveDesc: 'إلغاء متابعة الحسابات غير النشطة وذات الصور الافتراضية',
+    modeBioFilter: 'فلتر السيرة',
+    modeBioFilterDesc: 'تصفية حسب كلمات مفتاحية في السيرة الذاتية',
+    modeOveractive: 'مفرطو النشاط',
+    modeOveractiveDesc: 'حسابات تغرد بشكل مفرط يومياً',
+    modeFollowAll: 'متابعة الجميع',
+    modeFollowAllDesc: 'تابع الجميع في القائمة',
+
+    sectionMode: 'الوضع',
+    sectionConfig: 'الإعدادات',
+    sectionGeneral: 'عام',
+    sectionAppearance: 'المظهر',
+    chooseModeTitle: 'اختر الوضع',
+    btnChange: 'تغيير',
+    btnDone: 'تم',
+
+    whitelistTitle: 'القائمة البيضاء',
+    whitelistPlaceholder: 'أسماء المستخدمين المحمية (واحد في كل سطر)\n\nمثال:\nelonmusk\ntwitter',
+    whitelistHint: 'لن يتم إلغاء متابعة هؤلاء المستخدمين',
+    whitelistValidCount: '{valid} صحيح، {invalid} غير صحيح',
+    whitelistInvalid: 'اسم مستخدم غير صحيح: {username}',
+
+    statUnfollowed: 'مُلغى المتابعة',
+    statSkipped: 'متجاوز',
+    statScanned: 'مُفحوص',
+    statFollowed: 'مُتابَع',
+    statsAllTime: 'الإجمالي',
+    statsThisWeek: 'هذا الأسبوع',
+    statsSessions: 'الجلسات',
+    statsNonFollowerRate: 'نسبة غير المتابعين',
+    statsTitle: 'الإحصائيات',
+
+    btnStart: 'بدء',
+    btnStartUnfollowing: 'بدء إلغاء المتابعة',
+    btnStop: 'إيقاف',
+    btnPause: 'إيقاف مؤقت',
+    btnResume: 'استئناف',
+    btnPreview: 'معاينة',
+    btnOpenX: 'فتح X.com',
+    btnGoToProfile: 'الذهاب للملف الشخصي',
+
+    menuTitle: 'الإعدادات',
+    menuWhitelist: 'القائمة البيضاء',
+    menuLogs: 'سجل النشاط',
+    menuLanguage: 'اللغة',
+    menuAbout: 'حول',
+    menuHistory: 'سجل إلغاء المتابعة',
+    menuSpeed: 'السرعة',
+    menuExport: 'تصدير',
+    menuImport: 'استيراد',
+    menuTheme: 'المظهر',
+    menuStats: 'الإحصائيات',
+    menuRate: 'قيّمنا',
+
+    themeDark: 'داكن',
+    themeLight: 'فاتح',
+
+    speedSlow: 'بطيء',
+    speedNormal: 'عادي',
+    speedFast: 'سريع',
+
+    inactiveThresholdLabel: 'حد الخمول',
+    inactiveDaysLabel: 'فترة الخمول',
+    inactive30: '٣٠ يوماً',
+    inactive60: '٦٠ يوماً',
+    inactive90: '٩٠ يوماً',
+    inactive180: '١٨٠ يوماً',
+    inactive365: 'سنة واحدة',
+    minFollowersLabel: 'الحد الأدنى للمتابعين',
+    minFollowersPlaceholder: '٠ = بلا فلتر',
+
+    limitLabel: 'حد إلغاء المتابعة',
+    limitPlaceholder: '٠ = غير محدود',
+    limitHint: 'الحد الأقصى لإلغاء المتابعات (٠ = غير محدود)',
+
+    bioKeywordsLabel: 'كلمات السيرة المفتاحية',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'الإجراء',
+    bioActionUnfollow: 'إلغاء المتابعة إذا تطابقت السيرة',
+    bioActionKeep: 'الإبقاء إذا تطابقت السيرة',
+
+    overactiveThresholdLabel: 'حد التغريدات اليومية',
+
+    demoModeLabel: 'وضع العرض التجريبي',
+    demoModeDesc: 'محاكاة — لا يتم تنفيذ إجراءات حقيقية',
+
+    timerLabel: 'المؤقت',
+    timerPlaceholder: '٠ = إيقاف',
+    timerMinutes: 'دقيقة',
+    targetLabel: 'الملف الشخصي المستهدف',
+    targetPlaceholder: 'اسم المستخدم (فارغ = أنت)',
+
+    skipVerifiedLabel: 'تجاوز الموثقين',
+    notifSoundLabel: 'صوت الإشعار',
+
+    historyTitle: 'سجل إلغاء المتابعة',
+    historyEmpty: 'لا يوجد سجل بعد',
+    historyClear: 'مسح السجل',
+
+    exportTitle: 'تصدير / استيراد',
+    exportSuccess: 'تم نسخ البيانات!',
+    exportCsvSuccess: 'تم تنزيل CSV!',
+    exportCsv: 'CSV',
+    importSuccess: 'تم استيراد البيانات!',
+    importError: 'تنسيق بيانات غير صحيح',
+
+    logTitle: 'سجل النشاط',
+    logStarted: 'بدأت العملية',
+    logStopped: 'توقفت العملية',
+    logCompleted: 'اكتملت العملية',
+    logError: 'خطأ: {message}',
+    logStopError: 'خطأ في الإيقاف: {message}',
+    logModeNonFollowers: 'الوضع: غير المتابعين',
+    logModeAll: 'الوضع: الجميع',
+    logModeInactive: 'الوضع: الحسابات غير النشطة',
+    logModeBioFilter: 'الوضع: فلتر السيرة',
+    logModeFollowAll: 'الوضع: متابعة الجميع',
+    logModeOveractive: 'الوضع: مفرطو النشاط',
+    logWhitelist: 'القائمة البيضاء: {count} مستخدم',
+    logGoingToFollowing: 'الانتقال إلى @{username}/following...',
+    logGoingToHome: 'الانتقال إلى X.com...',
+
+    statusGoToFollowing: 'انتقل إلى صفحة متابعتك على X.com',
+    statusGoingToFollowing: 'الانتقال إلى صفحة المتابعة',
+    statusGoToProfile: 'انتقل إلى صفحة ملف شخصي',
+    statusPageError: 'تعذر التحقق من الصفحة',
+    statusRunning: 'جارٍ التنفيذ...',
+    statusPaused: 'متوقف مؤقتاً',
+    statusStarted: 'بدأت',
+    statusStopped: 'توقفت',
+    statusCompleted: 'اكتمل',
+    statusStartError: 'تعذر البدء. يرجى تحديث الصفحة.',
+    statusNotConnected: 'لم يتصل البرنامج النصي. حدّث الصفحة.',
+    warningSlowMode: 'يفحص هذا الوضع كل ملف شخصي على حدة وقد يستغرق وقتاً أطول.',
+
+    rateLimitTitle: 'تم الوصول لحد الطلبات',
+    rateLimitDesc: 'X يطلب توقفاً قصيراً — الاستئناف تلقائياً.',
+    rateLimitRemaining: 'متبقٍ',
+
+    cooldownLabel: 'الانتظار',
+    cooldownNormal: 'عادي',
+    cooldownSoft: 'انتظار خفيف',
+    cooldownRateLimit: 'حد الطلبات',
+
+    sessionCompleteTitle: 'اكتملت الجلسة',
+    sessionCompleteSubtitle: 'الوضع • انتهى',
+    startNewSession: 'بدء جلسة جديدة',
+
+    reviewAsk: 'هل تستمتع بـ X Unfollow Tool؟',
+    reviewYes: 'اترك تقييماً',
+    reviewLater: 'لاحقاً',
+    reviewNo: 'لا شكراً',
+
+    refollowBtn: 'متابعة مجدداً',
+    refollowTitle: 'متابعة مرة أخرى',
+    refollowSuccess: 'تمت متابعة @{username} مجدداً',
+    refollowError: 'تعذرت متابعة @{username}',
+    refollowedLabel: 'تمت المتابعة مجدداً',
+
+    tabHome: 'الرئيسية',
+    tabLogs: 'السجل',
+    tabHistory: 'التاريخ',
+    tabSettings: 'الإعدادات',
+
+    notifPermissionDenied: 'رُفض إذن الإشعار',
+    notifCompleteTitle: 'تم!',
+    notifCompleteMsg: 'تم إلغاء المتابعة: {unfollowed}، تم التجاوز: {skipped}',
+
+    shortcutHint: 'اختصارات: Alt+Shift+S (بدء/إيقاف)، Alt+Shift+P (إيقاف مؤقت)',
+
+    onboardingTitle: 'مرحباً بك في X Unfollow Tool',
+    onboardingSubtitle: 'نظّف قائمة متابعتك — بذكاء وأمان و١٠٠٪ محلياً.',
+    onboardingStep1Title: 'افتح x.com/following',
+    onboardingStep1Desc: 'انتقل إلى قائمة متابعتك على X.com في متصفحك.',
+    onboardingStep2Title: 'اختر وضعاً',
+    onboardingStep2Desc: 'اختر من تريد إلغاء متابعته: غير المتابعين، الحسابات غير النشطة، أو فلتر السيرة.',
+    onboardingStep3Title: 'اضغط بدء',
+    onboardingStep3Desc: 'انقر على بدء — نحن نتولى الباقي بأمان وتلقائياً.',
+    onboardingDone: 'ابدأ الآن',
+},
+
+// ═══════════════════════════════════════════════════════════
+// JAPANESE
+// ═══════════════════════════════════════════════════════════
+ja: {
+    title: 'X アンフォローツール',
+    subtitle: 'フォローリストを簡単に管理。',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'スマートなフォロー整理',
+    privacyBanner: '100%ローカル — データはブラウザ外に出ません',
+
+    modeTitle: 'モード選択',
+    modeNonFollowers: 'フォロー外',
+    modeNonFollowersDesc: 'フォローバックしていないアカウント',
+    modeAll: '全員アンフォロー',
+    modeAllDesc: 'フォロー中の全員をアンフォロー',
+    modeInactive: '非アクティブ',
+    modeInactiveDesc: '非アクティブ・デフォルトアイコンのアカウントをアンフォロー',
+    modeBioFilter: 'バイオフィルター',
+    modeBioFilterDesc: 'バイオのキーワードでフィルター',
+    modeOveractive: '過活動',
+    modeOveractiveDesc: '毎日過剰にツイートするアカウント',
+    modeFollowAll: '全員フォロー',
+    modeFollowAllDesc: 'リスト全員をフォロー',
+
+    sectionMode: 'モード',
+    sectionConfig: '設定',
+    sectionGeneral: '一般',
+    sectionAppearance: '外観',
+    chooseModeTitle: 'モードを選択',
+    btnChange: '変更',
+    btnDone: '完了',
+
+    whitelistTitle: 'ホワイトリスト',
+    whitelistPlaceholder: '保護するユーザー名（1行1つ）\n\n例:\nelonmusk\ntwitter',
+    whitelistHint: 'このユーザーはアンフォローされません',
+    whitelistValidCount: '{valid}件有効、{invalid}件無効',
+    whitelistInvalid: '無効なユーザー名: {username}',
+
+    statUnfollowed: 'アンフォロー',
+    statSkipped: 'スキップ',
+    statScanned: 'スキャン',
+    statFollowed: 'フォロー',
+    statsAllTime: '累計',
+    statsThisWeek: '今週',
+    statsSessions: 'セッション',
+    statsNonFollowerRate: '非フォロー率',
+    statsTitle: '統計',
+
+    btnStart: '開始',
+    btnStartUnfollowing: 'アンフォロー開始',
+    btnStop: '停止',
+    btnPause: '一時停止',
+    btnResume: '再開',
+    btnPreview: 'プレビュー',
+    btnOpenX: 'X.comを開く',
+    btnGoToProfile: 'プロフィールへ',
+
+    menuTitle: '設定',
+    menuWhitelist: 'ホワイトリスト',
+    menuLogs: 'アクティビティログ',
+    menuLanguage: '言語',
+    menuAbout: '概要',
+    menuHistory: 'アンフォロー履歴',
+    menuSpeed: 'スピード',
+    menuExport: 'エクスポート',
+    menuImport: 'インポート',
+    menuTheme: 'テーマ',
+    menuStats: '統計',
+    menuRate: '評価する',
+
+    themeDark: 'ダーク',
+    themeLight: 'ライト',
+
+    speedSlow: '遅い',
+    speedNormal: '普通',
+    speedFast: '速い',
+
+    inactiveThresholdLabel: '非アクティブ閾値',
+    inactiveDaysLabel: '非アクティブ期間',
+    inactive30: '30日',
+    inactive60: '60日',
+    inactive90: '90日',
+    inactive180: '180日',
+    inactive365: '1年',
+    minFollowersLabel: '最低フォロワー数',
+    minFollowersPlaceholder: '0 = フィルターなし',
+
+    limitLabel: 'アンフォロー上限',
+    limitPlaceholder: '0 = 無制限',
+    limitHint: '最大アンフォロー数（0=無制限）',
+
+    bioKeywordsLabel: 'バイオキーワード',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'アクション',
+    bioActionUnfollow: 'バイオが一致したらアンフォロー',
+    bioActionKeep: 'バイオが一致したら保持',
+
+    overactiveThresholdLabel: '1日のツイート上限',
+
+    demoModeLabel: 'デモモード',
+    demoModeDesc: 'シミュレーション — 実際の操作は行いません',
+
+    timerLabel: 'タイマー',
+    timerPlaceholder: '0 = オフ',
+    timerMinutes: '分',
+    targetLabel: 'ターゲットプロフィール',
+    targetPlaceholder: 'ユーザー名（空白=自分）',
+
+    skipVerifiedLabel: '認証済みをスキップ',
+    notifSoundLabel: '通知音',
+
+    historyTitle: 'アンフォロー履歴',
+    historyEmpty: '履歴はまだありません',
+    historyClear: '履歴を消去',
+
+    exportTitle: 'エクスポート / インポート',
+    exportSuccess: 'データをコピーしました！',
+    exportCsvSuccess: 'CSVをダウンロードしました！',
+    exportCsv: 'CSV',
+    importSuccess: 'データをインポートしました！',
+    importError: '無効なデータ形式',
+
+    logTitle: 'アクティビティログ',
+    logStarted: '処理を開始しました',
+    logStopped: '処理を停止しました',
+    logCompleted: '処理が完了しました',
+    logError: 'エラー: {message}',
+    logStopError: '停止エラー: {message}',
+    logModeNonFollowers: 'モード: 非フォロワー',
+    logModeAll: 'モード: 全員',
+    logModeInactive: 'モード: 非アクティブ',
+    logModeBioFilter: 'モード: バイオフィルター',
+    logModeFollowAll: 'モード: 全員フォロー',
+    logModeOveractive: 'モード: 過活動',
+    logWhitelist: 'ホワイトリスト: {count}人',
+    logGoingToFollowing: '@{username}/followingへ移動中...',
+    logGoingToHome: 'X.comホームへ移動中...',
+
+    statusGoToFollowing: 'X.comのフォロー一覧ページへ',
+    statusGoingToFollowing: 'フォローページへ移動中',
+    statusGoToProfile: 'プロフィールページへ',
+    statusPageError: 'ページを確認できませんでした',
+    statusRunning: '実行中...',
+    statusPaused: '一時停止中',
+    statusStarted: '開始しました',
+    statusStopped: '停止しました',
+    statusCompleted: '完了しました',
+    statusStartError: '開始できませんでした。ページを更新してください。',
+    statusNotConnected: 'コンテンツスクリプト未接続。ページを更新してください。',
+    warningSlowMode: 'このモードは各プロフィールを個別に確認するため時間がかかる場合があります。',
+
+    rateLimitTitle: 'レート制限に達しました',
+    rateLimitDesc: 'Xが短い休憩を求めています — 自動的に再開します。',
+    rateLimitRemaining: '残り',
+
+    cooldownLabel: '待機中',
+    cooldownNormal: '通常',
+    cooldownSoft: 'ソフト待機',
+    cooldownRateLimit: 'レート制限',
+
+    sessionCompleteTitle: 'セッション完了',
+    sessionCompleteSubtitle: 'モード • 完了',
+    startNewSession: '新しいセッションを開始',
+
+    reviewAsk: 'X Unfollow Toolはいかがでしたか？',
+    reviewYes: 'レビューを書く',
+    reviewLater: '後で',
+    reviewNo: 'いいえ',
+
+    refollowBtn: '再フォロー',
+    refollowTitle: '再フォロー',
+    refollowSuccess: '@{username}を再フォローしました',
+    refollowError: '@{username}をフォローできませんでした',
+    refollowedLabel: '再フォロー済み',
+
+    tabHome: 'ホーム',
+    tabLogs: 'ログ',
+    tabHistory: '履歴',
+    tabSettings: '設定',
+
+    notifPermissionDenied: '通知の許可が拒否されました',
+    notifCompleteTitle: '完了！',
+    notifCompleteMsg: 'アンフォロー: {unfollowed}、スキップ: {skipped}',
+
+    shortcutHint: 'ショートカット: Alt+Shift+S (開始/停止)、Alt+Shift+P (一時停止)',
+
+    onboardingTitle: 'X Unfollow Toolへようこそ',
+    onboardingSubtitle: 'フォローリストをスマートに、安全に、100%ローカルで整理。',
+    onboardingStep1Title: 'x.com/followingを開く',
+    onboardingStep1Desc: 'ブラウザでX.comのフォロー一覧ページへ移動してください。',
+    onboardingStep2Title: 'モードを選択',
+    onboardingStep2Desc: 'アンフォローする対象を選択: 非フォロワー、非アクティブ、またはバイオフィルター。',
+    onboardingStep3Title: '開始する',
+    onboardingStep3Desc: '開始をクリック — あとは安全に自動処理します。',
+    onboardingDone: 'はじめる',
+},
+
+// ═══════════════════════════════════════════════════════════
+// PORTUGUESE
+// ═══════════════════════════════════════════════════════════
+pt: {
+    title: 'X Unfollow Tool',
+    subtitle: 'Gerencie sua lista de seguidos com facilidade.',
+    appName: 'X Unfollow Tool',
+    appSubtitle: 'Limpeza inteligente de seguidos',
+    privacyBanner: '100% local — seus dados nunca saem deste navegador',
+
+    modeTitle: 'Seleção de modo',
+    modeNonFollowers: 'Não seguidores',
+    modeNonFollowersDesc: 'Contas que não seguem você de volta',
+    modeAll: 'Deixar de seguir todos',
+    modeAllDesc: 'Deixe de seguir todos que você segue',
+    modeInactive: 'Contas inativas',
+    modeInactiveDesc: 'Deixar de seguir contas inativas e com avatar padrão',
+    modeBioFilter: 'Filtro de bio',
+    modeBioFilterDesc: 'Filtrar por palavras-chave na bio',
+    modeOveractive: 'Hiperativos',
+    modeOveractiveDesc: 'Contas que tweetam excessivamente por dia',
+    modeFollowAll: 'Seguir todos',
+    modeFollowAllDesc: 'Siga todos na lista',
+
+    sectionMode: 'MODO',
+    sectionConfig: 'Configuração',
+    sectionGeneral: 'Geral',
+    sectionAppearance: 'Aparência',
+    chooseModeTitle: 'ESCOLHER MODO',
+    btnChange: 'Alterar',
+    btnDone: 'Concluído',
+
+    whitelistTitle: 'Lista branca',
+    whitelistPlaceholder: 'Nomes de usuário a proteger (um por linha)\n\nExemplo:\nelonmusk\ntwitter',
+    whitelistHint: 'Esses usuários não serão removidos',
+    whitelistValidCount: '{valid} válidos, {invalid} inválidos',
+    whitelistInvalid: 'Nome de usuário inválido: {username}',
+
+    statUnfollowed: 'REMOVIDOS',
+    statSkipped: 'IGNORADOS',
+    statScanned: 'ANALISADOS',
+    statFollowed: 'SEGUIDOS',
+    statsAllTime: 'TOTAL',
+    statsThisWeek: 'ESTA SEMANA',
+    statsSessions: 'SESSÕES',
+    statsNonFollowerRate: 'Taxa de não seguidores',
+    statsTitle: 'Estatísticas',
+
+    btnStart: 'Iniciar',
+    btnStartUnfollowing: 'Começar a deixar de seguir',
+    btnStop: 'Parar',
+    btnPause: 'Pausar',
+    btnResume: 'Continuar',
+    btnPreview: 'Visualizar',
+    btnOpenX: 'Abrir X.com',
+    btnGoToProfile: 'Ir ao perfil',
+
+    menuTitle: 'Configurações',
+    menuWhitelist: 'Lista branca',
+    menuLogs: 'Registro de atividades',
+    menuLanguage: 'Idioma',
+    menuAbout: 'Sobre',
+    menuHistory: 'Histórico de unfollow',
+    menuSpeed: 'Velocidade',
+    menuExport: 'Exportar',
+    menuImport: 'Importar',
+    menuTheme: 'Tema',
+    menuStats: 'Estatísticas',
+    menuRate: 'Avaliar',
+
+    themeDark: 'Escuro',
+    themeLight: 'Claro',
+
+    speedSlow: 'Lento',
+    speedNormal: 'Normal',
+    speedFast: 'Rápido',
+
+    inactiveThresholdLabel: 'Limite de inatividade',
+    inactiveDaysLabel: 'Período de inatividade',
+    inactive30: '30 dias',
+    inactive60: '60 dias',
+    inactive90: '90 dias',
+    inactive180: '180 dias',
+    inactive365: '1 ano',
+    minFollowersLabel: 'Mín. seguidores',
+    minFollowersPlaceholder: '0 = sem filtro',
+
+    limitLabel: 'Limite de unfollow',
+    limitPlaceholder: '0 = ilimitado',
+    limitHint: 'Máximo de unfollows (0 = ilimitado)',
+
+    bioKeywordsLabel: 'Palavras-chave da bio',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: 'Ação',
+    bioActionUnfollow: 'Deixar de seguir se a bio corresponder',
+    bioActionKeep: 'Manter se a bio corresponder',
+
+    overactiveThresholdLabel: 'Limite diário de tweets',
+
+    demoModeLabel: 'Modo demonstração',
+    demoModeDesc: 'Simulação — nenhuma ação real realizada',
+
+    timerLabel: 'Temporizador',
+    timerPlaceholder: '0 = desligado',
+    timerMinutes: 'min',
+    targetLabel: 'Perfil alvo',
+    targetPlaceholder: 'usuário (vazio = você mesmo)',
+
+    skipVerifiedLabel: 'Ignorar verificados',
+    notifSoundLabel: 'Som de notificação',
+
+    historyTitle: 'Histórico de unfollow',
+    historyEmpty: 'Sem histórico ainda',
+    historyClear: 'Limpar histórico',
+
+    exportTitle: 'Exportar / Importar',
+    exportSuccess: 'Dados copiados!',
+    exportCsvSuccess: 'CSV baixado!',
+    exportCsv: 'CSV',
+    importSuccess: 'Dados importados!',
+    importError: 'Formato de dados inválido',
+
+    logTitle: 'Registro de atividades',
+    logStarted: 'Processo iniciado',
+    logStopped: 'Processo parado',
+    logCompleted: 'Processo concluído',
+    logError: 'Erro: {message}',
+    logStopError: 'Erro ao parar: {message}',
+    logModeNonFollowers: 'Modo: Não seguidores',
+    logModeAll: 'Modo: Todos',
+    logModeInactive: 'Modo: Contas inativas',
+    logModeBioFilter: 'Modo: Filtro de bio',
+    logModeFollowAll: 'Modo: Seguir todos',
+    logModeOveractive: 'Modo: Hiperativos',
+    logWhitelist: 'Lista branca: {count} usuários',
+    logGoingToFollowing: 'Navegando para @{username}/following...',
+    logGoingToHome: 'Navegando para X.com...',
+
+    statusGoToFollowing: 'Vá para sua página de seguidos no X.com',
+    statusGoingToFollowing: 'Navegando para página de seguidos',
+    statusGoToProfile: 'Vá para uma página de perfil',
+    statusPageError: 'Não foi possível verificar a página',
+    statusRunning: 'Em execução...',
+    statusPaused: 'Pausado',
+    statusStarted: 'Iniciado',
+    statusStopped: 'Parado',
+    statusCompleted: 'Concluído',
+    statusStartError: 'Não foi possível iniciar. Atualize a página.',
+    statusNotConnected: 'Script de conteúdo não conectado. Atualize a página.',
+    warningSlowMode: 'Este modo verifica cada perfil individualmente e pode demorar mais.',
+
+    rateLimitTitle: 'Limite de taxa atingido',
+    rateLimitDesc: 'O X está pedindo uma pausa — retomando automaticamente.',
+    rateLimitRemaining: 'restante',
+
+    cooldownLabel: 'ESPERA',
+    cooldownNormal: 'Normal',
+    cooldownSoft: 'Espera suave',
+    cooldownRateLimit: 'Limite de taxa',
+
+    sessionCompleteTitle: 'Sessão concluída',
+    sessionCompleteSubtitle: 'Modo • Finalizado',
+    startNewSession: 'Iniciar nova sessão',
+
+    reviewAsk: 'Gostando do X Unfollow Tool?',
+    reviewYes: 'Deixar uma avaliação',
+    reviewLater: 'Depois',
+    reviewNo: 'Não, obrigado',
+
+    refollowBtn: 'Seguir novamente',
+    refollowTitle: 'Seguir de novo',
+    refollowSuccess: '@{username} seguido novamente',
+    refollowError: 'Não foi possível seguir @{username}',
+    refollowedLabel: 'Seguido novamente',
+
+    tabHome: 'Início',
+    tabLogs: 'Registro',
+    tabHistory: 'Histórico',
+    tabSettings: 'Configurações',
+
+    notifPermissionDenied: 'Permissão de notificação negada',
+    notifCompleteTitle: 'Concluído!',
+    notifCompleteMsg: 'Removidos: {unfollowed}, Ignorados: {skipped}',
+
+    shortcutHint: 'Atalhos: Alt+Shift+S (Iniciar/Parar), Alt+Shift+P (Pausar)',
+
+    onboardingTitle: 'Bem-vindo ao X Unfollow Tool',
+    onboardingSubtitle: 'Limpe quem você segue — de forma inteligente, segura e 100% local.',
+    onboardingStep1Title: 'Abra x.com/following',
+    onboardingStep1Desc: 'Navegue para sua lista de seguidos no X.com no seu navegador.',
+    onboardingStep2Title: 'Escolha um modo',
+    onboardingStep2Desc: 'Escolha quem deixar de seguir: não seguidores, contas inativas ou filtro de bio.',
+    onboardingStep3Title: 'Clique em Iniciar',
+    onboardingStep3Desc: 'Clique em Iniciar — nós cuidamos do resto com segurança.',
+    onboardingDone: 'Começar',
+},
+
+// ═══════════════════════════════════════════════════════════
+// CHINESE (Simplified)
+// ═══════════════════════════════════════════════════════════
+zh: {
+    title: 'X 取消关注工具',
+    subtitle: '轻松管理您的关注列表。',
+    appName: 'X Unfollow Tool',
+    appSubtitle: '智能关注清理',
+    privacyBanner: '100% 本地 — 您的数据永远不会离开此浏览器',
+
+    modeTitle: '模式选择',
+    modeNonFollowers: '未互关',
+    modeNonFollowersDesc: '没有回关您的账号',
+    modeAll: '取消关注所有人',
+    modeAllDesc: '取消关注您关注的所有人',
+    modeInactive: '不活跃账号',
+    modeInactiveDesc: '取消关注不活跃及默认头像的账号',
+    modeBioFilter: '简介过滤',
+    modeBioFilterDesc: '按简介关键词过滤',
+    modeOveractive: '过度活跃',
+    modeOveractiveDesc: '每天发推过多的账号',
+    modeFollowAll: '关注所有人',
+    modeFollowAllDesc: '关注列表中的所有人',
+
+    sectionMode: '模式',
+    sectionConfig: '配置',
+    sectionGeneral: '常规',
+    sectionAppearance: '外观',
+    chooseModeTitle: '选择模式',
+    btnChange: '更改',
+    btnDone: '完成',
+
+    whitelistTitle: '白名单',
+    whitelistPlaceholder: '要保护的用户名（每行一个）\n\n示例：\nelonmusk\ntwitter',
+    whitelistHint: '这些用户不会被取消关注',
+    whitelistValidCount: '{valid} 个有效，{invalid} 个无效',
+    whitelistInvalid: '无效用户名：{username}',
+
+    statUnfollowed: '已取消关注',
+    statSkipped: '已跳过',
+    statScanned: '已扫描',
+    statFollowed: '已关注',
+    statsAllTime: '总计',
+    statsThisWeek: '本周',
+    statsSessions: '会话',
+    statsNonFollowerRate: '未互关比例',
+    statsTitle: '统计',
+
+    btnStart: '开始',
+    btnStartUnfollowing: '开始取消关注',
+    btnStop: '停止',
+    btnPause: '暂停',
+    btnResume: '继续',
+    btnPreview: '预览',
+    btnOpenX: '打开 X.com',
+    btnGoToProfile: '前往主页',
+
+    menuTitle: '设置',
+    menuWhitelist: '白名单',
+    menuLogs: '活动日志',
+    menuLanguage: '语言',
+    menuAbout: '关于',
+    menuHistory: '取消关注历史',
+    menuSpeed: '速度',
+    menuExport: '导出',
+    menuImport: '导入',
+    menuTheme: '主题',
+    menuStats: '统计',
+    menuRate: '评价我们',
+
+    themeDark: '深色',
+    themeLight: '浅色',
+
+    speedSlow: '慢',
+    speedNormal: '正常',
+    speedFast: '快',
+
+    inactiveThresholdLabel: '不活跃阈值',
+    inactiveDaysLabel: '不活跃期限',
+    inactive30: '30 天',
+    inactive60: '60 天',
+    inactive90: '90 天',
+    inactive180: '180 天',
+    inactive365: '1 年',
+    minFollowersLabel: '最少粉丝数',
+    minFollowersPlaceholder: '0 = 不过滤',
+
+    limitLabel: '取消关注限制',
+    limitPlaceholder: '0 = 无限制',
+    limitHint: '最大取消关注数（0 = 无限制）',
+
+    bioKeywordsLabel: '简介关键词',
+    bioKeywordsPlaceholder: 'crypto, nft, bot',
+    bioActionLabel: '操作',
+    bioActionUnfollow: '简介匹配则取消关注',
+    bioActionKeep: '简介匹配则保留',
+
+    overactiveThresholdLabel: '每日推文阈值',
+
+    demoModeLabel: '演示模式',
+    demoModeDesc: '模拟 — 不执行实际操作',
+
+    timerLabel: '定时器',
+    timerPlaceholder: '0 = 关闭',
+    timerMinutes: '分钟',
+    targetLabel: '目标主页',
+    targetPlaceholder: '用户名（空 = 自己）',
+
+    skipVerifiedLabel: '跳过认证账号',
+    notifSoundLabel: '通知声音',
+
+    historyTitle: '取消关注历史',
+    historyEmpty: '暂无历史记录',
+    historyClear: '清除历史',
+
+    exportTitle: '导出 / 导入',
+    exportSuccess: '数据已复制！',
+    exportCsvSuccess: 'CSV 已下载！',
+    exportCsv: 'CSV',
+    importSuccess: '数据已导入！',
+    importError: '无效的数据格式',
+
+    logTitle: '活动日志',
+    logStarted: '进程已启动',
+    logStopped: '进程已停止',
+    logCompleted: '进程已完成',
+    logError: '错误：{message}',
+    logStopError: '停止错误：{message}',
+    logModeNonFollowers: '模式：未互关',
+    logModeAll: '模式：所有人',
+    logModeInactive: '模式：不活跃账号',
+    logModeBioFilter: '模式：简介过滤',
+    logModeFollowAll: '模式：关注所有人',
+    logModeOveractive: '模式：过度活跃',
+    logWhitelist: '白名单：{count} 个用户',
+    logGoingToFollowing: '正在导航至 @{username}/following...',
+    logGoingToHome: '正在导航至 X.com 首页...',
+
+    statusGoToFollowing: '请前往 X.com 上您的关注列表页',
+    statusGoingToFollowing: '正在导航至关注页',
+    statusGoToProfile: '请前往某个主页',
+    statusPageError: '无法检查页面',
+    statusRunning: '运行中...',
+    statusPaused: '已暂停',
+    statusStarted: '已启动',
+    statusStopped: '已停止',
+    statusCompleted: '已完成',
+    statusStartError: '无法启动，请刷新页面。',
+    statusNotConnected: '内容脚本未连接，请刷新页面。',
+    warningSlowMode: '此模式逐一检查每个主页，可能需要更长时间。',
+
+    rateLimitTitle: '已达到速率限制',
+    rateLimitDesc: 'X 要求短暂休息 — 自动恢复中。',
+    rateLimitRemaining: '剩余',
+
+    cooldownLabel: '等待',
+    cooldownNormal: '正常',
+    cooldownSoft: '软等待',
+    cooldownRateLimit: '速率限制',
+
+    sessionCompleteTitle: '会话完成',
+    sessionCompleteSubtitle: '模式 • 已完成',
+    startNewSession: '开始新会话',
+
+    reviewAsk: '喜欢 X Unfollow Tool 吗？',
+    reviewYes: '留下评价',
+    reviewLater: '稍后',
+    reviewNo: '不了，谢谢',
+
+    refollowBtn: '重新关注',
+    refollowTitle: '再次关注',
+    refollowSuccess: '已重新关注 @{username}',
+    refollowError: '无法关注 @{username}',
+    refollowedLabel: '已重新关注',
+
+    tabHome: '主页',
+    tabLogs: '日志',
+    tabHistory: '历史',
+    tabSettings: '设置',
+
+    notifPermissionDenied: '通知权限被拒绝',
+    notifCompleteTitle: '完成！',
+    notifCompleteMsg: '已取消关注：{unfollowed}，已跳过：{skipped}',
+
+    shortcutHint: '快捷键：Alt+Shift+S（开始/停止），Alt+Shift+P（暂停）',
+
+    onboardingTitle: '欢迎使用 X Unfollow Tool',
+    onboardingSubtitle: '智能、安全、100% 本地地清理您的关注列表。',
+    onboardingStep1Title: '打开 x.com/following',
+    onboardingStep1Desc: '在浏览器中导航至您在 X.com 上的关注列表页。',
+    onboardingStep2Title: '选择模式',
+    onboardingStep2Desc: '选择要取消关注的对象：未互关、不活跃账号或简介过滤。',
+    onboardingStep3Title: '点击开始',
+    onboardingStep3Desc: '点击开始 — 我们将安全自动地处理剩余工作。',
+    onboardingDone: '开始使用',
+},
+
+}; // end translations
+
+// ═══════════════════════════════════════════════════════════
+// i18n ENGINE
+// ═══════════════════════════════════════════════════════════
 window.i18n = {
     forcedLang: null,
 
@@ -1325,20 +1820,20 @@ window.i18n = {
         if (lang.startsWith('pt')) return 'pt';
         if (lang.startsWith('es')) return 'es';
         if (lang.startsWith('zh')) return 'zh';
+        if (lang.startsWith('de')) return 'de';
+        if (lang.startsWith('fr')) return 'fr';
+        if (lang.startsWith('ar')) return 'ar';
         return 'en';
     },
 
     translations
 };
 
-// Get translation helper
 function t(key, params = {}) {
     const lang = window.i18n.getLanguage();
     let text = translations[lang]?.[key] || translations.en[key] || key;
-
     Object.keys(params).forEach(param => {
         text = text.replaceAll(`{${param}}`, params[param]);
     });
-
     return text;
 }

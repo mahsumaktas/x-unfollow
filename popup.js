@@ -147,7 +147,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Defensive: always restore native language names in the selector
     const langOptions = {
       auto: 'Auto', tr: 'Türkçe', en: 'English',
-      ja: '日本語', pt: 'Português', es: 'Español', zh: '中文'
+      es: 'Español', de: 'Deutsch', fr: 'Français', ar: 'العربية',
+      ja: '日本語', pt: 'Português', zh: '中文'
     };
     const langSelectEl = document.getElementById('langSelect');
     if (langSelectEl) {
