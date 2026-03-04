@@ -18,7 +18,7 @@ Smart bulk unfollow tool for X/Twitter. Clean up your following list with 6 diff
 | **Overactive Detection** | Find accounts tweeting 30+ times per day |
 | **Rate Limit Handling** | Auto-detects rate limits, waits 30 min, then resumes |
 | **Dark & Light Theme** | Glassmorphism UI with auto theme detection |
-| **9 Languages** | EN, TR, ES, DE, FR, AR, JA, PT, ZH |
+| **17 Languages** | EN, TR, ES, DE, FR, AR, JA, PT, ZH, ZH_TW, KO, HI, TH, ID, PL, IT, NL |
 | **Activity Log** | Track every action in real time |
 | **History & Export** | Full unfollow history with JSON/CSV export |
 | **Keyboard Shortcuts** | Alt+Shift+S (Start/Stop), Alt+Shift+P (Pause) |
@@ -49,7 +49,7 @@ See [Privacy Policy](PRIVACY_POLICY.md) for details.
 - Chrome Extension Manifest V3
 - Service Worker background script
 - Content Scripts (ISOLATED + MAIN world)
-- Custom i18n engine (9 languages, 170+ keys each)
+- Custom i18n engine (17 languages, 175+ keys each)
 - CSS Custom Properties theming
 - Zero dependencies
 
@@ -69,7 +69,7 @@ See [Privacy Policy](PRIVACY_POLICY.md) for details.
 ├── content.js             # Content script (ISOLATED world)
 ├── content-bridge.js      # Bridge script (MAIN world)
 ├── background.js          # Service worker
-├── i18n.js                # Translations (9 languages)
+├── i18n.js                # Translations (17 languages)
 ├── _locales/              # Chrome i18n manifests
 │   ├── en/messages.json
 │   ├── tr/messages.json
@@ -79,7 +79,15 @@ See [Privacy Policy](PRIVACY_POLICY.md) for details.
 │   ├── ar/messages.json
 │   ├── ja/messages.json
 │   ├── pt_BR/messages.json
-│   └── zh/messages.json
+│   ├── zh/messages.json
+│   ├── zh_TW/messages.json
+│   ├── ko/messages.json
+│   ├── hi/messages.json
+│   ├── th/messages.json
+│   ├── id/messages.json
+│   ├── pl/messages.json
+│   ├── it/messages.json
+│   └── nl/messages.json
 └── icons/                 # Extension icons
 ```
 

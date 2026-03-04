@@ -20,7 +20,7 @@
 - **Min. Follower Filter** --- Skip accounts with enough followers
 - **Rate Limit Detection** --- Automatically waits 30 minutes when rate limited, then resumes
 - **Dark & Light Theme** --- Beautiful Liquid Glass UI that matches your preference
-- **Multi-language** --- English, Türkçe, Español, Deutsch, Français, العربية, 日本語, Português, 中文
+- **Multi-language** --- 17 languages: English, Türkçe, Español, Deutsch, Français, العربية, 日本語, Português, 中文, 繁體中文, 한국어, हिन्दी, ไทย, Bahasa Indonesia, Polski, Italiano, Nederlands
 - **Activity Log** --- Track every action in real time
 - **Unfollow History** --- See who you unfollowed and when
 - **Export / Import** --- Backup and restore your settings & history
@@ -77,7 +77,7 @@ This extension is an independent tool and is not affiliated with, endorsed by, o
 - **Min. Takipci Filtresi** --- Yeterli takipcisi olan hesaplari atla
 - **Rate Limit Algilama** --- Rate limit'e takildiginda otomatik 30 dakika bekler, sonra devam eder
 - **Koyu & Acik Tema** --- Tercihinize uygun Liquid Glass arayuz
-- **Coklu Dil** --- Turkce, English, Espanol, Deutsch, Francais, العربية, 日本語, Portugues, 中文
+- **Coklu Dil** --- 17 dil: Turkce, English, Espanol, Deutsch, Francais, العربية, 日本語, Portugues, 中文, 繁體中文, 한국어, हिन्दी, ไทย, Bahasa Indonesia, Polski, Italiano, Nederlands
 - **Islem Logu** --- Tum islemleri anlik takip et
 - **Unfollow Gecmisi** --- Kimi, ne zaman cikardigini gor
 - **Disa / Ice Aktarma** --- Ayarlarini ve gecmisini yedekle
@@ -134,7 +134,7 @@ Bu uzanti bagimsiz bir aractir ve X Corp. veya Twitter Inc. ile bagli, onaylanmi
 - **最少フォロワーフィルター** --- 十分なフォロワーがいるアカウントをスキップ
 - **レート制限検出** --- レート制限時に自動で30分待機後、再開
 - **ダーク＆ライトテーマ** --- お好みに合わせたLiquid Glassデザイン
-- **多言語対応** --- 日本語, English, Türkçe, Español, Deutsch, Français, العربية, Português, 中文
+- **多言語対応** --- 17言語: 日本語, English, Türkçe, Español, Deutsch, Français, العربية, Português, 中文, 繁體中文, 한국어, हिन्दी, ไทย, Bahasa Indonesia, Polski, Italiano, Nederlands
 - **アクティビティログ** --- 全操作をリアルタイムで確認
 - **フォロー解除履歴** --- 誰をいつ解除したか記録
 - **エクスポート/インポート** --- 設定と履歴をバックアップ
@@ -190,7 +190,7 @@ A: いいえ。全処理はデバイス上で行われます。
 - **Filtro Min. Seguidores** --- Pule contas com seguidores suficientes
 - **Deteccao de Rate Limit** --- Aguarda automaticamente 30 minutos quando limitado, depois retoma
 - **Tema Escuro & Claro** --- Interface Liquid Glass que combina com sua preferencia
-- **Multi-idioma** --- Portugues, English, Turkce, Espanol, Deutsch, Francais, العربية, 日本語, 中文
+- **Multi-idioma** --- 17 idiomas: Portugues, English, Turkce, Espanol, Deutsch, Francais, العربية, 日本語, 中文, 繁體中文, 한국어, हिन्दी, ไทย, Bahasa Indonesia, Polski, Italiano, Nederlands
 - **Log de Atividades** --- Acompanhe todas as acoes em tempo real
 - **Historico de Unfollow** --- Veja quem voce removeu e quando
 - **Exportar / Importar** --- Faca backup das configuracoes e historico
@@ -247,7 +247,7 @@ Esta extensao e uma ferramenta independente e nao e afiliada, endossada ou assoc
 - **Filtro Min. Seguidores** --- Omite cuentas con suficientes seguidores
 - **Deteccion de Rate Limit** --- Espera automaticamente 30 minutos cuando esta limitado, luego reanuda
 - **Tema Oscuro y Claro** --- Interfaz Liquid Glass que se adapta a tu preferencia
-- **Multi-idioma** --- Espanol, English, Turkce, Portugues, Deutsch, Francais, العربية, 日本語, 中文
+- **Multi-idioma** --- 17 idiomas: Espanol, English, Turkce, Portugues, Deutsch, Francais, العربية, 日本語, 中文, 繁體中文, 한국어, हिन्दी, ไทย, Bahasa Indonesia, Polski, Italiano, Nederlands
 - **Registro de Actividad** --- Sigue todas las acciones en tiempo real
 - **Historial de Unfollow** --- Mira a quien dejaste de seguir y cuando
 - **Exportar / Importar** --- Haz respaldo de configuracion e historial

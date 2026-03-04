@@ -152,7 +152,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const langOptions = {
       auto: 'Auto', tr: 'Türkçe', en: 'English',
       es: 'Español', de: 'Deutsch', fr: 'Français', ar: 'العربية',
-      ja: '日本語', pt: 'Português', zh: '中文'
+      ja: '日本語', pt: 'Português', zh: '中文', zh_TW: '繁體中文',
+      ko: '한국어', hi: 'हिन्दी', th: 'ไทย', id: 'Bahasa Indonesia',
+      pl: 'Polski', it: 'Italiano', nl: 'Nederlands'
     };
     const langSelectEl = document.getElementById('langSelect');
     if (langSelectEl) {
@@ -588,7 +590,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function addLogItem(message, type = 'info', save = true) {
     const logItem = document.createElement('div');
     logItem.className = `log-item log-${type}`;
-    const localeMap = {tr:'tr-TR', en:'en-US', es:'es-ES', de:'de-DE', fr:'fr-FR', ar:'ar-SA', ja:'ja-JP', pt:'pt-BR', zh:'zh-CN'};
+    const localeMap = {tr:'tr-TR', en:'en-US', es:'es-ES', de:'de-DE', fr:'fr-FR', ar:'ar-SA', ja:'ja-JP', pt:'pt-BR', zh:'zh-CN', zh_TW:'zh-TW', ko:'ko-KR', hi:'hi-IN', th:'th-TH', id:'id-ID', pl:'pl-PL', it:'it-IT', nl:'nl-NL'};
     const currentLang = window.i18n.forcedLang || window.i18n.getLanguage();
     const timeFormat = localeMap[currentLang] || 'en-US';
     logItem.textContent = `[${new Date().toLocaleTimeString(timeFormat)}] ${message}`;
@@ -713,7 +715,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       historyArea.appendChild(empty);
       return;
     }
-    const localeMap = {tr:'tr-TR', en:'en-US', es:'es-ES', de:'de-DE', fr:'fr-FR', ar:'ar-SA', ja:'ja-JP', pt:'pt-BR', zh:'zh-CN'};
+    const localeMap = {tr:'tr-TR', en:'en-US', es:'es-ES', de:'de-DE', fr:'fr-FR', ar:'ar-SA', ja:'ja-JP', pt:'pt-BR', zh:'zh-CN', zh_TW:'zh-TW', ko:'ko-KR', hi:'hi-IN', th:'th-TH', id:'id-ID', pl:'pl-PL', it:'it-IT', nl:'nl-NL'};
     const currentLang = window.i18n.forcedLang || window.i18n.getLanguage();
     const timeFormat = localeMap[currentLang] || 'en-US';
     history.forEach((item) => {
