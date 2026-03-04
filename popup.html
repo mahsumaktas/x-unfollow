@@ -39,12 +39,12 @@
         </div>
       </div>
       
-      <div class="privacy-banner" style="width:100%;border-radius:8px;margin-bottom:24px;">
+      <div class="privacy-banner" style="width:100%;border-radius:8px;margin-bottom:24px;" data-i18n="privacyBanner">
         🔒 100% local — your data never leaves this browser
       </div>
       
       <button id="onboardingDoneBtn" class="start-btn green">
-        ▶ Get Started
+        ▶ <span data-i18n="onboardingDone">Get Started</span>
       </button>
     </div>
   </div>
@@ -60,11 +60,11 @@
         </div>
       </div>
       <button id="themeToggleBtn" class="theme-pill">
-        <span id="themeToggleIcon">☾</span> Dark
+        <span id="themeToggleIcon">☾</span> <span id="themeToggleText" data-i18n="themeDark">Dark</span>
       </button>
     </header>
     
-    <div class="privacy-banner">
+    <div class="privacy-banner" data-i18n="privacyBanner">
       🔒 100% local — your data never leaves this browser
     </div>
 
@@ -74,8 +74,8 @@
       <!-- Mode Selector Panel (Overlay) -->
       <div id="modeSelectorPanel" class="overlay-panel hidden" aria-hidden="true">
         <div class="overlay-header">
-          <span class="overlay-title">CHOOSE MODE</span>
-          <button id="modeSelectorDone" class="done-btn">✓ Done</button>
+          <span class="overlay-title" data-i18n="chooseModeTitle">CHOOSE MODE</span>
+          <button id="modeSelectorDone" class="done-btn">✓ <span data-i18n="btnDone">Done</span></button>
         </div>
         <div class="mode-list">
           <div class="mode-list-item selected" data-modevalue="non-followers">
@@ -139,7 +139,7 @@
             <span class="mode-check">✓</span>
           </div>
         </div>
-        <button id="modePanelStart" class="start-btn" style="margin-top:16px;">▶ Start Unfollowing</button>
+        <button id="modePanelStart" class="start-btn" style="margin-top:16px;">▶ <span data-i18n="btnStartUnfollowing">Start Unfollowing</span></button>
       </div>
 
       <!-- Idle View -->
@@ -147,19 +147,19 @@
         <div class="stat-grid">
           <div class="stat-box">
             <span class="stat-val accent" id="dashAllTime">0</span>
-            <span class="stat-lbl">ALL TIME</span>
+            <span class="stat-lbl" data-i18n="statsAllTime">ALL TIME</span>
           </div>
           <div class="stat-box">
             <span class="stat-val white" id="dashThisWeek">0</span>
-            <span class="stat-lbl">THIS WEEK</span>
+            <span class="stat-lbl" data-i18n="statsThisWeek">THIS WEEK</span>
           </div>
           <div class="stat-box">
             <span class="stat-val red" id="skippedCountIdle">0</span>
-            <span class="stat-lbl">SKIPPED</span>
+            <span class="stat-lbl" data-i18n="statSkipped">SKIPPED</span>
           </div>
         </div>
 
-        <div class="section-label">MODE</div>
+        <div class="section-label" data-i18n="sectionMode">MODE</div>
         <div class="mode-card" id="modeCard">
           <div class="mode-info">
             <div class="mode-icon" id="modeCardIcon">👥</div>
@@ -168,15 +168,15 @@
               <span class="mode-desc" id="modeCardDesc">Accounts that don't follow you back</span>
             </div>
           </div>
-          <button class="mode-change-btn" id="modeChangeBtn">Change</button>
+          <button class="mode-change-btn" id="modeChangeBtn" data-i18n="btnChange">Change</button>
         </div>
 
-        <button id="startBtn" class="start-btn">▶ Start Unfollowing</button>
+        <button id="startBtn" class="start-btn">▶ <span data-i18n="btnStartUnfollowing">Start Unfollowing</span></button>
 
         <div class="secondary-btns">
-          <button id="previewBtn" class="outline-btn">👁 Preview</button>
-          <button id="whitelistQuickBtn" class="outline-btn">🛡️ Whitelist</button>
-          <button id="optionsQuickBtn" class="outline-btn">⚙️ Options</button>
+          <button id="previewBtn" class="outline-btn">👁 <span data-i18n="btnPreview">Preview</span></button>
+          <button id="whitelistQuickBtn" class="outline-btn">🛡️ <span data-i18n="whitelistTitle">Whitelist</span></button>
+          <button id="optionsQuickBtn" class="outline-btn">⚙️ <span data-i18n="menuTitle">Options</span></button>
         </div>
 
         <!-- Hidden inputs for compatibility -->
@@ -219,7 +219,7 @@
           </svg>
           <div class="ring-content">
             <div class="ring-val" id="ringUnfollowed">0</div>
-            <div class="ring-label">UNFOLLOWED</div>
+            <div class="ring-label" data-i18n="statUnfollowed">UNFOLLOWED</div>
           </div>
         </div>
         
@@ -229,34 +229,34 @@
         <div class="run-stats-grid">
           <div class="stat-box">
             <span class="stat-val white" id="runScanned">0</span>
-            <span class="stat-lbl">SCANNED</span>
+            <span class="stat-lbl" data-i18n="statScanned">SCANNED</span>
           </div>
           <div class="stat-box">
             <span class="stat-val amber" id="runSkipped">0</span>
-            <span class="stat-lbl">SKIPPED</span>
+            <span class="stat-lbl" data-i18n="statSkipped">SKIPPED</span>
           </div>
           <div class="stat-box">
             <span class="stat-val red" id="cooldownValue">0s</span>
-            <span class="stat-lbl">COOLDOWN</span>
+            <span class="stat-lbl" data-i18n="cooldownLabel">COOLDOWN</span>
           </div>
         </div>
 
         <div class="run-btns" id="runningBtns">
-          <button id="pauseBtn" class="run-btn pause">|| Pause</button>
-          <button id="stopBtn" class="run-btn stop">■ Stop</button>
+          <button id="pauseBtn" class="run-btn pause">|| <span data-i18n="btnPause">Pause</span></button>
+          <button id="stopBtn" class="run-btn stop">■ <span data-i18n="btnStop">Stop</span></button>
         </div>
       </div>
 
       <!-- Rate Limit View -->
       <div id="rateLimitView" class="hidden">
         <div class="rate-limit-card">
-          <div class="rl-title">🤖 Rate limit reached</div>
-          <div class="rl-desc">X is asking for a short break — resuming automatically</div>
+          <div class="rl-title">🤖 <span data-i18n="rateLimitTitle">Rate limit reached</span></div>
+          <div class="rl-desc" data-i18n="rateLimitDesc">X is asking for a short break — resuming automatically</div>
         </div>
 
         <div class="countdown-box">
           <div class="countdown-val" id="rateLimitCountdown">00:00</div>
-          <div class="countdown-lbl">remaining</div>
+          <div class="countdown-lbl" data-i18n="rateLimitRemaining">remaining</div>
           <div class="progress-track">
             <div class="progress-fill" id="rateLimitBarFill" style="width:100%"></div>
           </div>
@@ -265,55 +265,55 @@
         <div class="run-stats-grid">
           <div class="stat-box">
             <span class="stat-val accent" id="rlUnfollowed">0</span>
-            <span class="stat-lbl">UNFOLLOWED</span>
+            <span class="stat-lbl" data-i18n="statUnfollowed">UNFOLLOWED</span>
           </div>
           <div class="stat-box">
             <span class="stat-val white" id="rlScanned">0</span>
-            <span class="stat-lbl">SCANNED</span>
+            <span class="stat-lbl" data-i18n="statScanned">SCANNED</span>
           </div>
           <div class="stat-box">
             <span class="stat-val amber" id="rlSkipped">0</span>
-            <span class="stat-lbl">SKIPPED</span>
+            <span class="stat-lbl" data-i18n="statSkipped">SKIPPED</span>
           </div>
         </div>
 
         <div class="review-card">
           <div class="review-text">
             <span class="review-icon">🦜</span>
-            <span class="review-cta">Leave a Review</span>
+            <span class="review-cta" data-i18n="reviewAsk">Leave a Review</span>
           </div>
-          <button class="review-btn" id="rlReviewBtn">Write Review</button>
+          <button class="review-btn" id="rlReviewBtn" data-i18n="reviewYes">Write Review</button>
         </div>
       </div>
 
       <!-- Session Complete View -->
       <div id="sessionCompleteView" class="hidden complete-view">
         <div class="check-circle">✓</div>
-        <div class="complete-title">Session Complete</div>
+        <div class="complete-title" data-i18n="sessionCompleteTitle">Session Complete</div>
         <div class="complete-sub" id="completeSub">Non-Followers Mode • Finished just now</div>
 
         <div class="complete-stats">
           <div class="stat-box">
             <span class="stat-val green" id="completeUnfollowed">0</span>
-            <span class="stat-lbl">UNFOLLOWED</span>
+            <span class="stat-lbl" data-i18n="statUnfollowed">UNFOLLOWED</span>
           </div>
           <div class="stat-box">
             <span class="stat-val white" id="completeScanned">0</span>
-            <span class="stat-lbl">SCANNED</span>
+            <span class="stat-lbl" data-i18n="statScanned">SCANNED</span>
           </div>
           <div class="stat-box">
             <span class="stat-val red" id="completeSkipped">0</span>
-            <span class="stat-lbl">SKIPPED</span>
+            <span class="stat-lbl" data-i18n="statSkipped">SKIPPED</span>
           </div>
         </div>
 
         <div class="complete-review-card">
-          <div style="font-size:14px;font-weight:700;color:var(--text)">Rate X Unfollow Tool</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text)" data-i18n="reviewAsk">Rate X Unfollow Tool</div>
           <div class="stars">★★★★★</div>
-          <button class="write-review-btn" id="completeReviewBtn">✈ Write a Review on Chrome Store</button>
+          <button class="write-review-btn" id="completeReviewBtn">✈ <span data-i18n="reviewYes">Write a Review on Chrome Store</span></button>
         </div>
 
-        <button id="startNewBtn" class="new-session-btn">▶ Start New Session</button>
+        <button id="startNewBtn" class="new-session-btn">▶ <span data-i18n="startNewSession">Start New Session</span></button>
       </div>
 
       <!-- Preview Modal (Legacy) -->
@@ -322,8 +322,8 @@
           <h3 id="previewTitle" style="margin-bottom:10px;">Preview</h3>
           <div id="previewList" style="flex:1;overflow-y:auto;margin-bottom:10px;font-size:12px;color:var(--text-dim);"></div>
           <div style="display:flex;gap:10px;">
-            <button id="previewCancel" class="outline-btn" style="flex:1;">Cancel</button>
-            <button id="previewConfirm" class="start-btn" style="flex:1;margin:0;font-size:14px;padding:10px;">Start</button>
+            <button id="previewCancel" class="outline-btn" style="flex:1;" data-i18n="btnStop">Cancel</button>
+            <button id="previewConfirm" class="start-btn" style="flex:1;margin:0;font-size:14px;padding:10px;" data-i18n="btnStart">Start</button>
           </div>
         </div>
       </div>
@@ -333,25 +333,25 @@
     <!-- Tab: Log -->
     <div id="tabLogContent" class="tab-content">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:8px;">
-        <span class="section-label" style="margin:0;">ACTIVITY LOG</span>
-        <button id="clearLogs" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;">CLEAR</button>
+        <span class="section-label" style="margin:0;" data-i18n="logTitle">ACTIVITY LOG</span>
+        <button id="clearLogs" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;" data-i18n="historyClear" data-i18n="historyClear">CLEAR</button>
       </div>
       <div id="logArea" class="log-area"></div>
     </div>
 
     <!-- Tab: Settings -->
     <div id="tabSettingsContent" class="tab-content">
-      <div class="section-label">GENERAL</div>
+      <div class="section-label" data-i18n="sectionGeneral">GENERAL</div>
       <div class="settings-section">
         <div class="setting-item">
-          <label class="setting-label">Theme</label>
+          <label class="setting-label" data-i18n="menuTheme">Theme</label>
           <select id="themeSelect" class="setting-select">
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
+            <option value="dark" data-i18n="themeDark">Dark</option>
+            <option value="light" data-i18n="themeLight">Light</option>
           </select>
         </div>
         <div class="setting-item">
-          <label class="setting-label">Language</label>
+          <label class="setting-label" data-i18n="menuLanguage">Language</label>
           <select id="langSelect" class="setting-select">
             <option value="auto">Auto</option>
             <option value="tr">Türkçe</option>
@@ -369,57 +369,57 @@
           <label class="checkbox-label">
             <input type="checkbox" id="skipVerifiedCheck">
             <span class="checkmark"></span>
-            Skip Verified Accounts
+            <span data-i18n="skipVerifiedLabel">Skip Verified Accounts</span>
           </label>
         </div>
         <div class="setting-item">
           <label class="checkbox-label">
             <input type="checkbox" id="notifSoundCheck">
             <span class="checkmark"></span>
-            Play Sound on Finish
+            <span data-i18n="notifSoundLabel">Play Sound on Finish</span>
           </label>
         </div>
         <div class="setting-item">
-          <label class="setting-label">Stop Timer (Minutes)</label>
-          <input type="number" id="timerInput" class="setting-input" placeholder="0 = No limit">
+          <label class="setting-label" data-i18n="timerLabel">Stop Timer (Minutes)</label>
+          <input type="number" id="timerInput" class="setting-input" data-i18n-placeholder="timerPlaceholder" placeholder="0 = No limit">
         </div>
         <div class="setting-item">
-          <label class="setting-label">Target Profile (Optional)</label>
-          <input type="text" id="targetInput" class="setting-input" placeholder="username">
+          <label class="setting-label" data-i18n="targetLabel">Target Profile (Optional)</label>
+          <input type="text" id="targetInput" class="setting-input" data-i18n-placeholder="targetPlaceholder" placeholder="username">
         </div>
       </div>
 
-      <div class="section-label">WHITELIST</div>
+      <div class="section-label" data-i18n="whitelistTitle">WHITELIST</div>
       <div class="settings-section">
-        <textarea id="whitelist" class="whitelist-input" placeholder="@username1&#10;@username2"></textarea>
+        <textarea id="whitelist" class="whitelist-input" data-i18n-placeholder="whitelistPlaceholder" placeholder="@username1&#10;@username2"></textarea>
         <p id="whitelistValidation" style="font-size:11px;margin-top:4px;color:var(--text-muted);"></p>
       </div>
       
-      <div class="section-label">DATA</div>
+      <div class="section-label" data-i18n="sectionData">DATA</div>
       <div class="settings-section">
         <div style="display:flex;gap:8px;margin-bottom:8px;">
-          <button id="exportBtn" class="outline-btn" style="flex:1;">Export JSON</button>
-          <button id="importBtn" class="outline-btn" style="flex:1;">Import JSON</button>
+          <button id="exportBtn" class="outline-btn" style="flex:1;" data-i18n="exportJsonBtn">Export JSON</button>
+          <button id="importBtn" class="outline-btn" style="flex:1;" data-i18n="importJsonBtn">Import JSON</button>
         </div>
-        <button id="exportCsvBtn" class="outline-btn" style="width:100%;">Export History (CSV)</button>
+        <button id="exportCsvBtn" class="outline-btn" style="width:100%;" data-i18n="exportCsvBtn">Export History (CSV)</button>
         <textarea id="exportImportArea" class="whitelist-input hidden"></textarea>
         <p id="exportImportStatus" style="font-size:11px;margin-top:4px;"></p>
       </div>
 
-      <div class="section-label">STATS DASHBOARD</div>
+      <div class="section-label" data-i18n="statsTitle">STATS DASHBOARD</div>
       <div class="stat-grid" style="margin-bottom:24px;">
         <div class="stat-box">
            <span class="stat-val" id="dashSessions">0</span>
-           <span class="stat-lbl">SESSIONS</span>
+           <span class="stat-lbl" data-i18n="statsSessions">SESSIONS</span>
         </div>
         <div class="stat-box">
            <span class="stat-val" id="dashNonFollowerRate">0%</span>
-           <span class="stat-lbl">RATE</span>
+           <span class="stat-lbl" data-i18n="statsRate">RATE</span>
         </div>
       </div>
       
       <div style="text-align:center;">
-        <button id="rateBtn" class="outline-btn" style="width:100%;">★ Rate Us</button>
+        <button id="rateBtn" class="outline-btn" style="width:100%;">★ <span data-i18n="menuRate">Rate Us</span></button>
         <div class="version-footer">v3.1 • 100% Local & Safe</div>
       </div>
     </div>
@@ -427,7 +427,7 @@
     <!-- Tab: History (Hidden tab content, reused structure) -->
     <div id="tabHistoryContent" class="tab-content">
        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:8px;">
-        <span class="section-label" style="margin:0;">HISTORY</span>
+        <span class="section-label" style="margin:0;" data-i18n="historyTitle">HISTORY</span>
         <button id="clearHistory" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;">CLEAR</button>
       </div>
       <div id="historyArea" class="history-area"></div>
@@ -437,15 +437,15 @@
     <nav class="tab-bar">
       <button class="tab-item active" data-tab="tabHomeContent" id="tab-home" role="tab" aria-selected="true">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        Home
+        <span data-i18n="tabHome">Home</span>
       </button>
       <button class="tab-item" data-tab="tabLogContent" id="tab-log" role="tab" aria-selected="false">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        Log
+        <span data-i18n="tabLogs">Log</span>
       </button>
       <button class="tab-item" data-tab="tabSettingsContent" id="tab-settings" role="tab" aria-selected="false">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.02 7.02 0 0 0-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54a7.468 7.468 0 0 0-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.47.47 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54a7.33 7.33 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2z"/></svg>
-        Settings
+        <span data-i18n="tabSettings">Settings</span>
       </button>
     </nav>
   </div>
