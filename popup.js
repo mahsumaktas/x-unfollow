@@ -156,6 +156,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (langOptions[opt.value]) opt.textContent = langOptions[opt.value];
       });
     }
+    // Re-render dynamic components that use t()
+    const selectedMode = document.querySelector('input[name="mode"]:checked')?.value
+      || document.querySelector('.mode-list-item.selected')?.dataset?.modevalue
+      || 'non-followers';
+    if (typeof updateModeCard === 'function') updateModeCard(selectedMode);
+    // Re-render theme toggle text
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    if (typeof updateThemeToggleIcon === 'function') updateThemeToggleIcon(currentTheme);
   }
 
   // Load saved settings
