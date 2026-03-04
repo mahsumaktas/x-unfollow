@@ -17,8 +17,8 @@ tr: {
     modeTitle: 'Mod Seçimi',
     modeNonFollowers: 'Takip Etmeyenler',
     modeNonFollowersDesc: 'Sizi takip etmeyen hesapları çıkar',
-    modeAll: 'Herkesi Çıkar',
-    modeAllDesc: 'Tüm takip ettiklerini çıkar',
+    modeAll: 'Herkesi Takipten Çıkar',
+    modeAllDesc: 'Tüm takip ettiklerini takipten çıkar',
     modeInactive: 'Pasif Hesaplar',
     modeInactiveDesc: 'Pasif ve varsayılan avatarlı hesapları çıkar',
     modeBioFilter: 'Bio Filtresi',
@@ -33,31 +33,31 @@ tr: {
     sectionConfig: 'Yapılandırma',
     sectionGeneral: 'Genel',
     sectionAppearance: 'Görünüm',
-    chooseModeTitle: 'MOD SEÇ',
+    chooseModeTitle: 'MOD SEÇİN',
     btnChange: 'Değiştir',
     btnDone: 'Tamam',
 
     // Whitelist
-    whitelistTitle: 'Whitelist',
+    whitelistTitle: 'Koruma Listesi',
     whitelistPlaceholder: 'Korunacak kullanıcı adları (her satıra bir tane)\n\nÖrnek:\nelonmusk\ntwitter',
     whitelistHint: 'Bu kullanıcılar takipten çıkarılmayacak',
     whitelistValidCount: '{valid} geçerli, {invalid} geçersiz kullanıcı',
     whitelistInvalid: 'Geçersiz kullanıcı adı: {username}',
 
     // Stats
-    statUnfollowed: 'ÇIKARILAN',
-    statSkipped: 'ATLANAN',
-    statScanned: 'TARANAN',
-    statFollowed: 'TAKİP EDİLEN',
+    statUnfollowed: 'TAKİPTEN ÇIKILDI',
+    statSkipped: 'ATLANDI',
+    statScanned: 'TARANDI',
+    statFollowed: 'TAKİP EDİLDİ',
     statsAllTime: 'TOPLAM',
     statsThisWeek: 'BU HAFTA',
     statsSessions: 'OTURUM',
     statsNonFollowerRate: 'Takip Etmeyenlerin Oranı',
-    statsTitle: 'İstatistikler',
+    statsTitle: 'İSTATİSTİKLER',
 
     // Buttons
     btnStart: 'Başlat',
-    btnStartUnfollowing: 'Takibi Bırak',
+    btnStartUnfollowing: 'Takipten Çık',
     btnStop: 'Durdur',
     btnPause: 'Durakla',
     btnResume: 'Devam Et',
@@ -67,11 +67,11 @@ tr: {
 
     // Menu
     menuTitle: 'Ayarlar',
-    menuWhitelist: 'Whitelist',
-    menuLogs: 'İşlem Logları',
+    menuWhitelist: 'Koruma Listesi',
+    menuLogs: 'Günlük',
     menuLanguage: 'Dil',
     menuAbout: 'Hakkında',
-    menuHistory: 'Unfollow Geçmişi',
+    menuHistory: 'Geçmiş',
     menuSpeed: 'Hız Ayarı',
     menuExport: 'Dışa Aktar',
     menuImport: 'İçe Aktar',
@@ -130,12 +130,12 @@ tr: {
     notifSoundLabel: 'Bildirim Sesi',
 
     // History
-    historyTitle: 'Unfollow Geçmişi',
+    historyTitle: 'Geçmiş',
     historyEmpty: 'Henüz geçmiş yok',
     historyClear: 'Geçmişi Temizle',
 
     // Export/Import
-    exportTitle: 'Dışa / İçe Aktar',
+    exportTitle: 'Veri Transferi',
     exportSuccess: 'Veriler kopyalandı!',
     exportCsvSuccess: 'CSV dosyası indirildi!',
     exportCsv: 'CSV',
@@ -143,7 +143,7 @@ tr: {
     importError: 'Geçersiz veri formatı',
 
     // Log
-    logTitle: 'İşlem Logları',
+    logTitle: 'İşlem Günlüğü',
     logStarted: 'İşlem başlatıldı',
     logStopped: 'İşlem durduruldu',
     logCompleted: 'İşlem tamamlandı',
@@ -174,7 +174,7 @@ tr: {
     warningSlowMode: 'Bu mod her profili tek tek kontrol eder, daha uzun sürebilir.',
 
     // Rate limit
-    rateLimitTitle: 'Rate limit aşıldı',
+    rateLimitTitle: 'Hız Sınırı Aşıldı',
     rateLimitDesc: 'X kısa bir mola istiyor — otomatik devam ediyor.',
     rateLimitRemaining: 'kaldı',
 
@@ -187,11 +187,11 @@ tr: {
     // Session complete
     sessionCompleteTitle: 'Oturum Tamamlandı',
     sessionCompleteSubtitle: 'Mod • Bitti',
-    startNewSession: 'Yeni Oturum Başlat',
+    startNewSession: 'Yeni Başlat',
 
     // Review
     reviewAsk: 'X Unfollow Tool işinize yarıyor mu?',
-    reviewYes: 'Değerlendirin!',
+    reviewYes: 'Puan Ver',
     reviewLater: 'Sonra',
     reviewNo: 'Hayır teşekkürler',
 
@@ -227,8 +227,8 @@ tr: {
     onboardingStep3Desc: "Başlat'a tıklayın — gerisini güvenle biz hallederiz.",
     sectionData: 'VERİ',
     statsRate: 'ORAN',
-    exportJsonBtn: 'JSON Dışa Aktar',
-    importJsonBtn: 'JSON İçe Aktar',
+    exportJsonBtn: 'Dışa Aktar (JSON)',
+    importJsonBtn: 'İçe Aktar (JSON)',
     exportCsvBtn: 'Geçmişi İndir (CSV)',
     onboardingDone: 'Hadi Başlayalım!',
 },
@@ -265,7 +265,7 @@ en: {
     btnChange: 'Change',
     btnDone: 'Done',
 
-    whitelistTitle: 'Whitelist',
+    whitelistTitle: 'Koruma Listesi',
     whitelistPlaceholder: 'Usernames to protect (one per line)\n\nExample:\nelonmusk\ntwitter',
     whitelistHint: 'These users will not be unfollowed',
     whitelistValidCount: '{valid} valid, {invalid} invalid users',
@@ -291,7 +291,7 @@ en: {
     btnGoToProfile: 'Go to Profile',
 
     menuTitle: 'Settings',
-    menuWhitelist: 'Whitelist',
+    menuWhitelist: 'Koruma Listesi',
     menuLogs: 'Activity Log',
     menuLanguage: 'Language',
     menuAbout: 'About',

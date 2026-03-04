@@ -552,6 +552,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function showRunningState() {
+    setView('runningView');
     currentlyPaused = false;
     showStatus('running', '\uD83D\uDD04', t('statusRunning'));
     updateStartButton('', true);
@@ -561,14 +562,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     const pb = document.getElementById('progressBar');
     if (ps) ps.classList.remove('hidden');
     if (pb) { pb.classList.add('indeterminate'); pb.style.width = '40%'; }
+    const meta = MODE_META[getSelectedMode()] || MODE_META['non-followers'];
+    const lbl = document.getElementById('ringModeLabel');
+    if (lbl) lbl.textContent = (t(meta.nameKey) || meta.nameKey) + ' Mode';
   }
 
   function showPausedState() {
+    setView('runningView');
     currentlyPaused = true;
     showStatus('paused', '\u23F8\uFE0F', t('statusPaused'));
     updateStartButton('', true);
     pauseBtn.querySelector('span').textContent = t('btnResume');
     pauseBtn.className = 'action-btn action-btn-primary';
+    const lbl = document.getElementById('ringModeLabel');
+    if (lbl) lbl.textContent = '⏸️ ' + t('statusPaused');
   }
 
   function addLogItem(message, type = 'info', save = true) {
@@ -983,6 +990,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       showStatus('warning', '\u23F9\uFE0F', t('statusStopped'));
       updateStartButton(t('btnStart'), false);
+      setView('idleView');
       addLog(t('logStopped'), 'warning');
       currentlyPaused = false;
       updateBadge(0);
@@ -1294,25 +1302,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       setView('idleView');
     });
   }
-
-  // Patch showRunningState to also switch view
-  const _origShowRunning = showRunningState;
-  showRunningState = function() {
-    _origShowRunning();
-    setView('runningView');
-    const meta = MODE_META[getSelectedMode()] || MODE_META['non-followers'];
-    const lbl = document.getElementById('ringModeLabel');
-    if (lbl) lbl.textContent = (t(meta.nameKey) || meta.nameKey) + ' Mode';
-  };
-
-  // Patch showPausedState to keep running view
-  const _origShowPaused = showPausedState;
-  showPausedState = function() {
-    _origShowPaused();
-    setView('runningView');
-    const lbl = document.getElementById('ringModeLabel');
-    if (lbl) lbl.textContent = '⏸ ' + t('statusPaused');
-  };
 
   // Patch updateStats to also update running view elements
   const _origUpdateStats = updateStats;
