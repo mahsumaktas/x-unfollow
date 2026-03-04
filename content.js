@@ -1256,6 +1256,10 @@
                         consecutiveErrors++;
                         if (consecutiveErrors >= 3) {
                             sendCooldownState('rateLimit');
+                            // Trigger review prompt during rate limit wait
+                            if (stats.unfollowed >= 10) {
+                                chrome.runtime.sendMessage({ type: 'rateLimitPrompt', unfollowed: stats.unfollowed }).catch(() => {});
+                            }
                             log(t('rateLimitDetected'), 'error');
                             log(t('rateLimitWaiting', { minutes: 30 }), 'warning');
                             for (let i = 30; i > 0 && isRunning && !shouldStop; i--) {

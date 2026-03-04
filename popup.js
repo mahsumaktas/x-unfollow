@@ -597,6 +597,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const REVIEW_MIN_COMPLETIONS = 3;
   const REVIEW_COOLDOWN_DAYS = 30;
 
+  async function maybeShowReviewPromptOnRateLimit(unfollowed) {
+    if (unfollowed < 10) return;
+    const data = await chrome.storage.local.get(['reviewState']);
+    const state = data.reviewState || { completions: 0, dismissed: false, lastPrompt: 0 };
+    if (state.dismissed) return;
+    const daysSinceLastPrompt = (Date.now() - (state.lastPrompt || 0)) / (1000 * 60 * 60 * 24);
+    if (state.lastPrompt && daysSinceLastPrompt < REVIEW_COOLDOWN_DAYS) return;
+    reviewPrompt.classList.remove('hidden');
+    applyTranslations();
+  }
+
   async function maybeShowReviewPrompt() {
     const data = await chrome.storage.local.get(['reviewState']);
     const state = data.reviewState || { completions: 0, dismissed: false, lastPrompt: 0 };
@@ -1081,6 +1092,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         dot.className = 'cooldown-dot cooldown-' + (message.state || 'normal');
         dot.title = t(message.state === 'rateLimit' ? 'cooldownRateLimit' : message.state === 'cooldown' ? 'cooldownSoft' : 'cooldownNormal');
       }
+    }
+    if (message.type === 'rateLimitPrompt') {
+      maybeShowReviewPromptOnRateLimit(message.unfollowed);
     }
     if (message.type === 'badgeUpdate') {
       updateBadge(message.count);
