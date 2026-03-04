@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const startBtn = document.getElementById('startBtn');
   const stopBtn = document.getElementById('stopBtn');
   const pauseBtn = document.getElementById('pauseBtn');
+  const previewBtn = document.getElementById('previewBtn');
+  const previewModal = document.getElementById('previewModal');
+  const previewCancel = document.getElementById('previewCancel');
+  const previewConfirm = document.getElementById('previewConfirm');
   const runningBtns = document.getElementById('runningBtns');
   const whitelist = document.getElementById('whitelist');
   const statusBadge = document.getElementById('statusBadge');
@@ -532,6 +536,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateStartButton('', true);
     pauseBtn.querySelector('span').textContent = t('btnPause');
     pauseBtn.className = 'action-btn action-btn-warning';
+    const ps = document.getElementById('progressSection');
+    const pb = document.getElementById('progressBar');
+    if (ps) ps.classList.remove('hidden');
+    if (pb) { pb.classList.add('indeterminate'); pb.style.width = '40%'; }
   }
 
   function showPausedState() {
@@ -802,6 +810,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     exportImportStatus.className = 'hint hint-success';
   });
 
+  // Preview button
+  if (previewBtn) {
+    previewBtn.addEventListener('click', async () => {
+      const tab = await getActiveTab();
+      if (!tab) return;
+      const previewList = document.getElementById('previewList');
+      const previewTitle = document.getElementById('previewTitle');
+      if (previewList) previewList.innerHTML = '<div class="preview-item" style="color:var(--text-secondary)">Scanning...</div>';
+      if (previewTitle) previewTitle.textContent = 'Preview';
+      if (previewModal) previewModal.classList.remove('hidden');
+      const mode = getSelectedMode();
+      const whitelistUsers = whitelist.value
+        .split('\n').map(u => u.trim().toLowerCase().replace('@', '')).filter(u => u.length > 0 && USERNAME_REGEX.test(u));
+      try {
+        await chrome.tabs.sendMessage(tab.id, {
+          action: 'preview', mode, whitelist: whitelistUsers,
+          lang: window.i18n.forcedLang || window.i18n.getLanguage()
+        });
+      } catch (e) {
+        if (previewModal) previewModal.classList.add('hidden');
+        addLog('Preview failed: ' + e.message, 'error');
+      }
+    });
+  }
+  if (previewCancel) {
+    previewCancel.addEventListener('click', () => { if (previewModal) previewModal.classList.add('hidden'); });
+  }
+  if (previewConfirm) {
+    previewConfirm.addEventListener('click', () => {
+      if (previewModal) previewModal.classList.add('hidden');
+      startBtn.click();
+    });
+  }
+
   // Start button
   startBtn.addEventListener('click', async () => {
     const targetUser = targetInput.value.trim().replace('@', '');
@@ -974,12 +1016,58 @@ document.addEventListener('DOMContentLoaded', async () => {
       addLog(t('logCompleted'), 'success');
       currentlyPaused = false;
       updateBadge(0);
+      const ps = document.getElementById('progressSection');
+      if (ps) ps.classList.add('hidden');
+      const pb = document.getElementById('progressBar');
+      if (pb) { pb.style.width = '0%'; pb.classList.remove('indeterminate'); }
       const currentStats = {
         unfollowed: parseInt(unfollowedCount.textContent) || 0,
         scanned: parseInt(scannedCount.textContent) || 0
       };
       updateCumulativeStats(currentStats);
       maybeShowReviewPrompt();
+    }
+    if (message.type === 'progress') {
+      const progressSection = document.getElementById('progressSection');
+      const progressBar = document.getElementById('progressBar');
+      const progressEta = document.getElementById('progressEta');
+      if (progressSection) progressSection.classList.remove('hidden');
+      if (progressBar && progressEta) {
+        if (message.total > 0) {
+          const pct = Math.min(100, Math.round((message.unfollowed / message.total) * 100));
+          progressBar.classList.remove('indeterminate');
+          progressBar.style.width = pct + '%';
+          const rate = message.elapsed > 0 ? message.unfollowed / (message.elapsed / 1000) : 0;
+          if (rate > 0) {
+            const etaSec = Math.round((message.total - message.unfollowed) / rate);
+            const etaMin = Math.floor(etaSec / 60);
+            const etaSecRem = etaSec % 60;
+            progressEta.textContent = `${pct}% — ~${etaMin}m ${etaSecRem}s remaining`;
+          } else {
+            progressEta.textContent = `${pct}%`;
+          }
+        } else {
+          progressBar.classList.add('indeterminate');
+          progressBar.style.width = '40%';
+          progressEta.textContent = `${message.unfollowed} unfollowed`;
+        }
+      }
+    }
+    if (message.type === 'previewResult') {
+      const previewList = document.getElementById('previewList');
+      const previewTitle = document.getElementById('previewTitle');
+      const users = message.users || [];
+      if (previewTitle) {
+        const suffix = message.estimated ? '~' : '';
+        previewTitle.textContent = `Preview (${suffix}${users.length} users)`;
+      }
+      if (previewList) {
+        if (users.length === 0) {
+          previewList.innerHTML = '<div class="preview-item">No users would be unfollowed</div>';
+        } else {
+          previewList.innerHTML = users.map(u => `<div class="preview-item">@${u}</div>`).join('');
+        }
+      }
     }
     if (message.type === 'error') {
       showStatus('error', '\u274C', message.text);

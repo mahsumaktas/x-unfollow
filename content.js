@@ -967,13 +967,23 @@
             return { action: 'followed', username };
         }
 
-        // Bio-filter mode - extract bio from DOM (no profile fetch needed)
+        // Bio-filter mode - fetch real bio via profile API
         if (currentMode === 'bio-filter') {
-            if (skipVerified && isVerifiedInCell(userCell)) {
+            log(t('fetchingProfile', { username }), 'info');
+            const profile = await fetchUserProfile(username, userCell);
+            await sleep(getDelay(PROFILE_FETCH_DELAY));
+
+            if (!profile) {
+                log(t('profileUnavailable', { username }), 'warning');
+                return { action: 'skip', reason: 'profile-unavailable' };
+            }
+
+            if (skipVerified && profile.verified) {
                 log(t('verifiedSkip', { username }), 'info');
                 return { action: 'skip', reason: 'verified' };
             }
-            const bioText = extractBioFromCell(userCell);
+
+            const bioText = profile.bio || '';
             const bioLower = bioText.toLowerCase();
             const hasKeyword = bioKeywords.length > 0 && bioKeywords.some(kw => bioLower.includes(kw));
 
@@ -1125,6 +1135,8 @@
     async function runUnfollowLoop() {
         sendCooldownState('normal');
         softCooldownCounter = 0;
+        const startTime = Date.now();
+        const totalEstimate = unfollowLimit > 0 ? unfollowLimit : 0;
         log(t('started'), 'success');
         let modeName = t('modeAll');
         if (currentMode === 'non-followers') modeName = t('modeNonFollowers');
@@ -1205,6 +1217,14 @@
                     }
                     sendStats();
                     updateBadge();
+
+                    // Send progress update
+                    chrome.runtime.sendMessage({
+                        type: 'progress',
+                        unfollowed: stats.unfollowed,
+                        total: totalEstimate,
+                        elapsed: Date.now() - startTime
+                    }).catch(() => { });
 
                     // Periodic crash recovery save
                     if (stats.unfollowed % STATS_SAVE_INTERVAL === 0) {
@@ -1434,6 +1454,30 @@
             } else {
                 sendResponse({ success: true, alreadyRunning: true });
             }
+        }
+
+        if (message.action === 'preview') {
+            const previewWhitelist = (message.whitelist || []).map(u => u.toLowerCase().replace('@', ''));
+            const previewMode = message.mode || 'non-followers';
+            const userCells = document.querySelectorAll(SELECTORS.userCell);
+            const wouldUnfollow = [];
+            for (const userCell of userCells) {
+                if (wouldUnfollow.length >= 50) break;
+                const username = getUsername(userCell);
+                if (!username) continue;
+                if (previewWhitelist.includes(username.toLowerCase())) continue;
+                if (previewMode === 'non-followers') {
+                    if (userFollowsBack(userCell)) continue;
+                }
+                wouldUnfollow.push(username);
+            }
+            const isEstimated = ['inactive', 'overactive', 'bio-filter'].includes(previewMode);
+            chrome.runtime.sendMessage({
+                type: 'previewResult',
+                users: wouldUnfollow,
+                estimated: isEstimated
+            }).catch(() => {});
+            sendResponse({ success: true });
         }
 
         return true;

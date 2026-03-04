@@ -185,6 +185,14 @@
         </div>
       </div>
 
+      <!-- Progress Bar -->
+      <div id="progressSection" class="progress-section hidden">
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width:0%"></div>
+        </div>
+        <div id="progressEta" class="progress-eta"></div>
+      </div>
+
       <!-- Action Buttons -->
       <div class="action-area">
         <button id="startBtn" class="action-btn action-btn-primary">
@@ -192,6 +200,9 @@
             <path d="M8 5v14l11-7z" />
           </svg>
           <span data-i18n="btnStart">Start</span>
+        </button>
+        <button id="previewBtn" class="action-btn action-btn-secondary" style="margin-top:6px;">
+          <span data-i18n="btnPreview">Preview</span>
         </button>
         <div id="runningBtns" class="running-btns hidden">
           <button id="pauseBtn" class="action-btn action-btn-warning">
@@ -217,6 +228,18 @@
           <button id="reviewYes" class="review-btn review-btn-yes" data-i18n="reviewYes">Yes, rate it!</button>
           <button id="reviewLater" class="review-btn review-btn-later" data-i18n="reviewLater">Later</button>
           <button id="reviewNo" class="review-btn review-btn-no" data-i18n="reviewNo">No thanks</button>
+        </div>
+      </div>
+
+      <!-- Preview Modal -->
+      <div id="previewModal" class="preview-modal hidden" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+        <div class="preview-modal-content">
+          <h3 id="previewTitle" data-i18n="previewTitle">Preview</h3>
+          <div id="previewList" class="preview-list"></div>
+          <div class="preview-actions">
+            <button id="previewCancel" class="action-btn action-btn-secondary"><span data-i18n="previewCancel">Cancel</span></button>
+            <button id="previewConfirm" class="action-btn action-btn-danger"><span data-i18n="previewConfirm">Start Anyway</span></button>
+          </div>
         </div>
       </div>
     </div>
