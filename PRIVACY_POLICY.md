@@ -1,6 +1,6 @@
 # Privacy Policy - X Unfollow Tool
 
-**Last Updated:** February 16, 2026
+**Last Updated:** March 5, 2026
 
 ## Overview
 
