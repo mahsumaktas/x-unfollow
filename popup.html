@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X Unfollow Tool</title>
   <link rel="stylesheet" href="popup.css">
   <script>
-    // Early theme init — prevent flash of wrong theme
     try {
       chrome.storage.local.get(['theme'], function(r) {
         if (r && r.theme) {
@@ -17,432 +15,428 @@
     } catch(e) {}
   </script>
 </head>
-
 <body>
-  <!-- Onboarding Overlay -->
-  <div id="onboardingOverlay" class="onboarding-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
-    <div class="onboarding-card">
-      <h1 class="onboarding-title" id="onboardingTitle" data-i18n="onboardingTitle">Welcome to X Unfollow Tool</h1>
+
+  <!-- Onboarding Overlay (v3.1) -->
+  <div id="onboardingOverlay" class="onboarding-overlay hidden" role="dialog" aria-modal="true">
+    <div class="onboarding-content">
+      <div class="logo-square" style="width:48px;height:48px;font-size:24px;margin-bottom:16px;">𝕏</div>
+      <h1 class="header-title" style="font-size:20px;text-align:center;margin-bottom:8px;">X Unfollow Tool</h1>
+      <p class="header-subtitle" style="text-align:center;max-width:240px;line-height:1.4;">Clean up who you follow — intelligently, safely, and 100% locally.</p>
+      
       <div class="onboarding-steps">
-        <div class="onboarding-step">
-          <span class="onboarding-step-icon">&#x1F3AF;</span>
-          <h3 data-i18n="onboardingStep1Title">Choose a Mode</h3>
-          <p data-i18n="onboardingStep1Desc">Select who to unfollow: non-followers, inactive accounts, or use bio filters.</p>
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-text">Open <strong>x.com/following</strong> in your browser</div>
         </div>
-        <div class="onboarding-step">
-          <span class="onboarding-step-icon">&#x1F6E1;&#xFE0F;</span>
-          <h3 data-i18n="onboardingStep2Title">Set Your Whitelist</h3>
-          <p data-i18n="onboardingStep2Desc">Add usernames you want to protect from being unfollowed.</p>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-text">Pick a mode — who should be unfollowed</div>
         </div>
-        <div class="onboarding-step">
-          <span class="onboarding-step-icon">&#x1F680;</span>
-          <h3 data-i18n="onboardingStep3Title">Start the Process</h3>
-          <p data-i18n="onboardingStep3Desc">Go to your following page on X.com and click Start.</p>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-text">Hit <strong>Start</strong> — we handle the rest ✓</div>
         </div>
       </div>
-      <button id="onboardingDoneBtn" class="onboarding-btn" data-i18n="onboardingDone">Got it!</button>
+      
+      <div class="privacy-banner" style="width:100%;border-radius:8px;margin-bottom:24px;">
+        🔒 100% local — your data never leaves this browser
+      </div>
+      
+      <button id="onboardingDoneBtn" class="start-btn green">
+        ▶ Get Started
+      </button>
     </div>
   </div>
 
   <div class="app">
     <!-- Header -->
     <header class="header">
-      <div class="header-content">
-        <div class="logo">
-          <span class="logo-icon">&Xopf;</span>
-          <span class="logo-text" data-i18n="title">Unfollow Tool</span>
-        </div>
-        <div class="header-actions">
-          <button id="themeToggleBtn" class="icon-btn" aria-label="Toggle theme">
-            <svg id="themeToggleIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
-            </svg>
-          </button>
+      <div class="header-left">
+        <div class="logo-square">𝕏</div>
+        <div class="header-titles">
+          <div class="header-title" data-i18n="title">X Unfollow Tool</div>
+          <div class="header-subtitle">v3.1 • Safe Mode</div>
         </div>
       </div>
+      <button id="themeToggleBtn" class="theme-pill">
+        <span id="themeToggleIcon">☾</span> Dark
+      </button>
     </header>
+    
+    <div class="privacy-banner">
+      🔒 100% local — your data never leaves this browser
+    </div>
 
     <!-- Tab: Home -->
-    <div id="tabHomeContent" class="tab-content active" role="tabpanel" aria-labelledby="tab-home">
-      <!-- Status Badge -->
-      <div id="statusBadge" class="status-badge hidden" role="status" aria-live="polite">
-        <span id="cooldownDot" class="cooldown-dot cooldown-normal"></span>
-        <span id="statusIcon"></span>
-        <span id="statusText"></span>
+    <div id="tabHomeContent" class="tab-content active">
+      
+      <!-- Mode Selector Panel (Overlay) -->
+      <div id="modeSelectorPanel" class="overlay-panel hidden" aria-hidden="true">
+        <div class="overlay-header">
+          <span class="overlay-title">CHOOSE MODE</span>
+          <button id="modeSelectorDone" class="done-btn">✓ Done</button>
+        </div>
+        <div class="mode-list">
+          <div class="mode-list-item selected" data-modevalue="non-followers">
+            <div class="mode-item-left">
+              <span class="mode-item-icon">👥</span>
+              <div class="mode-item-info">
+                <span class="mode-item-name" data-i18n="modeNonFollowers">Non-Followers</span>
+                <span class="mode-item-desc" data-i18n="modeNonFollowersDesc">Accounts that don't follow you back</span>
+              </div>
+            </div>
+            <span class="mode-check">✓</span>
+          </div>
+          <div class="mode-list-item" data-modevalue="inactive">
+            <div class="mode-item-left">
+              <span class="mode-item-icon">⏰</span>
+              <div class="mode-item-info">
+                <span class="mode-item-name" data-i18n="modeInactive">Inactive</span>
+                <span class="mode-item-desc" data-i18n="modeInactiveDesc">Inactive in the last N days</span>
+              </div>
+            </div>
+            <span class="mode-check">✓</span>
+          </div>
+          <div class="mode-list-item" data-modevalue="bio-filter">
+            <div class="mode-item-left">
+              <span class="mode-item-icon">🌱</span>
+              <div class="mode-item-info">
+                <span class="mode-item-name" data-i18n="modeBioFilter">Bio Filter</span>
+                <span class="mode-item-desc" data-i18n="modeBioFilterDesc">Match keywords in user bio</span>
+              </div>
+            </div>
+            <span class="mode-check">✓</span>
+          </div>
+          <div class="mode-list-item" data-modevalue="overactive">
+            <div class="mode-item-left">
+              <span class="mode-item-icon">⚡</span>
+              <div class="mode-item-info">
+                <span class="mode-item-name" data-i18n="modeOveractive">Overactive</span>
+                <span class="mode-item-desc" data-i18n="modeOveractiveDesc">Tweets more than 30+ per day</span>
+              </div>
+            </div>
+            <span class="mode-check">✓</span>
+          </div>
+          <div class="mode-list-item" data-modevalue="all">
+            <div class="mode-item-left">
+              <span class="mode-item-icon">👤</span>
+              <div class="mode-item-info">
+                <span class="mode-item-name" data-i18n="modeAll">Everyone</span>
+                <span class="mode-item-desc" data-i18n="modeAllDesc">Unfollow all (use whitelist)</span>
+              </div>
+            </div>
+            <span class="mode-check">✓</span>
+          </div>
+          <div class="mode-list-item" data-modevalue="follow-all">
+            <div class="mode-item-left">
+              <span class="mode-item-icon">➕</span>
+              <div class="mode-item-info">
+                <span class="mode-item-name" data-i18n="modeFollowAll">Follow All</span>
+                <span class="mode-item-desc" data-i18n="modeFollowAllDesc">Follow everyone on the list</span>
+              </div>
+            </div>
+            <span class="mode-check">✓</span>
+          </div>
+        </div>
+        <button id="modePanelStart" class="start-btn" style="margin-top:16px;">▶ Start Unfollowing</button>
       </div>
 
-      <!-- Mode Selection -->
-      <div class="section-group">
-        <h2 class="section-title" id="mode-section-title" data-i18n="sectionMode">Mode</h2>
-        <div class="mode-pills" role="radiogroup" aria-labelledby="mode-section-title">
-          <label class="mode-pill" data-mode="non-followers">
-            <input type="radio" name="mode" value="non-followers" checked>
-            <span class="pill-content">&#x1F464; <span data-i18n="modeNonFollowers">Non-Followers</span></span>
-          </label>
-          <label class="mode-pill" data-mode="all">
-            <input type="radio" name="mode" value="all">
-            <span class="pill-content">&#x1F465; <span data-i18n="modeAll">Everyone</span></span>
-          </label>
-          <label class="mode-pill" data-mode="inactive">
-            <input type="radio" name="mode" value="inactive">
-            <span class="pill-content">&#x23F0; <span data-i18n="modeInactive">Inactive</span></span>
-          </label>
-          <label class="mode-pill" data-mode="overactive">
-            <input type="radio" name="mode" value="overactive">
-            <span class="pill-content">&#x1F4E2; <span data-i18n="modeOveractive">Overactive</span></span>
-          </label>
-          <label class="mode-pill" data-mode="bio-filter">
-            <input type="radio" name="mode" value="bio-filter">
-            <span class="pill-content">&#x1F50D; <span data-i18n="modeBioFilter">Bio Filter</span></span>
-          </label>
-          <label class="mode-pill" data-mode="follow-all">
-            <input type="radio" name="mode" value="follow-all">
-            <span class="pill-content">&#x2795; <span data-i18n="modeFollowAll">Follow All</span></span>
-          </label>
-        </div>
-
-        <!-- Inactive Filter Settings -->
-        <div class="settings-row filter-row" id="inactiveSettings">
-          <div class="setting-item">
-            <label class="setting-label" for="inactiveDaysSelect" data-i18n="inactiveDaysLabel">Inactive Period</label>
-            <select id="inactiveDaysSelect" class="setting-select">
-              <option value="30" data-i18n="inactive30">30 days</option>
-              <option value="60" data-i18n="inactive60">60 days</option>
-              <option value="90" selected data-i18n="inactive90">90 days</option>
-              <option value="180" data-i18n="inactive180">180 days</option>
-              <option value="365" data-i18n="inactive365">1 year</option>
-            </select>
+      <!-- Idle View -->
+      <div id="idleView">
+        <div class="stat-grid">
+          <div class="stat-box">
+            <span class="stat-val accent" id="dashAllTime">0</span>
+            <span class="stat-lbl">ALL TIME</span>
           </div>
-          <div class="setting-item">
-            <label class="setting-label" for="minFollowersInput" data-i18n="minFollowersLabel">Min. Followers</label>
-            <input type="number" id="minFollowersInput" class="setting-input" min="0" value="0"
-              data-i18n-placeholder="minFollowersPlaceholder">
+          <div class="stat-box">
+            <span class="stat-val white" id="dashThisWeek">0</span>
+            <span class="stat-lbl">THIS WEEK</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val red" id="skippedCountIdle">0</span>
+            <span class="stat-lbl">SKIPPED</span>
           </div>
         </div>
 
-        <!-- Bio Filter Settings -->
-        <div class="settings-row filter-row" id="bioSettings">
-          <div class="setting-item" style="flex:1">
-            <label class="setting-label" for="bioKeywordsInput" data-i18n="bioKeywordsLabel">Bio Keywords</label>
-            <input type="text" id="bioKeywordsInput" class="setting-input"
-              data-i18n-placeholder="bioKeywordsPlaceholder">
+        <div class="section-label">MODE</div>
+        <div class="mode-card" id="modeCard">
+          <div class="mode-info">
+            <div class="mode-icon" id="modeCardIcon">👥</div>
+            <div class="mode-text">
+              <span class="mode-name" id="modeCardName">Non-Followers</span>
+              <span class="mode-desc" id="modeCardDesc">Accounts that don't follow you back</span>
+            </div>
           </div>
-        </div>
-        <div class="settings-row filter-row" id="bioActionSettings">
-          <div class="setting-item">
-            <label class="setting-label" for="bioActionSelect" data-i18n="bioActionLabel">Action</label>
-            <select id="bioActionSelect" class="setting-select">
-              <option value="unfollow" data-i18n="bioActionUnfollow">Unfollow if in bio</option>
-              <option value="keep" data-i18n="bioActionKeep">Keep if in bio</option>
-            </select>
-          </div>
+          <button class="mode-change-btn" id="modeChangeBtn">Change</button>
         </div>
 
-        <!-- Overactive Filter Settings -->
-        <div class="settings-row filter-row" id="overactiveSettings">
-          <div class="setting-item">
-            <label class="setting-label" for="overactiveThresholdInput" data-i18n="overactiveThresholdLabel">Daily Tweet Threshold</label>
-            <input type="number" id="overactiveThresholdInput" class="setting-input" min="1" value="50">
+        <button id="startBtn" class="start-btn">▶ Start Unfollowing</button>
+
+        <div class="secondary-btns">
+          <button id="previewBtn" class="outline-btn">👁 Preview</button>
+          <button id="whitelistQuickBtn" class="outline-btn">🛡️ Whitelist</button>
+          <button id="optionsQuickBtn" class="outline-btn">⚙️ Options</button>
+        </div>
+
+        <!-- Hidden inputs for compatibility -->
+        <div class="hidden">
+          <input type="radio" name="mode" value="non-followers">
+          <input type="radio" name="mode" value="all">
+          <input type="radio" name="mode" value="inactive">
+          <input type="radio" name="mode" value="overactive">
+          <input type="radio" name="mode" value="bio-filter">
+          <input type="radio" name="mode" value="follow-all">
+          
+          <div id="inactiveSettings"><input id="inactiveDaysSelect"><input id="minFollowersInput"></div>
+          <div id="bioSettings"><input id="bioKeywordsInput"></div>
+          <div id="bioActionSettings"><select id="bioActionSelect"></select></div>
+          <div id="overactiveSettings"><input id="overactiveThresholdInput"></div>
+          
+          <select id="speedSelect"><option value="1">1</option></select>
+          <input id="limitInput" value="0">
+          <input type="checkbox" id="demoModeCheck">
+          
+          <div id="statusBadge"></div>
+          <span id="unfollowedCount">0</span>
+          <span id="skippedCount">0</span>
+          <span id="scannedCount">0</span>
+          <span id="followedCount">0</span>
+          <div id="followedStat"></div>
+          <div id="reviewPrompt">
+             <button id="reviewYes"></button><button id="reviewLater"></button><button id="reviewNo"></button>
           </div>
+          <div id="progressSection"><div id="progressBar"></div><div id="progressEta"></div></div>
         </div>
       </div>
 
-      <!-- Configuration -->
-      <div class="section-group">
-        <div class="settings-row">
-          <div class="setting-item">
-            <label class="setting-label" for="speedSelect" data-i18n="menuSpeed">Speed</label>
-            <select id="speedSelect" class="setting-select">
-              <option value="2" data-i18n="speedSlow">Slow</option>
-              <option value="1" selected data-i18n="speedNormal">Normal</option>
-              <option value="0.5" data-i18n="speedFast">Fast</option>
-            </select>
-          </div>
-          <div class="setting-item">
-            <label class="setting-label" for="limitInput" data-i18n="limitLabel">Limit</label>
-            <input type="number" id="limitInput" class="setting-input" min="0" value="0"
-              data-i18n-placeholder="limitPlaceholder">
-          </div>
-        </div>
-        <div class="settings-row">
-          <div class="setting-item setting-item-check">
-            <label class="checkbox-label">
-              <input type="checkbox" id="demoModeCheck">
-              <span class="checkmark"></span>
-              <span data-i18n="demoModeLabel">Demo Mode</span>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stats Row -->
-      <div class="stats-row">
-        <div class="stat">
-          <span class="stat-value" id="unfollowedCount">0</span>
-          <span class="stat-label" data-i18n="statUnfollowed">Unfollowed</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="skippedCount">0</span>
-          <span class="stat-label" data-i18n="statSkipped">Skipped</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="scannedCount">0</span>
-          <span class="stat-label" data-i18n="statScanned">Scanned</span>
-        </div>
-        <div class="stat stat-followed hidden" id="followedStat">
-          <span class="stat-value" id="followedCount">0</span>
-          <span class="stat-label" data-i18n="statFollowed">Followed</span>
-        </div>
-      </div>
-
-      <!-- Progress Bar -->
-      <div id="progressSection" class="progress-section hidden">
-        <div class="progress-bar-container">
-          <div id="progressBar" class="progress-bar" style="width:0%"></div>
-        </div>
-        <div id="progressEta" class="progress-eta"></div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="action-area">
-        <button id="startBtn" class="action-btn action-btn-primary">
-          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M8 5v14l11-7z" />
+      <!-- Running View -->
+      <div id="runningView" class="hidden running-view">
+        <div class="ring-container">
+          <svg class="ring-svg" viewBox="0 0 120 120">
+            <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-progress" id="ringProgress" cx="60" cy="60" r="52"></circle>
           </svg>
-          <span data-i18n="btnStart">Start</span>
-        </button>
-        <button id="previewBtn" class="action-btn action-btn-secondary" style="margin-top:6px;">
-          <span data-i18n="btnPreview">Preview</span>
-        </button>
-        <div id="runningBtns" class="running-btns hidden">
-          <button id="pauseBtn" class="action-btn action-btn-warning">
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <rect x="6" y="4" width="4" height="16" rx="1" />
-              <rect x="14" y="4" width="4" height="16" rx="1" />
-            </svg>
-            <span data-i18n="btnPause">Pause</span>
-          </button>
-          <button id="stopBtn" class="action-btn action-btn-danger">
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <rect x="6" y="6" width="12" height="12" rx="1" />
-            </svg>
-            <span data-i18n="btnStop">Stop</span>
-          </button>
+          <div class="ring-content">
+            <div class="ring-val" id="ringUnfollowed">0</div>
+            <div class="ring-label">UNFOLLOWED</div>
+          </div>
+        </div>
+        
+        <div class="running-mode-label" id="ringModeLabel">Non-Followers Mode</div>
+        <div class="running-status-text" id="ringProgressText">Running safe algorithm...</div>
+
+        <div class="run-stats-grid">
+          <div class="stat-box">
+            <span class="stat-val white" id="runScanned">0</span>
+            <span class="stat-lbl">SCANNED</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val amber" id="runSkipped">0</span>
+            <span class="stat-lbl">SKIPPED</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val red" id="cooldownValue">0s</span>
+            <span class="stat-lbl">COOLDOWN</span>
+          </div>
+        </div>
+
+        <div class="run-btns" id="runningBtns">
+          <button id="pauseBtn" class="run-btn pause">|| Pause</button>
+          <button id="stopBtn" class="run-btn stop">■ Stop</button>
         </div>
       </div>
 
-      <!-- Review Prompt -->
-      <div id="reviewPrompt" class="review-prompt hidden" role="alert">
-        <span class="review-prompt-text" data-i18n="reviewAsk">Enjoying XUnfollow?</span>
-        <div class="review-prompt-actions">
-          <button id="reviewYes" class="review-btn review-btn-yes" data-i18n="reviewYes">Yes, rate it!</button>
-          <button id="reviewLater" class="review-btn review-btn-later" data-i18n="reviewLater">Later</button>
-          <button id="reviewNo" class="review-btn review-btn-no" data-i18n="reviewNo">No thanks</button>
+      <!-- Rate Limit View -->
+      <div id="rateLimitView" class="hidden">
+        <div class="rate-limit-card">
+          <div class="rl-title">🤖 Rate limit reached</div>
+          <div class="rl-desc">X is asking for a short break — resuming automatically</div>
+        </div>
+
+        <div class="countdown-box">
+          <div class="countdown-val" id="rateLimitCountdown">00:00</div>
+          <div class="countdown-lbl">remaining</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="rateLimitBarFill" style="width:100%"></div>
+          </div>
+        </div>
+
+        <div class="run-stats-grid">
+          <div class="stat-box">
+            <span class="stat-val accent" id="rlUnfollowed">0</span>
+            <span class="stat-lbl">UNFOLLOWED</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val white" id="rlScanned">0</span>
+            <span class="stat-lbl">SCANNED</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val amber" id="rlSkipped">0</span>
+            <span class="stat-lbl">SKIPPED</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-text">
+            <span class="review-icon">🦜</span>
+            <span class="review-cta">Leave a Review</span>
+          </div>
+          <button class="review-btn" id="rlReviewBtn">Write Review</button>
         </div>
       </div>
 
-      <!-- Preview Modal -->
-      <div id="previewModal" class="preview-modal hidden" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
-        <div class="preview-modal-content">
-          <h3 id="previewTitle" data-i18n="previewTitle">Preview</h3>
-          <div id="previewList" class="preview-list"></div>
-          <div class="preview-actions">
-            <button id="previewCancel" class="action-btn action-btn-secondary"><span data-i18n="previewCancel">Cancel</span></button>
-            <button id="previewConfirm" class="action-btn action-btn-danger"><span data-i18n="previewConfirm">Start Anyway</span></button>
+      <!-- Session Complete View -->
+      <div id="sessionCompleteView" class="hidden complete-view">
+        <div class="check-circle">✓</div>
+        <div class="complete-title">Session Complete</div>
+        <div class="complete-sub" id="completeSub">Non-Followers Mode • Finished just now</div>
+
+        <div class="complete-stats">
+          <div class="stat-box">
+            <span class="stat-val green" id="completeUnfollowed">0</span>
+            <span class="stat-lbl">UNFOLLOWED</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val white" id="completeScanned">0</span>
+            <span class="stat-lbl">SCANNED</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val red" id="completeSkipped">0</span>
+            <span class="stat-lbl">SKIPPED</span>
+          </div>
+        </div>
+
+        <div class="complete-review-card">
+          <div style="font-size:14px;font-weight:700;color:var(--text)">Rate X Unfollow Tool</div>
+          <div class="stars">★★★★★</div>
+          <button class="write-review-btn" id="completeReviewBtn">✈ Write a Review on Chrome Store</button>
+        </div>
+
+        <button id="startNewBtn" class="new-session-btn">▶ Start New Session</button>
+      </div>
+
+      <!-- Preview Modal (Legacy) -->
+      <div id="previewModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;padding:20px;display:flex;align-items:center;justify-content:center;">
+        <div style="background:var(--surface);padding:20px;border-radius:16px;width:100%;max-height:400px;display:flex;flex-direction:column;">
+          <h3 id="previewTitle" style="margin-bottom:10px;">Preview</h3>
+          <div id="previewList" style="flex:1;overflow-y:auto;margin-bottom:10px;font-size:12px;color:var(--text-dim);"></div>
+          <div style="display:flex;gap:10px;">
+            <button id="previewCancel" class="outline-btn" style="flex:1;">Cancel</button>
+            <button id="previewConfirm" class="start-btn" style="flex:1;margin:0;font-size:14px;padding:10px;">Start</button>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Tab: Log -->
-    <div id="tabLogContent" class="tab-content" role="tabpanel" aria-labelledby="tab-log">
-      <div class="tab-content-header">
-        <span data-i18n="logTitle">Activity Log</span>
-        <button id="clearLogs" class="icon-btn" title="Clear logs" aria-label="Clear all logs">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-          </svg>
-        </button>
+    <div id="tabLogContent" class="tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:8px;">
+        <span class="section-label" style="margin:0;">ACTIVITY LOG</span>
+        <button id="clearLogs" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;">CLEAR</button>
       </div>
-      <div id="logArea" class="log-area" role="log" aria-live="polite"></div>
-    </div>
-
-    <!-- Tab: History -->
-    <div id="tabHistoryContent" class="tab-content" role="tabpanel" aria-labelledby="tab-history">
-      <div class="tab-content-header">
-        <span data-i18n="historyTitle">Unfollow History</span>
-        <button id="clearHistory" class="icon-btn" title="Clear history" aria-label="Clear all history">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-          </svg>
-        </button>
-      </div>
-      <div id="historyArea" class="log-area"></div>
+      <div id="logArea" class="log-area"></div>
     </div>
 
     <!-- Tab: Settings -->
-    <div id="tabSettingsContent" class="tab-content" role="tabpanel" aria-labelledby="tab-settings">
-      <!-- General -->
+    <div id="tabSettingsContent" class="tab-content">
+      <div class="section-label">GENERAL</div>
       <div class="settings-section">
-        <h2 class="section-title" data-i18n="sectionGeneral">General</h2>
-        <div class="settings-row">
-          <div class="setting-item setting-item-check">
-            <label class="checkbox-label">
-              <input type="checkbox" id="skipVerifiedCheck">
-              <span class="checkmark"></span>
-              <span data-i18n="skipVerifiedLabel">Skip Verified</span>
-            </label>
-          </div>
-          <div class="setting-item setting-item-check">
-            <label class="checkbox-label">
-              <input type="checkbox" id="notifSoundCheck">
-              <span class="checkmark"></span>
-              <span data-i18n="notifSoundLabel">Notification</span>
-            </label>
-          </div>
+        <div class="setting-item">
+          <label class="setting-label">Theme</label>
+          <select id="themeSelect" class="setting-select">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
         </div>
-        <div class="settings-row">
-          <div class="setting-item">
-            <label class="setting-label" for="timerInput" data-i18n="timerLabel">Timer</label>
-            <div class="input-suffix">
-              <input type="number" id="timerInput" class="setting-input" min="0" value="0"
-                data-i18n-placeholder="timerPlaceholder">
-              <span class="suffix-text" data-i18n="timerMinutes">min</span>
-            </div>
-          </div>
-          <div class="setting-item">
-            <label class="setting-label" for="targetInput" data-i18n="targetLabel">Target Profile</label>
-            <input type="text" id="targetInput" class="setting-input"
-              data-i18n-placeholder="targetPlaceholder">
-          </div>
+        <div class="setting-item">
+          <label class="setting-label">Language</label>
+          <select id="langSelect" class="setting-select">
+            <option value="auto">Auto</option>
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+            <option value="ja">日本語</option>
+            <option value="zh">中文</option>
+          </select>
         </div>
-      </div>
-
-      <!-- Shortcut Hint -->
-      <div class="shortcut-hint" data-i18n="shortcutHint">Shortcuts: Alt+Shift+S (Start/Stop), Alt+Shift+P (Pause)</div>
-
-      <!-- Whitelist -->
-      <div class="settings-section">
-        <h2 class="section-title" data-i18n="whitelistTitle">Whitelist</h2>
-        <textarea id="whitelist" class="whitelist-input" data-i18n-placeholder="whitelistPlaceholder"></textarea>
-        <p id="whitelistValidation" class="hint" role="alert" aria-live="assertive"></p>
-        <p class="hint" data-i18n="whitelistHint">These users will not be unfollowed</p>
-      </div>
-
-      <!-- Appearance -->
-      <div class="settings-section">
-        <h2 class="section-title" data-i18n="sectionAppearance">Appearance</h2>
-        <div class="settings-row">
-          <div class="setting-item">
-            <label class="setting-label" for="langSelect" data-i18n="menuLanguage">Language</label>
-            <select id="langSelect" class="setting-select">
-              <option value="auto">Auto</option>
-              <option value="tr">Türkçe</option>
-              <option value="en">English</option>
-              <option value="ja">日本語</option>
-              <option value="zh">中文</option>
-              <option value="pt">Português</option>
-              <option value="es">Español</option>
-            </select>
-          </div>
-          <div class="setting-item">
-            <label class="setting-label" for="themeSelect" data-i18n="menuTheme">Theme</label>
-            <select id="themeSelect" class="setting-select">
-              <option value="dark" data-i18n="themeDark">Dark</option>
-              <option value="light" data-i18n="themeLight">Light</option>
-            </select>
-          </div>
+        <div class="setting-item">
+          <label class="checkbox-label">
+            <input type="checkbox" id="skipVerifiedCheck">
+            <span class="checkmark"></span>
+            Skip Verified Accounts
+          </label>
+        </div>
+        <div class="setting-item">
+          <label class="checkbox-label">
+            <input type="checkbox" id="notifSoundCheck">
+            <span class="checkmark"></span>
+            Play Sound on Finish
+          </label>
+        </div>
+        <div class="setting-item">
+          <label class="setting-label">Stop Timer (Minutes)</label>
+          <input type="number" id="timerInput" class="setting-input" placeholder="0 = No limit">
+        </div>
+        <div class="setting-item">
+          <label class="setting-label">Target Profile (Optional)</label>
+          <input type="text" id="targetInput" class="setting-input" placeholder="username">
         </div>
       </div>
 
-      <!-- Stats Dashboard -->
+      <div class="section-label">WHITELIST</div>
       <div class="settings-section">
-        <h2 class="section-title" data-i18n="statsTitle">Stats Dashboard</h2>
-        <div class="stats-dashboard" aria-live="polite">
-          <div class="dash-stat">
-            <span class="dash-stat-value" id="dashAllTime">0</span>
-            <span class="dash-stat-label" data-i18n="statsAllTime">Total Unfollowed</span>
-          </div>
-          <div class="dash-stat">
-            <span class="dash-stat-value" id="dashThisWeek">0</span>
-            <span class="dash-stat-label" data-i18n="statsThisWeek">This Week</span>
-          </div>
-          <div class="dash-stat">
-            <span class="dash-stat-value" id="dashSessions">0</span>
-            <span class="dash-stat-label" data-i18n="statsSessions">Total Sessions</span>
-          </div>
-          <div class="dash-stat">
-            <span class="dash-stat-value" id="dashNonFollowerRate">0%</span>
-            <span class="dash-stat-label" data-i18n="statsNonFollowerRate">Non-Follower Rate</span>
-          </div>
+        <textarea id="whitelist" class="whitelist-input" placeholder="@username1&#10;@username2"></textarea>
+        <p id="whitelistValidation" style="font-size:11px;margin-top:4px;color:var(--text-muted);"></p>
+      </div>
+      
+      <div class="section-label">DATA</div>
+      <div class="settings-section">
+        <div style="display:flex;gap:8px;margin-bottom:8px;">
+          <button id="exportBtn" class="outline-btn" style="flex:1;">Export JSON</button>
+          <button id="importBtn" class="outline-btn" style="flex:1;">Import JSON</button>
+        </div>
+        <button id="exportCsvBtn" class="outline-btn" style="width:100%;">Export History (CSV)</button>
+        <textarea id="exportImportArea" class="whitelist-input hidden"></textarea>
+        <p id="exportImportStatus" style="font-size:11px;margin-top:4px;"></p>
+      </div>
+
+      <div class="section-label">STATS DASHBOARD</div>
+      <div class="stat-grid" style="margin-bottom:24px;">
+        <div class="stat-box">
+           <span class="stat-val" id="dashSessions">0</span>
+           <span class="stat-lbl">SESSIONS</span>
+        </div>
+        <div class="stat-box">
+           <span class="stat-val" id="dashNonFollowerRate">0%</span>
+           <span class="stat-lbl">RATE</span>
         </div>
       </div>
-
-      <!-- Export / Import -->
-      <div class="settings-section">
-        <h2 class="section-title" data-i18n="exportTitle">Export / Import</h2>
-        <div class="export-import-btns">
-          <button id="exportBtn" class="action-btn action-btn-secondary">
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-            </svg>
-            <span data-i18n="menuExport">Export</span>
-          </button>
-          <button id="exportCsvBtn" class="action-btn action-btn-secondary">
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />
-            </svg>
-            <span data-i18n="exportCsv">CSV</span>
-          </button>
-          <button id="importBtn" class="action-btn action-btn-secondary">
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" />
-            </svg>
-            <span data-i18n="menuImport">Import</span>
-          </button>
-        </div>
-        <textarea id="exportImportArea" class="whitelist-input"
-          placeholder="JSON data will appear here..." style="min-height:100px"></textarea>
-        <p id="exportImportStatus" class="hint"></p>
-      </div>
-
-      <!-- Rate Us -->
-      <div class="settings-section" style="text-align:center">
-        <button id="rateBtn" class="action-btn action-btn-secondary" style="display:inline-flex">
-          <span>&#x2B50;</span>
-          <span data-i18n="menuRate">Rate Us</span>
-        </button>
-      </div>
-
-      <!-- Version -->
-      <div class="version-footer">
-        <span class="version">v1.3.0</span>
+      
+      <div style="text-align:center;">
+        <button id="rateBtn" class="outline-btn" style="width:100%;">★ Rate Us</button>
+        <div class="version-footer">v3.1 • 100% Local & Safe</div>
       </div>
     </div>
 
-    <!-- Bottom Tab Bar -->
-    <nav class="tab-bar" role="tablist" aria-label="Navigation">
-      <button class="tab-item active" data-tab="tabHomeContent" role="tab" aria-selected="true" aria-controls="tabHomeContent" id="tab-home">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        <span data-i18n="tabHome">Home</span>
-      </button>
-      <button class="tab-item" data-tab="tabLogContent" role="tab" aria-selected="false" aria-controls="tabLogContent" id="tab-log">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 9H8v2h5v-2zm2-2H8v2h7V9zm-7 6h5v-2H8v2zM13 3.5L18.5 9H13V3.5z"/></svg>
-        <span data-i18n="tabLogs">Log</span>
-      </button>
-      <button class="tab-item" data-tab="tabHistoryContent" role="tab" aria-selected="false" aria-controls="tabHistoryContent" id="tab-history">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-        <span data-i18n="tabHistory">History</span>
-      </button>
-      <button class="tab-item" data-tab="tabSettingsContent" role="tab" aria-selected="false" aria-controls="tabSettingsContent" id="tab-settings">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
-        <span data-i18n="tabSettings">Settings</span>
-      </button>
+    <!-- Tab: History (Hidden tab content, reused structure) -->
+    <div id="tabHistoryContent" class="tab-content">
+       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:8px;">
+        <span class="section-label" style="margin:0;">HISTORY</span>
+        <button id="clearHistory" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:11px;">CLEAR</button>
+      </div>
+      <div id="historyArea" class="history-area"></div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-tab="tabHomeContent" id="tab-home">Home</button>
+      <button class="nav-item" data-tab="tabLogContent" id="tab-log">Log</button>
+      <button class="nav-item" data-tab="tabSettingsContent" id="tab-settings">Settings</button>
     </nav>
   </div>
 
   <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
-
 </html>

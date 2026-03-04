@@ -1141,6 +1141,219 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // ===== v3.1 VIEW SYSTEM =====
+  const RING_CIRC = 326.73;
+  let rlCountdownInterval = null;
+
+  const MODE_META = {
+    'non-followers': { icon: '👥', nameKey: 'modeNonFollowers', descKey: 'modeNonFollowersDesc' },
+    'inactive':      { icon: '⏰', nameKey: 'modeInactive',      descKey: 'modeInactiveDesc' },
+    'bio-filter':    { icon: '🌱', nameKey: 'modeBioFilter',      descKey: 'modeBioFilterDesc' },
+    'overactive':    { icon: '⚡', nameKey: 'modeOveractive',     descKey: 'modeOveractiveDesc' },
+    'all':           { icon: '👤', nameKey: 'modeAll',            descKey: 'modeAllDesc' },
+    'follow-all':    { icon: '➕', nameKey: 'modeFollowAll',      descKey: 'modeFollowAllDesc' }
+  };
+
+  function setView(viewId) {
+    ['idleView', 'runningView', 'rateLimitView', 'sessionCompleteView'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('hidden', id !== viewId);
+    });
+  }
+
+  function updateRingProgress(current, total) {
+    const ring = document.getElementById('ringProgress');
+    if (!ring) return;
+    const pct = total > 0 ? Math.min(current / total, 1) : 0;
+    ring.style.strokeDashoffset = RING_CIRC * (1 - pct);
+    const rc = document.getElementById('ringUnfollowed');
+    if (rc) rc.textContent = current;
+  }
+
+  function updateModeCard(mode) {
+    const meta = MODE_META[mode] || MODE_META['non-followers'];
+    const icon = document.getElementById('modeCardIcon');
+    const name = document.getElementById('modeCardName');
+    const desc = document.getElementById('modeCardDesc');
+    if (icon) icon.textContent = meta.icon;
+    if (name) name.textContent = t(meta.nameKey) || meta.nameKey;
+    if (desc) desc.textContent = t(meta.descKey) || meta.descKey;
+    // Sync panel selection
+    document.querySelectorAll('.mode-list-item').forEach(el => {
+      el.classList.toggle('selected', el.dataset.modevalue === mode);
+    });
+    // Sync hidden radios
+    const radio = document.querySelector(`input[name="mode"][value="${mode}"]`);
+    if (radio) radio.checked = true;
+  }
+
+  // Mode change button → open panel
+  const modeChangeBtn = document.getElementById('modeChangeBtn');
+  const modeSelectorPanel = document.getElementById('modeSelectorPanel');
+  const modeSelectorDone = document.getElementById('modeSelectorDone');
+  const modePanelStart = document.getElementById('modePanelStart');
+
+  if (modeChangeBtn) {
+    modeChangeBtn.addEventListener('click', () => {
+      if (modeSelectorPanel) {
+        modeSelectorPanel.classList.remove('hidden');
+        modeSelectorPanel.removeAttribute('aria-hidden');
+      }
+    });
+  }
+
+  if (modeSelectorDone) {
+    modeSelectorDone.addEventListener('click', () => {
+      if (modeSelectorPanel) {
+        modeSelectorPanel.classList.add('hidden');
+        modeSelectorPanel.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // Mode panel item clicks
+  document.querySelectorAll('.mode-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const mode = item.dataset.modevalue;
+      if (!mode) return;
+      updateModeCard(mode);
+      chrome.storage.local.set({ mode });
+      updateFilterVisibility(mode);
+    });
+  });
+
+  // Mode panel start button
+  if (modePanelStart) {
+    modePanelStart.addEventListener('click', () => {
+      if (modeSelectorPanel) {
+        modeSelectorPanel.classList.add('hidden');
+        modeSelectorPanel.setAttribute('aria-hidden', 'true');
+      }
+      const sb = document.getElementById('startBtn');
+      if (sb) sb.click();
+    });
+  }
+
+  // Secondary quick buttons
+  const whitelistQuickBtn = document.getElementById('whitelistQuickBtn');
+  const optionsQuickBtn = document.getElementById('optionsQuickBtn');
+  if (whitelistQuickBtn) whitelistQuickBtn.addEventListener('click', () => switchTab('tabSettingsContent'));
+  if (optionsQuickBtn) optionsQuickBtn.addEventListener('click', () => switchTab('tabSettingsContent'));
+
+  // Rate limit countdown
+  function startRateLimitCountdown(seconds) {
+    setView('rateLimitView');
+    if (rlCountdownInterval) clearInterval(rlCountdownInterval);
+    const total = seconds;
+    let remaining = seconds;
+    const countdown = document.getElementById('rateLimitCountdown');
+    const barFill = document.getElementById('rateLimitBarFill');
+    function tick() {
+      if (countdown) {
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        countdown.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      }
+      if (barFill) barFill.style.width = `${(remaining / total) * 100}%`;
+      if (remaining <= 0) { clearInterval(rlCountdownInterval); setView('runningView'); }
+      remaining--;
+    }
+    tick();
+    rlCountdownInterval = setInterval(tick, 1000);
+  }
+
+  // Session complete
+  function showSessionComplete(stats) {
+    if (rlCountdownInterval) { clearInterval(rlCountdownInterval); rlCountdownInterval = null; }
+    setView('sessionCompleteView');
+    const cu = document.getElementById('completeUnfollowed');
+    const cs = document.getElementById('completeScanned');
+    const ck = document.getElementById('completeSkipped');
+    if (cu) cu.textContent = stats.unfollowed || 0;
+    if (cs) cs.textContent = stats.scanned || 0;
+    if (ck) ck.textContent = stats.skipped || 0;
+    const sub = document.getElementById('completeSub');
+    if (sub) {
+      const meta = MODE_META[getSelectedMode()] || MODE_META['non-followers'];
+      sub.textContent = (t(meta.nameKey) || meta.nameKey) + ' Mode';
+    }
+  }
+
+  // Start New Session button
+  const startNewBtn = document.getElementById('startNewBtn');
+  if (startNewBtn) {
+    startNewBtn.addEventListener('click', () => {
+      setView('idleView');
+    });
+  }
+
+  // Patch showRunningState to also switch view
+  const _origShowRunning = showRunningState;
+  showRunningState = function() {
+    _origShowRunning();
+    setView('runningView');
+    const meta = MODE_META[getSelectedMode()] || MODE_META['non-followers'];
+    const lbl = document.getElementById('ringModeLabel');
+    if (lbl) lbl.textContent = (t(meta.nameKey) || meta.nameKey) + ' Mode';
+  };
+
+  // Patch showPausedState to keep running view
+  const _origShowPaused = showPausedState;
+  showPausedState = function() {
+    _origShowPaused();
+    setView('runningView');
+    const lbl = document.getElementById('ringModeLabel');
+    if (lbl) lbl.textContent = '⏸ ' + t('statusPaused');
+  };
+
+  // Patch updateStats to also update running view elements
+  const _origUpdateStats = updateStats;
+  updateStats = function(stats) {
+    _origUpdateStats(stats);
+    if (!stats) return;
+    const rs = document.getElementById('runScanned');
+    const rsk = document.getElementById('runSkipped');
+    if (rs) rs.textContent = stats.scanned || 0;
+    if (rsk) rsk.textContent = stats.skipped || 0;
+    updateRingProgress(stats.unfollowed || 0, Math.max(stats.scanned || 1, 1));
+    // Sync rate limit view stats
+    ['rlUnfollowed','rlScanned','rlSkipped'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = [stats.unfollowed, stats.scanned, stats.skipped][i] || 0;
+    });
+    // Sync idle skipped
+    const si = document.getElementById('skippedCountIdle');
+    if (si) si.textContent = stats.skipped || 0;
+  };
+
+  // Listen for completed / rateLimitStart messages from background
+  chrome.runtime.onMessage.addListener((msg) => {
+    if (msg.type === 'completed') {
+      chrome.storage.local.get(['stats'], (d) => showSessionComplete(d.stats || {}));
+    }
+    if (msg.type === 'rateLimitStart' && msg.seconds) {
+      startRateLimitCountdown(msg.seconds);
+    }
+    if (msg.type === 'cooldownState') {
+      const cv = document.getElementById('cooldownValue');
+      if (cv && msg.seconds > 0) cv.textContent = msg.seconds + 's';
+    }
+  });
+
+  // Load dashboard stats for idle view
+  chrome.storage.local.get(['cumulativeStats', 'stats'], (d) => {
+    const cum = d.cumulativeStats || {};
+    const at = document.getElementById('dashAllTime');
+    const tw = document.getElementById('dashThisWeek');
+    if (at) at.textContent = cum.totalUnfollowed || 0;
+    if (tw) tw.textContent = cum.weekUnfollowed || 0;
+  });
+
+  // Init mode card from saved storage
+  chrome.storage.local.get(['mode'], (d) => {
+    updateModeCard(d.mode || 'non-followers');
+  });
+
   // Initial checks
   validateWhitelist();
   await checkPage();
