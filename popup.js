@@ -135,13 +135,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Apply translations to UI
   function applyTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
+      if (el.closest('#langSelect')) return;
       const key = el.getAttribute('data-i18n');
       el.textContent = t(key);
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      if (el.closest('#langSelect')) return;
       const key = el.getAttribute('data-i18n-placeholder');
       el.placeholder = t(key);
     });
+    // Defensive: always restore native language names in the selector
+    const langOptions = {
+      auto: 'Auto', tr: 'Türkçe', en: 'English',
+      ja: '日本語', pt: 'Português', es: 'Español', zh: '中文'
+    };
+    const langSelectEl = document.getElementById('langSelect');
+    if (langSelectEl) {
+      langSelectEl.querySelectorAll('option').forEach(opt => {
+        if (langOptions[opt.value]) opt.textContent = langOptions[opt.value];
+      });
+    }
   }
 
   // Load saved settings

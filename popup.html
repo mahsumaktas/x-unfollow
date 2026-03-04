@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X Unfollow Tool</title>
   <link rel="stylesheet" href="popup.css">
+  <script>
+    // Early theme init — prevent flash of wrong theme
+    try {
+      chrome.storage.local.get(['theme'], function(r) {
+        if (r && r.theme) {
+          document.documentElement.setAttribute('data-theme', r.theme);
+        }
+      });
+    } catch(e) {}
+  </script>
 </head>
 
 <body>
